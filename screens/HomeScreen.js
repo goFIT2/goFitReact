@@ -12,6 +12,7 @@ import { WebBrowser } from 'expo';
 import { MonoText } from '../components/StyledText';
 
 import ChallengesButton from '../components/ChallengesButton'
+import FriendRequestsScreen from '../screens/FriendRequestsScreen'
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
@@ -22,9 +23,9 @@ export default class HomeScreen extends React.Component {
     return (
       <View style={styles.container}>
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-          
-          <ChallengesButton text='challenges' imageURL='../assets/images/challenges_blue.png' /> 
-          <ChallengesButton text='social' imageURL='../assets/images/social_blue.png' /> 
+
+          <ChallengesButton text='challenges' imageURL='../assets/images/challenges_blue.png' />
+          <ChallengesButton text='social' imageURL='../assets/images/social_blue.png' />
 
 
           <View style={styles.welcomeContainer}>
