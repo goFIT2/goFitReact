@@ -5,16 +5,16 @@ export default class FriendRequestView extends React.Component {
 render() {
   return (
     <View style={styles.container}>
-    <Image style = {{width: 30, height: 30}}
+    <Image style = {styles.borderedimage}
      source={require('../assets/images/robot-dev.png')}
     />
-    <Text> Friend Request </Text>
+    <Text style = {{flex: 5}}> Friend Request </Text>
      <Image
-      style={{width: 30, height: 30}}
+      style={{flex: 1, width: 44, height: 44}}
       source={require('../assets/images/accept_green.png')}
      />
      <Image
-      style={{width: 30, height: 30}}
+      style={{flex: 1, width: 44, height: 44, marginHorizontal: 10}}
       source={require('../assets/images/reject_red.png')}
      />
     </View>
@@ -28,9 +28,12 @@ const styles = StyleSheet.create({
       backgroundColor: '#fff',
       alignItems: 'stretch',
   },
-  // container: {
-  //   flex: 1,
-  //   paddingTop: 15,
-  //   backgroundColor: '#fff',
-  // },
+  borderedimage: {
+    flex: 1,
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+    borderWidth:3,
+    borderColor:'blue',
+  }
 });
