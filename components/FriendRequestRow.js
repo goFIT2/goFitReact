@@ -13,21 +13,29 @@ class FriendRequestRow extends React.Component {
     }
     
     accept() {
-        Alert.alert('You accepted ' + this.state.name.split(" ")[0] + '\'s friend request!')
+        Alert.alert('You accepted ' + this.state.name + '\'s friend request!')
     }
     
     reject() {
-        Alert.alert('You rejected ' + this.state.name.split(" ")[0] + '\'s friend request!')
+        Alert.alert('You rejected ' + this.state.name + '\'s friend request!')
     }
 
     render() {
-        let requestName = this.state.name
-        let requestImage = require('../assets/images/friend.png')
+        let images = {
+            Bryce: require('../assets/images/bryce.jpg'),
+            Chris: require('../assets/images/chris.jpg'),
+            Christina: require('../assets/images/christina.jpg'),
+            CJ: require('../assets/images/cj.jpg'),
+            Denis: require('../assets/images/denis.jpg'),
+            Olivia: require('../assets/images/olivia.jpg')
+        }
         return(
             <View style={styles.row}>
-                <Image source={requestImage} style={styles.icon} />
+                <View style={{flex:2}}>
+                    <Image source={images[this.state.name]} style={styles.icon} />
+                </View>
                 <View style={styles.label}>
-                    <Text>{requestName}</Text>
+                    <Text>{this.state.name}</Text>
                 </View>
                 <TouchableHighlight onPress={this.accept} style={{flex:1}}>
                     <Image source={require('../assets/images/accept_green.png')} style={styles.button} />
@@ -50,22 +58,16 @@ const styles = StyleSheet.create({
         height: 70
     },
     icon: {
-        resizeMode: 'contain',
-        padding: 20,
-        height: 40,
-        width: 40,
-        flex: 1
+        alignSelf: 'center',
+        height: 50,
+        width: 50,
+        borderRadius: 25
     },
     label: {
-        padding: 5,
+        margin: 5,
         flex: 5
     },
-    small: {
-        fontSize: 10
-    },
     button: {
-        resizeMode: 'contain',
-        padding: 5,
         height: 35,
         width: 35
     }

@@ -82,8 +82,6 @@ const styles = StyleSheet.create({
         fontSize: 10
     },
     button: {
-        resizeMode: 'contain',
-        padding: 5,
         height: 35,
         width: 35,
     }

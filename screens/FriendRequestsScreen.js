@@ -7,9 +7,8 @@ export default class FriendRequestsScreen extends React.Component {
         return (
             <View>
                 <ScrollView>
-                    <FriendRequestRow name="Beyonce Knowles-Carter" />
-                    <FriendRequestRow name="Doug Doggington III" />
-                    <FriendRequestRow name="Marc Tessier-Lavigne" />
+                    <FriendRequestRow name="Christina" />
+                    <FriendRequestRow name="Denis" />
                 </ScrollView>
             </View>
         );
