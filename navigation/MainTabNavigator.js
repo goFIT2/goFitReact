@@ -10,9 +10,13 @@ import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import ChallengeRequestsScreen from '../screens/ChallengeRequestsScreen.js'
 import FriendRequestsScreen from '../screens/FriendRequestsScreen.js'
+import FriendProfileScreen from '../screens/FriendProfileScreen.js'
 
 export default TabNavigator(
   {
+    Profile: {
+      screen: FriendProfileScreen,
+    },
     Friend: {
       screen: FriendRequestsScreen,
     },
