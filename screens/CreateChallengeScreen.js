@@ -32,79 +32,38 @@ class CreateChallengeScreen extends React.Component {
                             <SelectActivityButton 
                                 activityType='Swimming'
                             />
-                            <View
-                                style={styles.activityStyle}  >
-                                <Image source={require('../assets/images/run.png')}
-                                    style={styles.imageStyle}
-                                    resizeMode='contain'
-                                />
-                                <Text>Running</Text>
-                            </View>
-                            <View
-                                style={styles.activityStyle}
-                            >
-                                <Image source={require('../assets/images/salad.png')}
-                                    style={styles.imageStyle}
-                                    resizeMode='contain'
-                                />
-                                <Text>Salad</Text>
-                            </View>
-                            <View
-                                style={styles.activityStyle}
-                            >
-                                <Image source={require('../assets/images/footsteps.png')}
-                                    style={styles.imageStyle}
-                                    resizeMode='contain'
-                                />
-                                <Text>Walking</Text>
-                            </View>
+                            <SelectActivityButton 
+                                activityType='Running'
+                            />
+                            <SelectActivityButton 
+                                activityType='Salad'
+                            />
+                            <SelectActivityButton 
+                                activityType='Walking'
+                            />
                         </View>
                         <View
                             style={styles.activityRowStyle}
                         >
-                            <View
-                                style={styles.activityStyle}
-                            >
-                                <Image source={require('../assets/images/bike.png')}
-                                    style={styles.imageStyle}
-                                    resizeMode='contain'
-                                />
-                                <Text>Biking</Text>
-                            </View>
-                            <View
-                                style={styles.activityStyle}  >
-                                <Image source={require('../assets/images/weights.png')}
-                                    style={styles.imageStyle}
-                                    resizeMode='contain'
-                                />
-                                <Text>Weights</Text>
-                            </View>
-                            <View
-                                style={styles.activityStyle}
-                            >
-                                <Image source={require('../assets/images/jumprope.png')}
-                                    style={styles.imageStyle}
-                                    resizeMode='contain'
-                                />
-                                <Text>Jumprope</Text>
-                            </View>
-                            <View
-                                style={styles.activityStyle}
-                            >
-                                <Image source={require('../assets/images/water.png')}
-                                    style={styles.imageStyle}
-                                    resizeMode='contain'
-                                />
-                                <Text>Water</Text>
-                            </View>
+                            <SelectActivityButton 
+                                activityType='Biking'
+                            />
+                            <SelectActivityButton 
+                                activityType='Weights'
+                            />
+                            <SelectActivityButton 
+                                activityType='Jumprope'
+                            />
+                            <SelectActivityButton 
+                                activityType='Water'
+                            />
                         </View>
                     </View>
                 </View> 
-
                 <View> 
-                    <Text>Set Goal</Text>
                     <View style={{ flexDirection: 'row' }}>
-                        <View style={{ flexDirection: 'column', flex: 1, margin: 10 }}>
+                        <View style={{ flexDirection: 'column', flex: 1, margin: 10, paddingLeft: 50 }}>
+                            <Text>Set Goal</Text>
                             <TextInput
                                 style={{ borderColor: 'gray', borderWidth: 1 }}
                                 keyboardType='numeric'
@@ -117,8 +76,7 @@ class CreateChallengeScreen extends React.Component {
                                 }}
                             />
                         </View>
-
-                        <View style={{ flexDirection: 'column', flex: 1, margin: 10 }}>
+                        <View style={{ flexDirection: 'column', flex: 1, margin: 10, paddingRight: 50 }}>
                             <Text> 3x per Week </Text>
                             <SimpleStepper
                             />

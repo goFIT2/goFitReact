@@ -1,7 +1,10 @@
 import React from 'react'
 import { 
     TouchableHighlight, 
-
+    StyleSheet,
+    View,
+    Image,
+    Text
     } from 'react-native'
 
 const imageLinks = {
@@ -20,50 +23,71 @@ class SelectActivityButton extends React.Component {
         super(props)
     }
 
-    getURL(activityType) {
-        let url = ''
+    getURL = (activityType) => {
+        let url = null
+        console.log(activityType)
         switch (activityType){
             case 'Swimming':
-                url = '../assets/images/swim.png'
+                url = require('../assets/images/swim.png')
+                break
             case 'Running':
-                url = '../assets/images/run.png'
+                url = require('../assets/images/run.png')
+                break
             case 'Salad':
-                url = '../assets/images/salad.png' 
+                url = require('../assets/images/salad.png')
+                break
             case 'Walking':
-                url = '../assets/images/footsteps.png' 
+                url = require('../assets/images/footsteps.png')
+                break
             case 'Biking':
-                url = '../assets/images/bike.png'
+                url = require('../assets/images/bike.png')
+                break
             case 'Weights':
-                url = '../assets/images/weights.png'
+                url = require('../assets/images/weights.png')
+                break
             case 'Jumprope':
-                url = '../assets/images/jumprope.png'
+                url = require('../assets/images/jumprope.png')
+                break
             case 'Water':
-                url = '../assets/images/water.png'
+                url = require('../assets/images/water.png')
+                break
             default:
                 console.log("Didn't pass in the proper activity type")
         }
-        console.log("URL")
-        console.log(url)
-        return require(url) 
+        return url
     }
 
+    activityPress = (activityType) => {
+        console.log(activityType + 'was pressed!')
+    }
     render(){
-        let imageSource = getURL(this.props.activityType)
+        let imageSource = this.getURL(this.props.activityType)
         return(
             <TouchableHighlight
             style={styles.activityStyle}
-            onPress={this.activityPress}
+            onPress={() => this.activityPress(this.props.activityType)}
             >   
-            <View> 
+            <View style={styles.activityStyle}> 
                 <Image source={imageSource}
                     style={styles.imageStyle}
                     resizeMode='contain'
                 />
-                <Text>Swimming</Text>
+                <Text>{this.props.activityType}</Text>
             </View> 
         </TouchableHighlight>
         )
     }
 }
+
+const styles = StyleSheet.create({
+    imageStyle: {
+        height: 50, 
+        width: 50,
+        resizeMode: 'contain'
+    },
+    activityStyle: {
+        flex: 1, alignItems: 'center' 
+    },
+})
 
 export default SelectActivityButton
