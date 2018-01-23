@@ -8,22 +8,17 @@ import Colors from '../constants/Colors';
 import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
-import FriendRequestsScreen from '../screens/FriendRequestsScreen';
+import ChallengeRequestsScreen from '../screens/ChallengeRequestsScreen.js'
+import FriendRequestsScreen from '../screens/FriendRequestsScreen.js'
 
 export default TabNavigator(
   {
-    Home: {
-      screen: HomeScreen,
-    },
-    Links: {
-      screen: LinksScreen,
-    },
-    Settings: {
-      screen: SettingsScreen,
-    },
-    Requests: {
+    Friend: {
       screen: FriendRequestsScreen,
-    }
+    },
+    Challenge: {
+      screen: ChallengeRequestsScreen,
+    },
   },
   {
     navigationOptions: ({ navigation }) => ({
