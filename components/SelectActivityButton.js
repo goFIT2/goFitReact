@@ -28,7 +28,7 @@ class SelectActivityButton extends React.Component {
         console.log(activityType)
         switch (activityType){
             case 'Swimming':
-                url = require('../assets/images/swim.png')
+                url = require('../assets/images/swimming.png')
                 break
             case 'Running':
                 url = require('../assets/images/run.png')
@@ -37,10 +37,10 @@ class SelectActivityButton extends React.Component {
                 url = require('../assets/images/salad.png')
                 break
             case 'Walking':
-                url = require('../assets/images/footsteps.png')
+                url = require('../assets/images/walking.png')
                 break
             case 'Biking':
-                url = require('../assets/images/bike.png')
+                url = require('../assets/images/biking.png')
                 break
             case 'Weights':
                 url = require('../assets/images/weights.png')
