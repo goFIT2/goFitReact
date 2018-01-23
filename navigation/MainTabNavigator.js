@@ -8,18 +8,19 @@ import Colors from '../constants/Colors';
 import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
+
 import CreateChallengeScreen from '../screens/CreateChallengeScreen'
 
 export default TabNavigator(
   {
-    Home: {
-      screen: HomeScreen,
+    Profile: {
+      screen: FriendProfileScreen,
     },
-    Links: {
-      screen: LinksScreen,
+    Friend: {
+      screen: FriendRequestsScreen,
     },
-    Settings: {
-      screen: SettingsScreen,
+    Challenge: {
+      screen: ChallengeRequestsScreen,
     },
     Challenge: {
       screen: CreateChallengeScreen,
