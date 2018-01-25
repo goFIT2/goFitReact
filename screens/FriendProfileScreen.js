@@ -30,15 +30,15 @@ export default class FriendProfileScreen extends React.Component {
         return (
             <View style={styles.container}>
                 <View style={styles.header}>
-                    <Image source={images[this.state.name]} style={styles.pimg} />
-                    <View style={styles.pdesc}>
-                        <Text style={styles.pname}>{this.state.name}</Text>
+                    <Image source={images[this.state.name]} style={styles.profileImage} />
+                    <View style={styles.profileLabel}>
+                        <Text style={styles.profileName}>{this.state.name}</Text>
                         <Text>Level {this.state.level}</Text>
-                        <ProgressViewIOS progress={this.state.progress} />
+                        <ProgressViewIOS progress={this.state.progress} progressTintColor="#00FFFF" />
                     </View>
                 </View>
                 <View style={{flex:5}}>
-                    <Text style={styles.label}>Challenges With You</Text>
+                    <Text style={styles.subheader}>Challenges With You</Text>
                     <ScrollView>
                         <FriendProfileChallengeRow name="walking" amount="5" frequency="2" measure="mi" />
                         <FriendProfileChallengeRow name="biking" amount="2" frequency="3" measure="hr" />
@@ -46,8 +46,10 @@ export default class FriendProfileScreen extends React.Component {
                     </ScrollView>
                 </View>
                 <View style={styles.challenge}>
-                    <TouchableHighlight onPress={this.challenge} style={{flex:1}}>
-                        <Image source={require('../assets/images/plus_green.png')} style={styles.button} />
+                    <TouchableHighlight onPress={this.challenge}>
+                        <View style={styles.greenCircle} >
+                            <Image source={require('../assets/images/plus.png')} style={styles.icon} />
+                        </View>
                     </TouchableHighlight>
                     <Text style={{flex:5}}>Challenge this friend!</Text>
                 </View>
@@ -67,22 +69,22 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center'
     },
-    pimg: {
+    profileImage: {
         resizeMode: 'contain',
         margin: 5,
         height: 160,
         width: 160,
         flex: 1
     },
-    pdesc: {
+    profileLabel: {
         flex:2,
         padding:10
     },
-    pname: {
+    profileName: {
         paddingBottom: 10,
         fontSize: 35
     },
-    label: {
+    subheader: {
         alignSelf: 'center',
         fontSize: 20,
         paddingVertical: 10
@@ -93,12 +95,18 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
     },
-    button: {
-        alignSelf: 'center',
-        resizeMode: 'contain',
-        padding: 5,
+    greenCircle: {
+        borderWidth: 2,
         height: 40,
         width: 40,
-        flex: 1
+        borderRadius: 20,
+        borderColor: '#00FF00',
+        justifyContent: 'center',
+        margin: 15
+    },
+    icon: {
+        height: 20,
+        width: 20,
+        alignSelf: 'center'
     }
 });

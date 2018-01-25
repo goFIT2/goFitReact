@@ -6,17 +6,6 @@ import {
     Image,
     Text
     } from 'react-native'
-
-const imageLinks = {
-    Swimming: '../assets/images/swim.png', 
-    Running : '../assets/images/run.png',
-    Salad: '../assets/images/salad.png',
-    Walking: '../assets/images/footsteps.png',
-    Biking: '../assets/images/bike.png',
-    Weights: '../assets/images/weights.png',
-    Jumprope: '../assets/images/jumprope.png',
-    Water: '../assets/images/water.png'
-}
     
 class SelectActivityButton extends React.Component {
     constructor(props){
@@ -31,7 +20,7 @@ class SelectActivityButton extends React.Component {
                 url = require('../assets/images/swimming.png')
                 break
             case 'Running':
-                url = require('../assets/images/run.png')
+                url = require('../assets/images/running.png')
                 break
             case 'Salad':
                 url = require('../assets/images/salad.png')

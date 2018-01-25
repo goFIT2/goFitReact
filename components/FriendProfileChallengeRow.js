@@ -17,7 +17,7 @@ class FriendProfileChallengeRow extends React.Component {
         let images = {
             biking: require('../assets/images/biking.png'),
             jumprope: require('../assets/images/jumprope.png'),
-            salad: require('../assets/images/salad.png'),
+            running: require('../assets/images/running.png'),
             salad: require('../assets/images/salad.png'),
             swimming: require('../assets/images/swimming.png'),
             walking: require('../assets/images/walking.png'),
@@ -30,10 +30,12 @@ class FriendProfileChallengeRow extends React.Component {
         let requestImage = '../assets/images/' + this.state.name + '.png'
         return(
             <View style={styles.row}>
-                <Image source={images[this.state.name]} style={styles.icon} />
-                <View style={styles.label}>
+                <View style={styles.blueCircle} >
+                    <Image source={images[this.state.name]} style={styles.challengeIcon} />
+                </View>
+                <View style={styles.challengeLabel}>
                     <Text>{requestName}</Text>
-                    <Text style={styles.small}>{requestFrequency}</Text>
+                    <Text style={styles.smallText}>{requestFrequency}</Text>
                 </View>
             </View>
         )
@@ -48,25 +50,26 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         height: 70
     },
-    icon: {
-        resizeMode: 'contain',
-        padding: 20,
-        height: 40,
-        width: 40,
-        flex: 1
+    blueCircle: {
+        borderWidth: 2,
+        height: 50,
+        width: 50,
+        borderRadius: 25,
+        borderColor: '#00FFFF',
+        justifyContent: 'center',
+        margin: 10
     },
-    label: {
+    challengeIcon: {
+        height: 30,
+        width: 30,
+        alignSelf: 'center'
+    },
+    challengeLabel: {
         padding: 5,
         flex: 5
     },
-    small: {
+    smallText: {
         fontSize: 10
-    },
-    button: {
-        resizeMode: 'contain',
-        padding: 5,
-        height: 35,
-        width: 35,
     }
 });
 
