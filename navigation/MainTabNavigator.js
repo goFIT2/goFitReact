@@ -27,7 +27,7 @@ export default TabNavigator(
     Challenge: {
       screen: ChallengeRequestsScreen,
     },
-    Challenge: {
+    Create: {
       screen: CreateChallengeScreen,
     },
   },

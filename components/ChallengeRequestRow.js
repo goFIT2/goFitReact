@@ -28,7 +28,7 @@ class ChallengeRequestRow extends React.Component {
         let images = {
             biking: require('../assets/images/biking.png'),
             jumprope: require('../assets/images/jumprope.png'),
-            salad: require('../assets/images/salad.png'),
+            running: require('../assets/images/running.png'),
             salad: require('../assets/images/salad.png'),
             swimming: require('../assets/images/swimming.png'),
             walking: require('../assets/images/walking.png'),
@@ -47,12 +47,18 @@ class ChallengeRequestRow extends React.Component {
                     <Text style={styles.small}>{requestFrequency}</Text>
                     <Text style={styles.small}>{requestFriend}</Text>
                 </View>
-                <TouchableHighlight onPress={this.accept} style={{flex:1}}>
-                    <Image source={require('../assets/images/accept_green.png')} style={styles.button} />
-                </TouchableHighlight>
-                <TouchableHighlight onPress={this.reject} style={{flex:1}}>
-                    <Image source={require('../assets/images/reject_red.png')} style={styles.button} />
-                </TouchableHighlight>
+                <View style={{flex:3, flexDirection: 'row'}}>
+                    <TouchableHighlight onPress={this.accept} style={{flex:1}}>
+                        <View style={styles.greenCircle} >
+                            <Image source={require('../assets/images/accept.png')} style={styles.button} />
+                        </View>
+                    </TouchableHighlight>
+                    <TouchableHighlight onPress={this.reject} style={{flex:1}}>
+                        <View style={styles.redCircle} >
+                            <Image source={require('../assets/images/reject.png')} style={styles.button} />
+                        </View>
+                    </TouchableHighlight>
+                </View>
             </View>
         )
     }
@@ -82,9 +88,26 @@ const styles = StyleSheet.create({
         fontSize: 10
     },
     button: {
-        height: 35,
-        width: 35,
-    }
+        height: 20,
+        width: 20,
+        alignSelf: 'center'
+    },
+    greenCircle: {
+        borderWidth: 2,
+        height: 40,
+        width: 40,
+        borderRadius: 20,
+        borderColor: '#00FF00',
+        justifyContent: 'center'
+    },
+    redCircle: {
+        borderWidth: 2,
+        height: 40,
+        width: 40,
+        borderRadius: 20,
+        borderColor: '#FF0000',
+        justifyContent: 'center'
+    },
 });
 
 export default ChallengeRequestRow
