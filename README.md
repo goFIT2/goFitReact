@@ -1,6 +1,6 @@
 # goFitReact
 
-##Notes From Meeting w/ Elizabeth?
+## Notes From Meeting w/ Elizabeth?
 * Introduce Tabs because layout is confusing 
 * Plus botton to add progress is confusing 
 * Swipe left and right instead of using arrows to click though 
