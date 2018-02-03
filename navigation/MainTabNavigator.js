@@ -8,22 +8,36 @@ import Colors from '../constants/Colors';
 import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
-import FriendRequestsScreen from '../screens/FriendRequestsScreen';
+
+import CreateChallengeScreen from '../screens/CreateChallengeScreen'
+
+import ChallengeRequestsScreen from '../screens/ChallengeRequestsScreen.js'
+import FriendRequestsScreen from '../screens/FriendRequestsScreen.js'
+import FriendProfileScreen from '../screens/FriendProfileScreen.js'
+
+import ChallengesScreen from '../screens/ChallengesScreen.js'
+import SocialScreen from '../screens/SocialScreen.js'
 
 export default TabNavigator(
   {
-    Home: {
-      screen: HomeScreen,
+    All: {
+        screen: ChallengesScreen
     },
-    Links: {
-      screen: LinksScreen,
+    Social: {
+        screen: SocialScreen
     },
-    Settings: {
-      screen: SettingsScreen,
+    Profile: {
+      screen: FriendProfileScreen,
     },
-    Requests: {
+    Friend: {
       screen: FriendRequestsScreen,
-    }
+    },
+    Challenge: {
+      screen: ChallengeRequestsScreen,
+    },
+    Create: {
+      screen: CreateChallengeScreen,
+    },
   },
   {
     navigationOptions: ({ navigation }) => ({
