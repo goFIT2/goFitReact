@@ -17,11 +17,13 @@ import FriendProfileScreen from '../screens/FriendProfileScreen.js'
 
 import ChallengesScreen from '../screens/ChallengesScreen.js'
 import SocialScreen from '../screens/SocialScreen.js'
+import AddProgressScreen from '../screens/AddProgressScreen.js'
+import MyProgressScreen from '../screens/MyProgressScreen.js'
 
 export default TabNavigator(
   {
     All: {
-        screen: ChallengesScreen
+        screen: MyProgressScreen
     },
     Social: {
         screen: SocialScreen
@@ -30,7 +32,7 @@ export default TabNavigator(
       screen: FriendProfileScreen,
     },
     Friend: {
-      screen: FriendRequestsScreen,
+      screen: AddProgressScreen,
     },
     Challenge: {
       screen: ChallengeRequestsScreen,
