@@ -8,11 +8,11 @@ export default class ChallengeRequestsScreen extends React.Component {
         super(props)
         this.state = {
             communities: [
-                {icon:'walking', name:'#goFITgang', members:['Bryce','Olivia', 'Chris', 'CJ']},
-                {icon:'weights', name:'bryceps', members:['Bryce','Olivia']},
-                {icon:'water', name:'olifitup', members:['Olivia', 'Chris', 'CJ']},
-                {icon:'weights', name:'TEAMFITLIT', members:['Bryce','Christina', 'Denis', 'Olivia']},
-                {icon:'biking', name:'goFUT', members:['Bryce','Olivia']},
+                {key:0, icon:'walking', name:'#goFITgang', members:['Bryce','Olivia', 'Chris', 'CJ']},
+                {key:1, icon:'weights', name:'bryceps', members:['Bryce','Olivia']},
+                {key:2, icon:'water', name:'olifitup', members:['Olivia', 'Chris', 'CJ']},
+                {key:3, icon:'weights', name:'TEAMFITLIT', members:['Bryce','Christina', 'Denis', 'Olivia']},
+                {key:4, icon:'biking', name:'goFUT', members:['Bryce','Olivia']},
             ]
         }
     }

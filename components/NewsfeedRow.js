@@ -8,7 +8,8 @@ export default class NewsfeedRow extends React.Component {
         this.state = {
             friend: props.friend,
             community: props.community,
-            text: props.text
+            text: props.text,
+            time: props.time
         }
     }
     
@@ -31,9 +32,11 @@ export default class NewsfeedRow extends React.Component {
         }
         return(
             <View style={styles.row}>
-                <Image source={images[this.state.friend]} style={styles.icon} />
+                <View>
+                    <Image source={images[this.state.friend]} style={styles.icon} />
+                </View>
                 <View style={styles.label}>
-                    <Text style={styles.communityLabel}>{this.state.community + ' Community'}</Text>
+                    <Text style={styles.smallLabel}>{this.state.community + ' Community • ' + this.state.time}</Text>
                     <Text>{this.state.text}</Text>
                 </View>
             </View>
@@ -60,7 +63,7 @@ const styles = StyleSheet.create({
         padding: 5,
         flex: 5
     },
-    communityLabel: {
+    smallLabel: {
         color: 'gray',
         fontSize: 10,
         paddingBottom: 1

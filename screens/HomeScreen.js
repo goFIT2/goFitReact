@@ -1,5 +1,5 @@
 import React from 'react';
-import {Alert, Dimensions, Image, Platform, ScrollView, StyleSheet, Text, TouchableHighlight, TouchableOpacity, View} from 'react-native';
+import {Alert, Dimensions, Image, FlatList, Platform, ScrollView, StyleSheet, Text, TouchableHighlight, TouchableOpacity, View} from 'react-native';
 import { WebBrowser } from 'expo';
 import { MonoText } from '../components/StyledText';
 
@@ -13,16 +13,16 @@ export default class HomeScreen extends React.Component {
         super(props);
         this.state = {
             activities: [
-                {icon:'weights', name:'weights'},
-                {icon:'running', name:'running'},
-                {icon:'walking', name:'walking'}
+                {key:0, icon:'weights', name:'weights'},
+                {key:1, icon:'running', name:'running'},
+                {key:2, icon:'walking', name:'walking'}
             ],
             newsfeed: [
-                {friend:'Denis', text:'Hello my name is Denis and I like working out~', community:'goFIT'},
-                {friend:'Denis', text:'Hello my name is Denis and I like working out~', community:'goFIT'},
-                {friend:'Denis', text:'Hello my name is Denis and I like working out~', community:'goFIT'},
-                {friend:'Denis', text:'Hello my name is Denis and I like working out~', community:'goFIT'},
-                {friend:'Denis', text:'Hello my name is Denis and I like working out~', community:'goFIT'}
+                {key:0, friend:'Denis', text:'Hello my name is Denis and I like working out~', community:'TEAMFITLIT', time:'30m'},
+                {key:1, friend:'Chris', text:'Anyone doing the SoulCycle at Stanford this weekend?', community:'#goFITgang', time:'55m'},
+                {key:2, friend:'Chris', text:'Chris joined the #goFITgang community.', community:'#goFITgang', time:'1hr'},
+                {key:3, friend:'Bryce', text:'Bryce did 2 hours of walking today!', community:'goFIT', time:'2hr'},
+                {key:4, friend:'CJ', text:'CJ joined the #goFITgang community.', community:'#goFITgang', time:'5hr'}
             ]
         };
     }
@@ -32,20 +32,15 @@ export default class HomeScreen extends React.Component {
     }
 
     render() {
-        var activities = this.state.activities.map(function(c, i) {
-            return (<View key={i} style={styles.cell}><ActivityCell icon={c.icon} name={c.name} /></View>);
-        });
-        var newsfeed = this.state.newsfeed.map(function(n, i) {
-            return (<View key={i} style={styles.cell}><NewsfeedRow friend={n.friend} text={n.text} community={n.community}/></View>);
-        });        return (
+        return (
             <View style={styles.container}>
                 <Text style={styles.label}>Quick Add</Text>
                 <ScrollView ref={(scrollView) => { this.scrollView = scrollView; }} horizontal= {true} decelerationRate={0} snapToInterval={width-120} snapToAlignment={"center"} showsHorizontalScrollIndicator={false} contentInset={{top:0,left:60,bottom:0,right:60}} style={{flex:1}}>
-                    {activities}
+                    <FlatList horizontal={true} data={this.state.activities} renderItem={({item}) => <View key={item.key} style={styles.cell}><ActivityCell icon={item.icon} name={item.name} /></View>}/>
                 </ScrollView>
                 <Text style={styles.label}>FitFeed</Text>
                 <ScrollView  style={{flex:1}}>
-                    {newsfeed}
+                    <FlatList data={this.state.newsfeed} renderItem={({item}) => <NewsfeedRow key={item.key} friend={item.friend} text={item.text} community={item.community} time={item.time}/>}/>
                 </ScrollView>
             </View>
         );

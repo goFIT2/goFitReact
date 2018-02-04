@@ -1,5 +1,5 @@
 import React from 'react';
-import { Alert, Image, Keyboard, KeyboardAvoidingView, ScrollView, StyleSheet, Text, TextInput, TouchableHighlight, TouchableWithoutFeedback, View } from 'react-native';
+import { Alert, Image, Keyboard, KeyboardAvoidingView, ScrollView, StyleSheet, Text, TextInput, TouchableHighlight, View } from 'react-native';
 import { WebBrowser } from 'expo';
 import { MonoText } from '../components/StyledText';
 
@@ -7,11 +7,22 @@ export default class AddCommunityScreen extends React.Component {
 
     constructor(props) {
         super(props);
-        this.create = this.create.bind(this)
+        this.create = this.create.bind(this);
+        this.checkValues = this.checkValues.bind(this);
         this.state = {
-            name: 'goFIT',
+            name: null,
             friends: {Bryce: false, Chris: false, Christina: false, CJ: false, Denis: false, Olivia: false}
         };
+    }
+    
+    checkValues() {
+        members = []
+        for (f in this.state.friends) {
+            if (this.state.friends[f]) {
+                members.push(f);
+            }
+        }
+        return (this.state.name && members.length > 0);
     }
     
     create() {
@@ -21,7 +32,9 @@ export default class AddCommunityScreen extends React.Component {
                 members.push(f);
             }
         }
-        Alert.alert('You created the ' + this.state.name + ' community with ' + members + '!');
+        if (this.checkValues()) {
+            Alert.alert('You created the ' + this.state.name + ' community with ' + members + '!');
+        }
     }
     
     toggleMember(f) {
@@ -55,12 +68,11 @@ export default class AddCommunityScreen extends React.Component {
                 <Text style={styles.text}>the</Text>
                 <TextInput style={styles.textinput} onChangeText={(name) => this.setState({name})} placeholder='goFIT' autoCapitalize='none' autoCorrect={false}/>
                 <Text style={styles.text}>community with</Text>
-                {/*<TextInput style={styles.textinput} onChangeText={(friends) => this.setState({friends})} placeholder='friends' autoCapitalize='none' autoCorrect={false}/>*/}
                 <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
                     {friends}
                 </ScrollView>
                 <TouchableHighlight onPress={this.create} style={{marginTop:15}}>
-                    <Text style={styles.button}>Create Community</Text>
+                    <Text style={this.checkValues() ? styles.button : styles.buttonGray}>Create Community</Text>
                 </TouchableHighlight>
             </KeyboardAvoidingView>
         );
@@ -84,6 +96,11 @@ const styles = StyleSheet.create({
     },
     button: {
         color: '#0076FF',
+        fontSize: 30,
+        fontWeight: '900'
+    },
+    buttonGray: {
+        color: 'gray',
         fontSize: 30,
         fontWeight: '900'
     },
