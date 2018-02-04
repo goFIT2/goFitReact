@@ -1,7 +1,7 @@
 import React from 'react';
 import { Alert, Image, StyleSheet, Text, TouchableHighlight, View } from 'react-native'
 
-class CommunityCell extends React.Component {
+export default class CommunityCell extends React.Component {
 
     constructor(props) {
         super(props)
@@ -11,12 +11,6 @@ class CommunityCell extends React.Component {
             name: props.name,
             members: props.members
         }
-    }
-    
-    componentWillUpdate(nextProps, nextState) {
-        nextState.icon = nextProps.icon;
-        nextState.name = nextProps.name;
-        nextState.members = nextProps.members;
     }
     
     detail() {
@@ -47,7 +41,7 @@ class CommunityCell extends React.Component {
         return(
             <View style={styles.cell}>
                 <TouchableHighlight onPress={this.detail}>
-                    <View style={styles.blueCircle} >
+                    <View style={styles.circle} >
                         <Image source={images[this.state.icon]} style={styles.icon} />
                     </View>
                 </TouchableHighlight>
@@ -66,22 +60,21 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
     },
-    blueCircle: {
+    circle: {
         borderWidth: 3,
-        height: 160,
-        width: 160,
-        borderRadius: 80,
+        height: 80,
+        width: 80,
+        borderRadius: 40,
         justifyContent: 'center'
     },
     icon: {
-        height: 80,
-        width: 80,
+        height: 40,
+        width: 40,
         alignSelf: 'center'
     },
     name: {
-        fontSize: 25,
         fontWeight: '200',
-        margin: 10
+        margin: 5
     },
     smallFriend: {
         height: 18,
@@ -90,5 +83,3 @@ const styles = StyleSheet.create({
         margin: 1
     }
 });
-
-export default CommunityCell
