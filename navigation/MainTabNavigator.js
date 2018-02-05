@@ -29,7 +29,11 @@ const HomeStackNavigator = StackNavigator(
     AddProgress: {
       screen: AddProgressScreen
     },
+  },
+  {
+    initialRouteName: 'Home',
   }
+  
 )
 
 const CommunityStackNavigator = StackNavigator(
@@ -43,15 +47,23 @@ const CommunityStackNavigator = StackNavigator(
   }
 )
 
-export default TabNavigator(
+const ProgressStackNavigator = StackNavigator( 
   {
     Progress: {
       screen: MyProgressScreen
+    }
+  }
+)
+
+const MainTabNavigator =  TabNavigator(
+  {
+    ProgressNav: {
+      screen: ProgressStackNavigator
     },
-    Home: {
+    HomeNav: {
       screen: HomeStackNavigator
     }, 
-    Community: {
+    CommunityNav: {
       screen: CommunityStackNavigator
     }
   },
@@ -61,16 +73,16 @@ export default TabNavigator(
         const { routeName } = navigation.state;
         let iconName;
         switch (routeName) {
-          case 'Home':
+          case 'HomeNav':
             iconName =
               Platform.OS === 'ios'
                 ? `ios-home${focused ? '' : '-outline'}`
                 : 'android-home';
             break;
-          case 'Progress':
+          case 'ProgressNav':
             iconName = `ios-trending-up${focused ? '' : '-outline'}`
             break;
-          case 'Community':
+          case 'CommunityNav':
             iconName = `ios-people${focused ? '' : '-outline'}`
             break
         }
@@ -84,10 +96,13 @@ export default TabNavigator(
         );
       },
     }),
-    initialRouteName: 'Home',
+    initialRouteName: 'HomeNav',
     tabBarComponent: TabBarBottom,
     tabBarPosition: 'bottom',
     animationEnabled: false,
     swipeEnabled: false,
   }
 );
+
+
+export default MainTabNavigator
