@@ -1,7 +1,8 @@
 import React from 'react';
 import { Alert, Image, StyleSheet, Text, TouchableHighlight, View } from 'react-native'
+import { StackNavigator } from 'react-navigation' 
 
-export default class CommunityCell extends React.Component {
+class CommunityCell extends React.Component {
 
     constructor(props) {
         super(props)
@@ -13,8 +14,9 @@ export default class CommunityCell extends React.Component {
         }
     }
     
-    detail() {
-        Alert.alert('You chose the ' + this.state.name + ' community!')
+    detail = () => {
+        Alert.alert('You chose the ' + this.state.name + ' activity!')
+        this.props.navigation.navigate('AddProgress')
     }
 
     render() {
@@ -27,28 +29,15 @@ export default class CommunityCell extends React.Component {
             walking: require('../assets/images/walking.png'),
             water: require('../assets/images/water.png'),
             weights: require('../assets/images/weights.png'),
-            
-            Bryce: require('../assets/images/bryce.jpg'),
-            Chris: require('../assets/images/chris.jpg'),
-            Christina: require('../assets/images/christina.jpg'),
-            CJ: require('../assets/images/cj.jpg'),
-            Denis: require('../assets/images/denis.jpg'),
-            Olivia: require('../assets/images/olivia.jpg')
         }
-        var friends = this.state.members.map(function(m, i) {
-            return (<Image key={i} source={images[m]} style={styles.smallFriend} />);
-        });
         return(
             <View style={styles.cell}>
-                <TouchableHighlight onPress={this.detail}>
+                <TouchableHighlight onPress={() => this.detail()}>
                     <View style={styles.circle} >
                         <Image source={images[this.state.icon]} style={styles.icon} />
                     </View>
                 </TouchableHighlight>
                 <Text style={styles.name}>{this.state.name}</Text>
-                <View style={{flexDirection:'row'}}>
-                    {friends}
-                </View>
             </View>
         )
     }
@@ -61,25 +50,22 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     circle: {
-        borderWidth: 2,
-        height: 80,
-        width: 80,
-        borderRadius: 40,
+        borderWidth: 3,
+        height: 160,
+        width: 160,
+        borderRadius: 80,
         justifyContent: 'center'
     },
     icon: {
-        height: 40,
-        width: 40,
+        height: 80,
+        width: 80,
         alignSelf: 'center'
     },
     name: {
+        fontSize: 25,
         fontWeight: '200',
-        margin: 5
-    },
-    smallFriend: {
-        height: 18,
-        width: 18,
-        borderRadius: 9,
-        margin: 1
+        margin: 10
     }
 });
+
+export default CommunityCell

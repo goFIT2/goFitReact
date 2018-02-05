@@ -4,6 +4,9 @@ import { StackNavigator } from 'react-navigation';
 
 import MainTabNavigator from './MainTabNavigator';
 import registerForPushNotificationsAsync from '../api/registerForPushNotificationsAsync';
+import HomeScreen from '../screens/HomeScreen';
+import AddProgressScreen from '../screens/AddProgressScreen';
+
 
 const RootStackNavigator = StackNavigator(
   {

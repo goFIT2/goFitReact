@@ -1,7 +1,7 @@
 import React from 'react';
 import { Platform } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { TabNavigator, TabBarBottom } from 'react-navigation';
+import { StackNavigator, TabNavigator, TabBarBottom } from 'react-navigation';
 
 import Colors from '../constants/Colors';
 
@@ -9,44 +9,50 @@ import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 
-import CreateChallengeScreen from '../screens/CreateChallengeScreen'
-
-import ChallengeRequestsScreen from '../screens/ChallengeRequestsScreen.js'
 import FriendRequestsScreen from '../screens/FriendRequestsScreen.js'
 import FriendProfileScreen from '../screens/FriendProfileScreen.js'
 
 import ChallengesScreen from '../screens/ChallengesScreen.js'
 import SocialScreen from '../screens/SocialScreen.js'
-import SignInScreen from '../screens/SignInScreen.js'
 
-import AddProgressScreen from '../screens/AddProgressScreen'
+import AddProgressScreen from '../screens/AddProgressScreen.js'
+import MyProgressScreen from '../screens/MyProgressScreen.js'
+import CommunitiesScreen from '../screens/CommunitiesScreen'
+import AddCommunityScreen from '../screens/AddCommunityScreen'
 
+
+const HomeStackNavigator = StackNavigator( 
+  {
+    Home: {
+      screen: HomeScreen
+    },
+    AddProgress: {
+      screen: AddProgressScreen
+    },
+  }
+)
+
+const CommunityStackNavigator = StackNavigator(
+  {
+    Community: {
+      screen: CommunitiesScreen 
+    },
+    AddCommunity: {
+      screen: AddCommunityScreen
+    }
+  }
+)
 
 export default TabNavigator(
   {
-    SignIn: {
-        screen: SignInScreen
+    Progress: {
+      screen: MyProgressScreen
     },
-    Social: {
-        screen: SocialScreen
-    },
-    Profile: {
-      screen: FriendProfileScreen,
-    },
-    Friend: {
-      screen: FriendRequestsScreen,
-    },
-    Challenge: {
-      screen: ChallengeRequestsScreen,
-    },
-    Create: {
-      screen: CreateChallengeScreen,
-    },
-    AddProgressScreen: {
-      screen: AddProgressScreen
-    },
-    HomeScreen: {
-      screen: HomeScreen
+    Home: {
+      screen: HomeStackNavigator
+    }, 
+    Community: {
+      screen: CommunityStackNavigator
     }
   },
   {
@@ -58,15 +64,15 @@ export default TabNavigator(
           case 'Home':
             iconName =
               Platform.OS === 'ios'
-                ? `ios-information-circle${focused ? '' : '-outline'}`
-                : 'md-information-circle';
+                ? `ios-home${focused ? '' : '-outline'}`
+                : 'android-home';
             break;
-          case 'Links':
-            iconName = Platform.OS === 'ios' ? `ios-link${focused ? '' : '-outline'}` : 'md-link';
+          case 'Progress':
+            iconName = `ios-trending-up${focused ? '' : '-outline'}`
             break;
-          case 'Settings':
-            iconName =
-              Platform.OS === 'ios' ? `ios-options${focused ? '' : '-outline'}` : 'md-options';
+          case 'Community':
+            iconName = `ios-people${focused ? '' : '-outline'}`
+            break
         }
         return (
           <Ionicons
@@ -78,6 +84,7 @@ export default TabNavigator(
         );
       },
     }),
+    initialRouteName: 'Home',
     tabBarComponent: TabBarBottom,
     tabBarPosition: 'bottom',
     animationEnabled: false,

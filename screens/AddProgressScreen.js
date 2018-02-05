@@ -7,17 +7,25 @@ export default class AddProgressScreen extends React.Component {
 
     constructor(props) {
         super(props);
-        this.log = this.log.bind(this)
+        this.log = this.log.bind(this);
+        this.checkValues = this.checkValues.bind(this);
         this.state = {
-            amount: 'X',
-            measure: 'sets',
-            exercise: 'exercise',
-            time: 'today'
+            amount: null,
+            measure: null,
+            exercise: null,
+            time: null
         };
     }
     
-    log() {
-        Alert.alert('You logged ' + this.state.amount + ' ' + this.state.measure + ' of ' + this.state.exercise + ' for ' + this.state.time + '!');
+    checkValues() {
+        return (this.state.amount && this.state.measure && this.state.exercise && this.state.time);
+    }
+    
+    log = () => {
+        if (this.checkValues()) {
+            Alert.alert('You logged ' + this.state.amount + ' ' + this.state.measure + ' of ' + this.state.exercise + ' for ' + this.state.time + '!');
+        }
+        this.props.navigation.goBack()
     }
 
     render() {
@@ -31,8 +39,8 @@ export default class AddProgressScreen extends React.Component {
                         <Text style={styles.text}>of</Text>
                         <TextInput style={styles.textinput} onChangeText={(exercise) => this.setState({exercise})} placeholder='running' autoCapitalize='none' autoCorrect={false}/>
                         <TextInput style={styles.textinput} onChangeText={(time) => this.setState({time})}placeholder='today' autoCapitalize='none' autoCorrect={false}/>
-                        <TouchableHighlight onPress={this.log} style={{marginTop:15}}>
-                            <Text style={styles.button}>Log Progress</Text>
+                        <TouchableHighlight onPress={() => this.log()} style={{marginTop:15}}>
+                            <Text style={this.checkValues() ? styles.button : styles.buttonGray}>Log Progress</Text>
                         </TouchableHighlight>
                     </View>
                 </TouchableWithoutFeedback>
@@ -58,6 +66,11 @@ const styles = StyleSheet.create({
     },
     button: {
         color: '#0076FF',
+        fontSize: 30,
+        fontWeight: '900'
+    },
+    buttonGray: {
+        color: 'gray',
         fontSize: 30,
         fontWeight: '900'
     }
