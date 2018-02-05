@@ -19,6 +19,9 @@ import ChallengesScreen from '../screens/ChallengesScreen.js'
 import SocialScreen from '../screens/SocialScreen.js'
 import SignInScreen from '../screens/SignInScreen.js'
 
+import AddProgressScreen from '../screens/AddProgressScreen'
+
+
 export default TabNavigator(
   {
     SignIn: {
@@ -39,6 +42,12 @@ export default TabNavigator(
     Create: {
       screen: CreateChallengeScreen,
     },
+    AddProgressScreen: {
+      screen: AddProgressScreen
+    },
+    HomeScreen: {
+      screen: HomeScreen
+    }
   },
   {
     navigationOptions: ({ navigation }) => ({
