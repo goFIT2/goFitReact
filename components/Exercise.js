@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
     card: {
         margin: 10,
         borderColor: '#ACACAC',
-        borderWidth: 2, 
+        borderWidth: 1, 
         backgroundColor: '#FFFFFF',
         borderRadius: 5,
         shadowOffset: {  width: 10,  height: 10,  },

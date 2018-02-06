@@ -18,6 +18,7 @@ import MyProgressScreen from '../screens/MyProgressScreen.js'
 import CommunitiesScreen from '../screens/CommunitiesScreen'
 import AddCommunityScreen from '../screens/AddCommunityScreen'
 import Exercise from '../components/Exercise.js'
+import ProgressScreen from '../screens/ProgressScreen'
 
 const HomeStackNavigator = StackNavigator( 
   {
@@ -59,7 +60,7 @@ const MainTabNavigator =  TabNavigator(
       screen: ProgressStackNavigator,
     },
     Home: {
-      screen: Exercise
+      screen: ProgressScreen
     }, 
     Community: {
       screen: CommunityStackNavigator
