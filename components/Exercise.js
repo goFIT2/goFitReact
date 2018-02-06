@@ -7,7 +7,7 @@ import { Entypo } from '@expo/vector-icons'
 const ExerciseTitle = (props) => {
     return (
         <TouchableOpacity style={styles.title}>
-            <Text>Bench Press</Text>
+            <Text style={styles.titleText}>Bench Press</Text>
             <Entypo name='chevron-right' style={styles.chevron} /> 
         </TouchableOpacity>
     )
@@ -17,23 +17,20 @@ const columnHead = () => {
     return(
         <View style={{flexDirection: 'row', paddingLeft: 10, paddingRight: 10}}>
             <View style={styles.columnText1}>
-                <Text style={{alignSelf: 'center'}}>#</Text>
+                <Text style={{alignSelf: 'center', fontFamily: 'sf-light'}}>#</Text>
             </View> 
             <View style={[styles.columnText1, {borderLeftWidth: 0}]}>
-                <Text style={{alignSelf: 'center'}}>Previous</Text>
+                <Text style={{alignSelf: 'center', fontFamily: 'sf-light'}}>Previous</Text>
             </View> 
             <View style={[styles.columnText1, {borderLeftWidth: 0}]}>
-                <Text style={{alignSelf: 'center'}}>Lbs.</Text>
+                <Text style={{alignSelf: 'center', fontFamily: 'sf-light'}}>Lbs.</Text>
             </View> 
             <View style={[styles.columnText1, {borderLeftWidth: 0}]}>
-                <Text style={{alignSelf: 'center'}}>Reps</Text>
+                <Text style={{alignSelf: 'center', fontFamily: 'sf-light'}}>Reps</Text>
             </View> 
         </View>
     )
 }
-
-
-
 
 //Callback for whenever state changes, handled by the parent. 
 const progressRow = ({item, section}) => {
@@ -41,10 +38,10 @@ const progressRow = ({item, section}) => {
     return(
         <View style={{flexDirection: 'row', paddingLeft: 10, paddingRight: 10}}>
             <View style={[styles.columnText1, styles.progressRow]}>
-                <Text style={{alignSelf: 'center'}}>{item.num}</Text>
+                <Text style={styles.rowText}>{item.num}</Text>
             </View> 
             <View style={[styles.columnText1, styles.progressRow, {borderLeftWidth: 0}]}>
-                <Text style={{alignSelf: 'center'}}>{item.num}</Text>
+                <Text style={styles.rowText}>{item.num}</Text>
             </View> 
             <View style={[styles.columnText1, styles.progressRow, 
                     {borderLeftWidth: 0, alignItems: 'center'}]}>
@@ -66,7 +63,6 @@ const progressRow = ({item, section}) => {
 class Exercise extends React.Component { 
     constructor(props){
         super(props)
-
         this.state = {data: [
             {
                 key: '0', data: [{num: 'Barbell', reps: '10'}]
@@ -88,7 +84,7 @@ class Exercise extends React.Component {
                 onPress={() => this.setState({data: []})}
                 style={styles.button}
             >
-                <Text style={{textAlign: 'center', textAlignVertical: 'center', color: 'white'}}>ADD SET</Text>
+                <Text style={{textAlign: 'center', textAlignVertical: 'center', color: 'white', fontFamily: 'sf-bold'}}>ADD SET</Text>
             </TouchableHighlight> 
         )
     }
@@ -104,7 +100,7 @@ class Exercise extends React.Component {
             ]
 
         return (
-            <View>
+            <View style={styles.card}>
                 <ExerciseTitle />
                 <SectionList 
                     renderItem={progressRow}
@@ -121,11 +117,35 @@ class Exercise extends React.Component {
 export default Exercise 
 
 const styles = StyleSheet.create({
+    card: {
+        margin: 10,
+        borderColor: '#ACACAC',
+        borderWidth: 2, 
+        backgroundColor: '#FFFFFF',
+        borderRadius: 5,
+        shadowOffset: {  width: 10,  height: 10,  },
+        shadowColor: 'black',
+        shadowOpacity: .1,
+    },
     title: {
-        flexDirection: 'row'
+        flexDirection: 'row',
+        marginLeft: 10,
+        marginBottom: 5,
+
+    },
+    titleText: {
+        fontFamily: 'sf-heavy',
+        fontSize: 25,
+        
+    },
+    rowText: {
+        fontFamily: 'sf-bold',
+        fontSize: 14,
+        alignSelf: 'center'
     },
     chevron: {
-        marginLeft: 10
+        marginLeft: 10,
+        alignSelf: 'stretch',
     },
     chart: {
         flexDirection: 'row', 
@@ -137,7 +157,7 @@ const styles = StyleSheet.create({
     },
     columnText1: {
         borderColor: '#D8D8D8',
-        borderWidth: 3,
+        borderWidth: 1,
         flex: 1
     },
     progressRow: {
@@ -154,6 +174,9 @@ const styles = StyleSheet.create({
         alignItems: 'center', 
         marginLeft: 10, 
         marginRight: 10,
-        backgroundColor: '#FB6D00'
-    }
+        backgroundColor: '#FB6D00',
+        marginBottom: 10
+    },
+
+
 })
