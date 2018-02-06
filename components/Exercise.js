@@ -4,7 +4,7 @@ import { SectionList, TouchableHighlight, View, Text,
 import { Entypo } from '@expo/vector-icons'
 
 
-const exerciseTitle = (props) => {
+const ExerciseTitle = (props) => {
     return (
         <TouchableOpacity style={styles.title}>
             <Text>Bench Press</Text>
@@ -50,42 +50,56 @@ const progressRow = ({item, section}) => {
     return(
         <View style={{flexDirection: 'row', paddingLeft: 10, paddingRight: 10}}>
             <View style={[styles.columnText1, styles.progressRow]}>
-                <Text style={{alignSelf: 'center'}}>item.num</Text>
+                <Text style={{alignSelf: 'center'}}>{item.num}</Text>
             </View> 
             <View style={[styles.columnText1, styles.progressRow, {borderLeftWidth: 0}]}>
-                <Text style={{alignSelf: 'center'}}>item.num</Text>
+                <Text style={{alignSelf: 'center'}}>{item.num}</Text>
             </View> 
-            <View style={[styles.columnText1, styles.progressRow, {borderLeftWidth: 0}]}>
-                <TextInput style={{alignSelf: 'center'}}></TextInput>
+            <View style={[styles.columnText1, styles.progressRow, 
+                    {borderLeftWidth: 0, alignItems: 'center'}]}>
+                <TextInput
+                    placeholder='35'>
+                </TextInput>
             </View> 
-            <View style={[styles.columnText1, styles.progressRow, {borderLeftWidth: 0}]}>
-                <TextInput style={{alignSelf: 'center'}}></TextInput>
+            <View style={[styles.columnText1, styles.progressRow, 
+                    {borderLeftWidth: 0, alignItems: 'center'}]}>
+                <TextInput 
+                    placeholder='10'></TextInput>
             </View> 
         </View>  
     )
 }
 
-const data = [{key: '0', data: [{num: 'Barbell', reps: '10'}]}]
+
 
 class Exercise extends React.Component { 
     constructor(props){
         super(props)
     }
     render() {
+        const data = [
+        {
+            key: '0', data: [{num: 'Barbell', reps: '10'}]
+        },
+        {    
+            key: '01', data: [{num:'bae', reps:10 }]
+        }
+        ]
         return (
             <View>
-                <SectionList
+                <ExerciseTitle />
+                <SectionList 
                     renderItem={progressRow}
-                    ListHeaderComponent={exerciseTitle}
-                    renderSectionHeader={columnHead}
-                    renderSectionFooter={addSet}
+                    ListHeaderComponent={columnHead}
+                    ListFooterComponent={addSet}
                     sections={data}
-                >
-                </SectionList>
+                />
+
             </View> 
         )
     }
 }
+
 export default Exercise 
 
 const styles = StyleSheet.create({
