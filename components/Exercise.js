@@ -32,16 +32,7 @@ const columnHead = () => {
     )
 }
 
-const addSet = (props) => {
-    return(
-        <TouchableHighlight 
-            onPress={() => console.log("HERE")}
-            style={styles.button}
-        >
-            <Text style={{textAlign: 'center', textAlignVertical: 'center', color: 'white'}}>ADD SET</Text>
-        </TouchableHighlight> 
-    )
-}
+
 
 
 //Callback for whenever state changes, handled by the parent. 
@@ -75,24 +66,51 @@ const progressRow = ({item, section}) => {
 class Exercise extends React.Component { 
     constructor(props){
         super(props)
+
+        this.state = {data: [
+            {
+                key: '0', data: [{num: 'Barbell', reps: '10'}]
+            },
+            {    
+                key: '01', data: [{num:'bae', reps:10 }]
+            }
+            ]
+        }
     }
+
+    buttonPressed() {
+        console.log("HERE")
+    }
+
+    addSet = () => {
+        return(
+            <TouchableHighlight 
+                onPress={() => this.setState({data: []})}
+                style={styles.button}
+            >
+                <Text style={{textAlign: 'center', textAlignVertical: 'center', color: 'white'}}>ADD SET</Text>
+            </TouchableHighlight> 
+        )
+    }
+
     render() {
         const data = [
-        {
-            key: '0', data: [{num: 'Barbell', reps: '10'}]
-        },
-        {    
-            key: '01', data: [{num:'bae', reps:10 }]
-        }
-        ]
+            {
+                key: '0', data: [{num: 'Barbell', reps: '10'}]
+            },
+            {    
+                key: '01', data: [{num:'bae', reps:10 }]
+            }
+            ]
+
         return (
             <View>
                 <ExerciseTitle />
                 <SectionList 
                     renderItem={progressRow}
                     ListHeaderComponent={columnHead}
-                    ListFooterComponent={addSet}
-                    sections={data}
+                    ListFooterComponent={this.addSet}
+                    sections={this.state.data}
                 />
 
             </View> 
