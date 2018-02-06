@@ -7,7 +7,7 @@ import { Entypo } from '@expo/vector-icons'
 const ExerciseTitle = (props) => {
     return (
         <TouchableOpacity style={styles.title}>
-            <Text style={styles.titleText}>Bench Press</Text>
+            <Text style={styles.titleText}>{props.exercise}</Text>
             <Entypo name='chevron-right' style={styles.chevron} /> 
         </TouchableOpacity>
     )
@@ -33,15 +33,15 @@ const columnHead = () => {
 }
 
 //Callback for whenever state changes, handled by the parent. 
-const progressRow = ({item, section}) => {
-    console.log(item)
+const ProgressRow = (props) => {
+    console.log(props)
     return(
         <View style={{flexDirection: 'row', paddingLeft: 10, paddingRight: 10}}>
             <View style={[styles.columnText1, styles.progressRow]}>
-                <Text style={styles.rowText}>{item.num}</Text>
+                <Text style={styles.rowText}>{props.section.key + 1}</Text>
             </View> 
             <View style={[styles.columnText1, styles.progressRow, {borderLeftWidth: 0}]}>
-                <Text style={styles.rowText}>{item.num}</Text>
+                <Text style={styles.rowText}>{props.before}</Text>
             </View> 
             <View style={[styles.columnText1, styles.progressRow, 
                     {borderLeftWidth: 0, alignItems: 'center'}]}>
@@ -63,7 +63,10 @@ const progressRow = ({item, section}) => {
 class Exercise extends React.Component { 
     constructor(props){
         super(props)
-        this.state = {data: [
+        console.log("exercise data")
+        console.log(this.props.exerciseData)
+        this.state = {
+            data: [
             {
                 key: '0', data: [{num: '1', reps: '10'}]
             },
@@ -90,20 +93,12 @@ class Exercise extends React.Component {
     }
 
     render() {
-        const data = [
-            {
-                key: '0', data: [{num: '1', reps: '10'}]
-            },
-            {    
-                key: '01', data: [{num:'2', reps:10 }]
-            }
-            ]
-
+        console.log(this.props.exerciseData.index + 1)
         return (
             <View style={styles.card}>
-                <ExerciseTitle />
+                <ExerciseTitle exercise={this.props.exerciseData.section.exercise} />
                 <SectionList 
-                    renderItem={progressRow}
+                    renderItem={ProgressRow}
                     ListHeaderComponent={columnHead}
                     ListFooterComponent={this.addSet}
                     sections={this.state.data}
