@@ -1,6 +1,8 @@
 import React from 'react'
 import Exercise from '../components/Exercise.js'
-import { SectionList, View } from 'react-native'
+import { TouchableHighlight, SectionList, 
+    View, StyleSheet, Text } from 'react-native'
+import SearchExercise from '../components/SearchExercise'
 
 const data = [
     {
@@ -15,15 +17,40 @@ class ProgressScreen extends React.Component {
 
     render(){
         return(
-            <View>
+            <View style={{flexDirection: 'column'}}>
+                <SearchExercise />
+
                 <SectionList 
+                    style={styles.list}
                     renderItem={() => <Exercise />}
                     sections={data}
+                    keyExtractor={(item, index) => index}
                     />
-                <Exercise />
-            </View> 
+            <TouchableHighlight 
+                onPress={() => this.setState({data: []})}
+                style={styles.button}
+            >
+                <Text style={{textAlign: 'center', textAlignVertical: 'center', color: 'white', fontFamily: 'sf-bold'}}>SAVE WORKOUT</Text>
+            </TouchableHighlight> 
+            </View>
         )
     }
 }
+
+const styles = StyleSheet.create({
+    list: {
+        marginTop: 100
+
+    },
+    button: {
+        zIndex: 5,
+        backgroundColor: '#2b2b2b',
+        marginLeft: 10, 
+        marginRight: 10,
+        height: 40,
+        alignItems: 'center',
+        borderRadius: 5
+    }
+})
 
 export default ProgressScreen

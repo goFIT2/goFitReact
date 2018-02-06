@@ -107,6 +107,7 @@ class Exercise extends React.Component {
                     ListHeaderComponent={columnHead}
                     ListFooterComponent={this.addSet}
                     sections={this.state.data}
+                    keyExtractor={(item, index) => index}
                 />
 
             </View> 

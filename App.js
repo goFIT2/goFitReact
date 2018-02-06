@@ -47,6 +47,7 @@ export default class App extends React.Component {
         'sf-medium': require('./assets/fonts/SanFranciscoText-Medium.otf'),
         'sf-regular': require('./assets/fonts/SanFranciscoText-Regular.otf'),
         'sf-semibold': require('./assets/fonts/SanFranciscoText-Semibold.otf'),
+        'Material Icons': require('./assets/fonts/SanFranciscoText-Light.otf')
       },
     ),
     ]);
