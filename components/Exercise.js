@@ -1,5 +1,6 @@
 import React from 'react'
-import { SectionList, TouchableHighlight, View, Text, TouchableOpacity, StyleSheet } from 'react-native'
+import { SectionList, TouchableHighlight, View, Text, 
+    TouchableOpacity, StyleSheet, TextInput } from 'react-native'
 import { Entypo } from '@expo/vector-icons'
 
 
@@ -31,62 +32,55 @@ const columnHead = () => {
     )
 }
 
+const addSet = (props) => {
+    return(
+        <TouchableHighlight 
+            onPress={() => console.log("HERE")}
+            style={styles.button}
+        >
+            <Text style={{textAlign: 'center', textAlignVertical: 'center', color: 'white'}}>ADD SET</Text>
+        </TouchableHighlight> 
+    )
+}
+
+
+//Callback for whenever state changes, handled by the parent. 
+const progressRow = ({item, section}) => {
+    console.log(item)
+    return(
+        <View style={{flexDirection: 'row', paddingLeft: 10, paddingRight: 10}}>
+            <View style={[styles.columnText1, styles.progressRow]}>
+                <Text style={{alignSelf: 'center'}}>item.num</Text>
+            </View> 
+            <View style={[styles.columnText1, styles.progressRow, {borderLeftWidth: 0}]}>
+                <Text style={{alignSelf: 'center'}}>item.num</Text>
+            </View> 
+            <View style={[styles.columnText1, styles.progressRow, {borderLeftWidth: 0}]}>
+                <TextInput style={{alignSelf: 'center'}}></TextInput>
+            </View> 
+            <View style={[styles.columnText1, styles.progressRow, {borderLeftWidth: 0}]}>
+                <TextInput style={{alignSelf: 'center'}}></TextInput>
+            </View> 
+        </View>  
+    )
+}
+
+const data = [{key: '0', data: [{num: 'Barbell', reps: '10'}]}]
+
 class Exercise extends React.Component { 
     constructor(props){
         super(props)
-        this.props.name = "Barbell Press"
     }
-    
-    addSet = () => {
-        console.log("button pressed")
-    }
-
     render() {
-        const title = ( 
-
-        )
-
-        const columnHead = (
-
-        )
-        
-        const progressRow = (
-            <View style={{flexDirection: 'row', paddingLeft: 10, paddingRight: 10}}>
-                <View style={[styles.columnText1, styles.progressRow]}>
-                    <Text style={{alignSelf: 'center'}}>1</Text>
-                </View> 
-                <View style={[styles.columnText1, styles.progressRow, {borderLeftWidth: 0}]}>
-                    <Text style={{alignSelf: 'center'}}>1</Text>
-                </View> 
-                <View style={[styles.columnText1, styles.progressRow, {borderLeftWidth: 0}]}>
-                    <Text style={{alignSelf: 'center'}}>1</Text>
-                </View> 
-                <View style={[styles.columnText1, styles.progressRow, {borderLeftWidth: 0}]}>
-                    <Text style={{alignSelf: 'center'}}>1</Text>
-                </View> 
-            </View>  
-        )
-
-        const addSet = (
-            <TouchableHighlight 
-                onPress={() => this.addSet()}
-                style={styles.button}
-                >
-                <Text style={{textAlign: 'center', textAlignVertical: 'center', color: 'white'}}>ADD SET</Text>
-            </TouchableHighlight> 
-        )
         return (
             <View>
                 <SectionList
                     renderItem={progressRow}
-                    ListHeaderComponent={title}
+                    ListHeaderComponent={exerciseTitle}
                     renderSectionHeader={columnHead}
                     renderSectionFooter={addSet}
-                    sections={[{
-                        data: 1, title: "Barbell"
-                    }]}
+                    sections={data}
                 >
-
                 </SectionList>
             </View> 
         )
