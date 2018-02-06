@@ -31,7 +31,9 @@ const HomeStackNavigator = StackNavigator(
   },
   {
     initialRouteName: 'Home',
-  }
+    headerMode: 'none'
+  },
+
   
 )
 
@@ -43,24 +45,31 @@ const CommunityStackNavigator = StackNavigator(
     AddCommunity: {
       screen: AddCommunityScreen,
     }
+  },
+  {
+    headerMode: 'none'
   }
+
 )
 
 const ProgressStackNavigator = StackNavigator( 
   {
     Progress: {
-      screen: MyProgressScreen,
+      screen: ProgressScreen,
     }
+  },
+  {
+    headerMode: 'none'
   }
 )
 
 const MainTabNavigator =  TabNavigator(
   {
     Progress: {
-      screen: ProgressStackNavigator,
+      screen: ProgressScreen,
     },
     Home: {
-      screen: ProgressScreen
+      screen: HomeScreen
     }, 
     Community: {
       screen: CommunityStackNavigator

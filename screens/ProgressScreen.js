@@ -17,7 +17,7 @@ class ProgressScreen extends React.Component {
 
     render(){
         return(
-            <View style={{flexDirection: 'column'}}>
+            <View style={{flexDirection: 'column', backgroundColor: '#fcfcfc', justifyContent: 'space-between'}}>
                 <SearchExercise />
 
                 <SectionList 
@@ -40,7 +40,6 @@ class ProgressScreen extends React.Component {
 const styles = StyleSheet.create({
     list: {
         marginTop: 100
-
     },
     button: {
         zIndex: 5,
@@ -49,7 +48,8 @@ const styles = StyleSheet.create({
         marginRight: 10,
         height: 40,
         alignItems: 'center',
-        borderRadius: 5
+        borderRadius: 5,
+        justifyContent: 'center'
     }
 })
 

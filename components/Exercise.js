@@ -65,10 +65,10 @@ class Exercise extends React.Component {
         super(props)
         this.state = {data: [
             {
-                key: '0', data: [{num: 'Barbell', reps: '10'}]
+                key: '0', data: [{num: '1', reps: '10'}]
             },
             {    
-                key: '01', data: [{num:'bae', reps:10 }]
+                key: '01', data: [{num:'1', reps:10 }]
             }
             ]
         }
@@ -92,10 +92,10 @@ class Exercise extends React.Component {
     render() {
         const data = [
             {
-                key: '0', data: [{num: 'Barbell', reps: '10'}]
+                key: '0', data: [{num: '1', reps: '10'}]
             },
             {    
-                key: '01', data: [{num:'bae', reps:10 }]
+                key: '01', data: [{num:'2', reps:10 }]
             }
             ]
 
