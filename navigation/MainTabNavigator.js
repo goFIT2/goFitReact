@@ -11,23 +11,21 @@ import SettingsScreen from '../screens/SettingsScreen';
 
 import FriendRequestsScreen from '../screens/FriendRequestsScreen.js'
 import FriendProfileScreen from '../screens/FriendProfileScreen.js'
-
 import ChallengesScreen from '../screens/ChallengesScreen.js'
 import SocialScreen from '../screens/SocialScreen.js'
-
 import AddProgressScreen from '../screens/AddProgressScreen.js'
 import MyProgressScreen from '../screens/MyProgressScreen.js'
 import CommunitiesScreen from '../screens/CommunitiesScreen'
 import AddCommunityScreen from '../screens/AddCommunityScreen'
-
+import Exercise from '../components/Exercise.js'
 
 const HomeStackNavigator = StackNavigator( 
   {
     Home: {
-      screen: HomeScreen
+      screen: HomeScreen,
     },
     AddProgress: {
-      screen: AddProgressScreen
+      screen: AddProgressScreen,
     },
   },
   {
@@ -39,10 +37,10 @@ const HomeStackNavigator = StackNavigator(
 const CommunityStackNavigator = StackNavigator(
   {
     Community: {
-      screen: CommunitiesScreen 
+      screen: CommunitiesScreen,
     },
     AddCommunity: {
-      screen: AddCommunityScreen
+      screen: AddCommunityScreen,
     }
   }
 )
@@ -50,20 +48,20 @@ const CommunityStackNavigator = StackNavigator(
 const ProgressStackNavigator = StackNavigator( 
   {
     Progress: {
-      screen: MyProgressScreen
+      screen: MyProgressScreen,
     }
   }
 )
 
 const MainTabNavigator =  TabNavigator(
   {
-    ProgressNav: {
-      screen: ProgressStackNavigator
+    Progress: {
+      screen: ProgressStackNavigator,
     },
-    HomeNav: {
-      screen: HomeStackNavigator
+    Home: {
+      screen: Exercise
     }, 
-    CommunityNav: {
+    Community: {
       screen: CommunityStackNavigator
     }
   },
@@ -73,16 +71,16 @@ const MainTabNavigator =  TabNavigator(
         const { routeName } = navigation.state;
         let iconName;
         switch (routeName) {
-          case 'HomeNav':
+          case 'Home':
             iconName =
               Platform.OS === 'ios'
                 ? `ios-home${focused ? '' : '-outline'}`
                 : 'android-home';
             break;
-          case 'ProgressNav':
+          case 'Progress':
             iconName = `ios-trending-up${focused ? '' : '-outline'}`
             break;
-          case 'CommunityNav':
+          case 'Community':
             iconName = `ios-people${focused ? '' : '-outline'}`
             break
         }
@@ -96,7 +94,7 @@ const MainTabNavigator =  TabNavigator(
         );
       },
     }),
-    initialRouteName: 'HomeNav',
+    initialRouteName: 'Home',
     tabBarComponent: TabBarBottom,
     tabBarPosition: 'bottom',
     animationEnabled: false,
