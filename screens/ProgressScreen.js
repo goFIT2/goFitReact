@@ -30,6 +30,10 @@ const data2 = [
 
 class ProgressScreen extends React.Component {
 
+    static navigationOptions = {
+        title: 'myProgress',
+    };
+
     render(){
 
         return(

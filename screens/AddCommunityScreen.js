@@ -33,10 +33,8 @@ export default class AddCommunityScreen extends React.Component {
             }
         }
         if (this.checkValues()) {
-            Alert.alert('You created the ' + this.state.name + ' community with ' + members + '!');
+            this.props.navigation.goBack();
         }
-
-        this.props.navigation.goBack()
     }
     
     toggleMember(f) {
@@ -94,7 +92,8 @@ const styles = StyleSheet.create({
     },
     textinput: {
         fontSize: 45,
-        fontWeight: '400'
+        fontWeight: '400',
+        color: '#FB6D00'
     },
     button: {
         color: '#0076FF',

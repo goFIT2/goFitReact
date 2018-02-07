@@ -104,11 +104,12 @@ const styles = StyleSheet.create({
     circle: {
         margin: 10,
         marginLeft: 20,
-        borderWidth: 2,
+        borderWidth: 3,
         height: 80,
         width: 80,
         borderRadius: 40,
-        justifyContent: 'center'
+        justifyContent: 'center',
+        borderColor: '#FB6D00'
     },
     icon: {
         height: 40,

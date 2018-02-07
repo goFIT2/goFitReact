@@ -6,19 +6,13 @@ import { StackNavigator, TabNavigator, TabBarBottom } from 'react-navigation';
 import Colors from '../constants/Colors';
 
 import HomeScreen from '../screens/HomeScreen';
-import LinksScreen from '../screens/LinksScreen';
-import SettingsScreen from '../screens/SettingsScreen';
 
-import FriendRequestsScreen from '../screens/FriendRequestsScreen.js'
-import FriendProfileScreen from '../screens/FriendProfileScreen.js'
-import ChallengesScreen from '../screens/ChallengesScreen.js'
-import SocialScreen from '../screens/SocialScreen.js'
-import AddProgressScreen from '../screens/AddProgressScreen.js'
-import MyProgressScreen from '../screens/MyProgressScreen.js'
+import AddProgressScreen from '../screens/AddProgressScreen'
 import CommunitiesScreen from '../screens/CommunitiesScreen'
 import AddCommunityScreen from '../screens/AddCommunityScreen'
-import Exercise from '../components/Exercise.js'
+import Exercise from '../components/Exercise'
 import ProgressScreen from '../screens/ProgressScreen'
+import PlaceholderCommunityScreen from '../screens/PlaceholderCommunityScreen'
 
 const HomeStackNavigator = StackNavigator( 
   {
@@ -44,6 +38,9 @@ const CommunityStackNavigator = StackNavigator(
     },
     AddCommunity: {
       screen: AddCommunityScreen,
+    },
+    IndividualCommunity: {
+      screen: PlaceholderCommunityScreen,
     }
   },
   {

@@ -2,7 +2,11 @@ import React from 'react'
 import {Alert, ScrollView, StyleSheet, View, Text, TouchableHighlight} from 'react-native'
 import CommunityCell from '../components/CommunityCell.js'
 
-export default class ChallengeRequestsScreen extends React.Component {
+export default class CommunitiesScreen extends React.Component {
+
+    static navigationOptions = {
+        title: 'myCommunities',
+    };
 
     constructor(props) {
         super(props)
@@ -18,7 +22,6 @@ export default class ChallengeRequestsScreen extends React.Component {
     }
     
     add = () => {
-        Alert.alert("I'm a communist!")
         this.props.navigation.navigate('AddCommunity')
     }
 
@@ -36,7 +39,7 @@ export default class ChallengeRequestsScreen extends React.Component {
         return (
             <View style={styles.container}>
                 <TouchableHighlight style={styles.alertBar} onPress={() => this.add()}>
-                    <Text style={styles.alertText}>+ ADD NEW COMMUNITY</Text>
+                    <Text style={styles.alertText}>ADD NEW COMMUNITY</Text>
                 </TouchableHighlight>
                 <ScrollView>
                     {communities}
@@ -52,13 +55,14 @@ const styles = StyleSheet.create({
         backgroundColor: 'white'
     },
     alertBar: {
-        backgroundColor: 'orange',
+        backgroundColor: '#FB6D00',
         height: 30
     },
     alertText: {
         alignSelf: 'center',
         color: 'white',
-        padding: 7
+        padding: 7,
+        fontWeight: 'bold'
     },
     row: {
         flex: 1,

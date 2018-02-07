@@ -9,13 +9,17 @@ import NewsfeedRow from '../components/NewsfeedRow.js'
 
 export default class HomeScreen extends React.Component {
 
+    static navigationOptions = {
+        title: 'goFIT',
+    };
+
     constructor(props) {
         super(props);
         this.state = {
             activities: [
-                {key:0, icon:'weights', name:'weights'},
-                {key:1, icon:'running', name:'running'},
-                {key:2, icon:'walking', name:'walking'}
+                {key:0, icon:'weights', name:'Barbell'},
+                {key:1, icon:'running', name:'Leg Press'},
+                {key:2, icon:'walking', name:'Walking'}
             ],
             newsfeed: [
                 {key:0, friend:'Denis', text:'Hello my name is Denis and I like working out~', community:'TEAMFITLIT', time:'30m'},
@@ -42,7 +46,7 @@ export default class HomeScreen extends React.Component {
                             <ActivityCell icon={item.icon} name={item.name} navigation={this.props.navigation} />
                         </View>}/> 
                 </ScrollView>
-                <Text style={styles.label}>FitFeed</Text>
+                <Text style={styles.label}>Fit Feed</Text>
                 <ScrollView  style={{flex:1}}>
                     <FlatList data={this.state.newsfeed} renderItem={({item}) => <NewsfeedRow key={item.key} friend={item.friend} text={item.text} community={item.community} time={item.time}/>}/>
                 </ScrollView>
@@ -64,7 +68,7 @@ const styles = StyleSheet.create({
         alignSelf:'center'
     },
     label: {
-        fontWeight: '100',
+        fontWeight: 'bold',
         fontSize: 20,
         padding: 5
     }

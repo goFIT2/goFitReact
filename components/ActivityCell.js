@@ -50,11 +50,12 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     circle: {
-        borderWidth: 3,
+        borderWidth: 4,
         height: 160,
         width: 160,
         borderRadius: 80,
-        justifyContent: 'center'
+        justifyContent: 'center',
+        borderColor: '#FB6D00'
     },
     icon: {
         height: 80,
