@@ -11,6 +11,9 @@ export default class HomeScreen extends React.Component {
 
     static navigationOptions = {
         title: 'goFIT',
+        headerTitle: (
+            <Image source={require('../assets/images/logo.png')}  style={{resizeMode: 'contain', height:30}}/>
+        ),
     };
 
     constructor(props) {
