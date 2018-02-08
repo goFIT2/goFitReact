@@ -7,7 +7,7 @@ import { Entypo } from '@expo/vector-icons'
 const ExerciseTitle = (props) => {
     return (
         <TouchableOpacity style={styles.title}>
-            <Text style={styles.titleText}>{props.exercise}</Text>
+            <Text style={styles.titleText}>{props.exerciseName}</Text>
             <Entypo name='chevron-right' style={styles.chevron} /> 
         </TouchableOpacity>
     )
@@ -42,19 +42,19 @@ const ProgressRow = (props) => {
                 <Text style={styles.rowText}>{props.section.key + 1}</Text>
             </View> 
             <View style={[styles.columnText1, styles.progressRow, {borderLeftWidth: 0}]}>
-                <Text style={styles.rowText}>{props.before}</Text>
+                <Text style={styles.rowText}>{props.item.num}</Text>
             </View> 
             <View style={[styles.columnText1, styles.progressRow, 
                     {borderLeftWidth: 0, alignItems: 'center'}]}>
                 <TextInput
                     onChangeText={(text) => console.log(text)}
-                    placeholder='35'>
+                    placeholder='42'>
                 </TextInput>
             </View> 
             <View style={[styles.columnText1, styles.progressRow, 
                     {borderLeftWidth: 0, alignItems: 'center'}]}>
                 <TextInput 
-                    placeholder='10'></TextInput>
+                    placeholder='24'></TextInput>
             </View> 
         </View>  
     )
@@ -65,13 +65,16 @@ class Exercise extends React.Component {
         super(props)
         console.log("exercise data")
         console.log(this.props.exerciseData.section)
+        console.log(this.props.exerciseData.section.exercise)
         //this.state = { data: this.props.exerciseData.section.data }
         this.state = [
             {
-                data: [{num: '1', reps: '10'}]
+                data: [
+                    {num: '1', reps: '10'}]
             },
             {    
-                data: [{num:'1', reps:10 }]
+                data: [
+                    {num:'1', reps:10 }]
             }
         ]
         
@@ -96,7 +99,7 @@ class Exercise extends React.Component {
         console.log(this.props.exerciseData.index + 1)
         return (
             <View style={styles.card}>
-                <ExerciseTitle exercise={'Barbell'} />
+                <ExerciseTitle exerciseName={this.props.exerciseData.section.exercise} />
                 <SectionList 
                     renderItem={ProgressRow}
                     ListHeaderComponent={columnHead}
@@ -104,7 +107,6 @@ class Exercise extends React.Component {
                     sections={this.props.exerciseData.section.data}
                     keyExtractor={(item, index) => index}
                 />
-
             </View> 
         )
     }
