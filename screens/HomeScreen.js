@@ -1,7 +1,7 @@
 import React from 'react';
 import {Alert, Dimensions, Image, FlatList, Platform, ScrollView, StyleSheet, Text, TouchableHighlight, TouchableOpacity, View} from 'react-native';
 import { WebBrowser } from 'expo';
-import { MonoText } from '../components/StyledText';
+
 
 import CommunityCell from '../components/CommunityCell.js'
 import ActivityCell from '../components/ActivityCell.js'

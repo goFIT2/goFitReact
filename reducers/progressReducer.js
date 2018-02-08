@@ -7,14 +7,21 @@ const defaultState = {
             index: 0,
             exercise: 'Barbell Bench Press', 
             data: [
-                {num: 5, reps: 3}, {num: 2, reps: 4}
-            ]
+                {data: [
+                    {num: 5, reps: 3}, {num: 2, reps: 4}
+                ],
+                }
+            ],
         },
         {
             index: 1, 
             exercise: 'Chin Ups',
             data: [
-                {num: 5, reps: 12}, {num: 23, reps: 1}
+                {
+                data: [
+                    {num: 5, reps: 12}, {num: 23, reps: 1}
+                ]
+                }
             ]
         }
     ]
@@ -22,7 +29,7 @@ const defaultState = {
 
 
 
-const progressReducer = (state = [], action) => {
+const progressReducer = (state = defaultState, action) => {
     switch (action.type) {
       case ADD_SET:
             const { exercise, newSet } = action 

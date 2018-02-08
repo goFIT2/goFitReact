@@ -32,8 +32,9 @@ const columnHead = () => {
     )
 }
 
-//Callback for whenever state changes, handled by the parent. 
+//Coontains callback for whenever state changes, handled by the parent. 
 const ProgressRow = (props) => {
+    console.log("Progress Row")
     console.log(props)
     return(
         <View style={{flexDirection: 'row', paddingLeft: 10, paddingRight: 10}}>
@@ -46,6 +47,7 @@ const ProgressRow = (props) => {
             <View style={[styles.columnText1, styles.progressRow, 
                     {borderLeftWidth: 0, alignItems: 'center'}]}>
                 <TextInput
+                    onChangeText={(text) => console.log(text)}
                     placeholder='35'>
                 </TextInput>
             </View> 
@@ -58,23 +60,21 @@ const ProgressRow = (props) => {
     )
 }
 
-
-
 class Exercise extends React.Component { 
     constructor(props){
         super(props)
         console.log("exercise data")
-        console.log(this.props.exerciseData)
-        this.state = {
-            data: [
+        console.log(this.props.exerciseData.section)
+        //this.state = { data: this.props.exerciseData.section.data }
+        this.state = [
             {
-                key: '0', data: [{num: '1', reps: '10'}]
+                data: [{num: '1', reps: '10'}]
             },
             {    
-                key: '01', data: [{num:'1', reps:10 }]
+                data: [{num:'1', reps:10 }]
             }
-            ]
-        }
+        ]
+        
     }
 
     buttonPressed() {
@@ -96,12 +96,12 @@ class Exercise extends React.Component {
         console.log(this.props.exerciseData.index + 1)
         return (
             <View style={styles.card}>
-                <ExerciseTitle exercise={this.props.exerciseData.section.exercise} />
+                <ExerciseTitle exercise={'Barbell'} />
                 <SectionList 
                     renderItem={ProgressRow}
                     ListHeaderComponent={columnHead}
                     ListFooterComponent={this.addSet}
-                    sections={this.state.data}
+                    sections={this.props.exerciseData.section.data}
                     keyExtractor={(item, index) => index}
                 />
 

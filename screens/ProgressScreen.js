@@ -3,6 +3,7 @@ import Exercise from '../components/Exercise.js'
 import { TouchableHighlight, SectionList, 
     View, StyleSheet, Text } from 'react-native'
 import SearchExercise from '../components/SearchExercise'
+import { connect } from 'react-redux'
 
 // const data = {data: [
 //     {
@@ -26,8 +27,6 @@ const data2 = [
     ]
 
 
-    
-
 class ProgressScreen extends React.Component {
 
     static navigationOptions = {
@@ -35,15 +34,15 @@ class ProgressScreen extends React.Component {
     };
 
     render(){
-
+        console.log("REDUX")
+        console.log(this.props.exercises)
         return(
             <View style={{flexDirection: 'column', backgroundColor: '#fcfcfc'}}>
                 <SearchExercise />
-
                 <SectionList 
                     style={styles.list}
                     renderItem={(item) => <Exercise exerciseData={item} />}
-                    sections={data2}
+                    sections={this.props.exercises}
                     keyExtractor={(item, index) => index}
                     />
             <TouchableHighlight 
@@ -56,6 +55,21 @@ class ProgressScreen extends React.Component {
         )
     }
 }
+
+const mapStateToProps = (state, ownProps) => {
+    return {
+      exercises: state.exercises
+    }
+}
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+    return {
+      onClick: () => {
+        dispatch(setVisibilityFilter(ownProps.filter))
+      }
+    }
+  }
+
 
 const styles = StyleSheet.create({
     list: {
@@ -73,4 +87,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default ProgressScreen
+export default connect(mapStateToProps, mapDispatchToProps)(ProgressScreen)
