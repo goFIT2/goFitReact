@@ -1,12 +1,12 @@
 import React from 'react'
-import Exercise from '../components/Exercise.js'
+import ExerciseComponent from '../components/ExerciseComponent.js'
 import { TouchableHighlight, SectionList, 
     View, StyleSheet, Text } from 'react-native'
 import SearchExercise from '../components/SearchExercise'
 import { connect } from 'react-redux'
 
 
-class ProgressScreen extends React.Component {
+class LogProgressScreen extends React.Component {
     static navigationOptions = {
         title: 'myProgress',
     };
@@ -19,7 +19,7 @@ class ProgressScreen extends React.Component {
                 <SearchExercise />
                 <SectionList 
                     style={styles.list}
-                    renderItem={(item) => <Exercise exerciseData={item} />}
+                    renderItem={(item) => <ExerciseComponent exerciseData={item} />}
                     sections={this.props.exercises}
                     keyExtractor={(item, index) => index}
                     />
@@ -65,4 +65,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProgressScreen)
+export default connect(mapStateToProps, mapDispatchToProps)(LogProgressScreen)

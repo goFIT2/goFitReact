@@ -10,8 +10,8 @@ import HomeScreen from '../screens/HomeScreen';
 import AddProgressScreen from '../screens/AddProgressScreen'
 import CommunitiesScreen from '../screens/CommunitiesScreen'
 import AddCommunityScreen from '../screens/AddCommunityScreen'
-import Exercise from '../components/Exercise'
-import ProgressScreen from '../screens/ProgressScreen'
+
+import LogProgressScreen from '../screens/LogProgressScreen'
 import PlaceholderCommunityScreen from '../screens/PlaceholderCommunityScreen'
 
 const HomeStackNavigator = StackNavigator( 
@@ -52,7 +52,7 @@ const CommunityStackNavigator = StackNavigator(
 const ProgressStackNavigator = StackNavigator( 
   {
     Progress: {
-      screen: ProgressScreen,
+      screen: LogProgressScreen,
     }
   },
   {
@@ -63,7 +63,7 @@ const ProgressStackNavigator = StackNavigator(
 const MainTabNavigator =  TabNavigator(
   {
     Progress: {
-      screen: ProgressScreen,
+      screen: LogProgressScreen,
     },
     Home: {
       screen: HomeScreen

@@ -3,7 +3,6 @@ import { SectionList, TouchableHighlight, View, Text,
     TouchableOpacity, StyleSheet, TextInput } from 'react-native'
 import { Entypo } from '@expo/vector-icons'
 
-
 const ExerciseTitle = (props) => {
     console.log("ExerciseTitle Props" + props)
     return (
@@ -63,40 +62,37 @@ const ProgressRow = (props) => {
     )
 }
 
-class Exercise extends React.Component { 
-    addSet = () => {
-        return(
-            <TouchableHighlight 
-                onPress={() => this.setState({data: []})}
-                style={styles.button}
-            >
-                <Text style={{textAlign: 'center', textAlignVertical: 'center', color: 'white', fontFamily: 'sf-bold'}}>ADD SET</Text>
-            </TouchableHighlight> 
-        )
-    }
-
-    render() {
-        console.log("exercise data")
-        console.log(this.props.exerciseData.section)
-        console.log(this.props.exerciseData.section.exercise)
-
-        console.log(this.props.exerciseData.index + 1)
-        return (
-            <View style={styles.card}>
-                <ExerciseTitle exerciseName={this.props.exerciseData.section.exercise} />
-                <SectionList 
-                    renderItem={ProgressRow}
-                    ListHeaderComponent={ColumnHead}
-                    ListFooterComponent={this.addSet}
-                    sections={this.props.exerciseData.section.data}
-                    keyExtractor={(item, index) => index}
-                />
-            </View> 
-        )
-    }
+const AddSetButton = () => {
+    return(
+        <TouchableHighlight 
+            onPress={() => this.setState({data: []})}
+            style={styles.button}
+        >
+            <Text style={{textAlign: 'center', textAlignVertical: 'center', color: 'white', fontFamily: 'sf-bold'}}>ADD SET</Text>
+        </TouchableHighlight> 
+    )
 }
 
-export default Exercise 
+const ExerciseComponent = (props) => { 
+    console.log("exercise data")
+    console.log(props.exerciseData.section)
+    console.log(props.exerciseData.section.exercise)
+    console.log(props.exerciseData.index + 1)
+    return (
+        <View style={styles.card}>
+            <ExerciseTitle exerciseName={props.exerciseData.section.exercise} />
+            <SectionList 
+                renderItem={ProgressRow}
+                ListHeaderComponent={ColumnHead}
+                ListFooterComponent={AddSetButton}
+                sections={props.exerciseData.section.data}
+                keyExtractor={(item, index) => index}
+            />
+        </View> 
+    )
+}
+
+export default ExerciseComponent 
 
 const styles = StyleSheet.create({
     card: {
