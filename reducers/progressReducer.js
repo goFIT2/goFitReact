@@ -22,9 +22,9 @@ const defaultState = {
 
 
 
-const progressReducer = (state = defaultState, action) => {
+const progressReducer = (state = [], action) => {
     switch (action.type) {
-        case ADD_SET:
+      case ADD_SET:
             const { exercise, newSet } = action 
             const newState = _.map(state, (item) => {
                 if (item.index === exercise.index){
@@ -33,7 +33,7 @@ const progressReducer = (state = defaultState, action) => {
                 return item
             })
             return newState
-        default:
+       default:
             return state
     }
   }

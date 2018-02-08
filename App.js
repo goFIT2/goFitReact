@@ -4,6 +4,13 @@ import { AppLoading, Asset, Font } from 'expo';
 import { Ionicons } from '@expo/vector-icons';
 import RootNavigation from './navigation/RootNavigation';
 
+import { createStore, applyMiddleware } from 'redux'
+import progressReducer  from './reducers/progressReducer'
+import { Provider  } from 'react-redux'
+import logger from 'redux-logger'
+
+const store = createStore(progressReducer, applyMiddleware(logger))
+
 export default class App extends React.Component {
   state = {
     isLoadingComplete: false,
@@ -20,11 +27,14 @@ export default class App extends React.Component {
       );
     } else {
       return (
-        <View style={styles.container}>
-          {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
-          {Platform.OS === 'android' && <View style={styles.statusBarUnderlay} />}
-          <RootNavigation />
-        </View>
+            <View style={styles.container}>
+            {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
+            {Platform.OS === 'android' && <View style={styles.statusBarUnderlay} />}
+            <Provider store={store}>
+              <RootNavigation />
+              </Provider> 
+            </View>
+
       );
     }
   }
