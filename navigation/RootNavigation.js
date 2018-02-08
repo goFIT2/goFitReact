@@ -20,7 +20,8 @@ const RootStackNavigator = StackNavigator(
         fontWeight: 'normal',
       },
     }),
-  }
+  }, 
+  
 );
 
 export default class RootNavigator extends React.Component {
