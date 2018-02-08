@@ -5,6 +5,7 @@ import { Entypo } from '@expo/vector-icons'
 
 
 const ExerciseTitle = (props) => {
+    console.log("ExerciseTitle Props" + props)
     return (
         <TouchableOpacity style={styles.title}>
             <Text style={styles.titleText}>{props.exerciseName}</Text>
@@ -13,7 +14,7 @@ const ExerciseTitle = (props) => {
     )
 }
 
-const columnHead = () => {
+const ColumnHead = () => {
     return(
         <View style={{flexDirection: 'row', paddingLeft: 10, paddingRight: 10}}>
             <View style={styles.columnText1}>
@@ -35,7 +36,9 @@ const columnHead = () => {
 //Coontains callback for whenever state changes, handled by the parent. 
 const ProgressRow = (props) => {
     console.log("Progress Row")
-    console.log(props)
+    console.log(props.item.num)
+    const { num, reps } = props.item
+    //const index = props.index 
     return(
         <View style={{flexDirection: 'row', paddingLeft: 10, paddingRight: 10}}>
             <View style={[styles.columnText1, styles.progressRow]}>
@@ -48,42 +51,19 @@ const ProgressRow = (props) => {
                     {borderLeftWidth: 0, alignItems: 'center'}]}>
                 <TextInput
                     onChangeText={(text) => console.log(text)}
-                    placeholder='42'>
+                    >
                 </TextInput>
             </View> 
             <View style={[styles.columnText1, styles.progressRow, 
                     {borderLeftWidth: 0, alignItems: 'center'}]}>
                 <TextInput 
-                    placeholder='24'></TextInput>
+                   ></TextInput>
             </View> 
         </View>  
     )
 }
 
 class Exercise extends React.Component { 
-    constructor(props){
-        super(props)
-        console.log("exercise data")
-        console.log(this.props.exerciseData.section)
-        console.log(this.props.exerciseData.section.exercise)
-        //this.state = { data: this.props.exerciseData.section.data }
-        this.state = [
-            {
-                data: [
-                    {num: '1', reps: '10'}]
-            },
-            {    
-                data: [
-                    {num:'1', reps:10 }]
-            }
-        ]
-        
-    }
-
-    buttonPressed() {
-        console.log("HERE")
-    }
-
     addSet = () => {
         return(
             <TouchableHighlight 
@@ -96,13 +76,17 @@ class Exercise extends React.Component {
     }
 
     render() {
+        console.log("exercise data")
+        console.log(this.props.exerciseData.section)
+        console.log(this.props.exerciseData.section.exercise)
+
         console.log(this.props.exerciseData.index + 1)
         return (
             <View style={styles.card}>
                 <ExerciseTitle exerciseName={this.props.exerciseData.section.exercise} />
                 <SectionList 
                     renderItem={ProgressRow}
-                    ListHeaderComponent={columnHead}
+                    ListHeaderComponent={ColumnHead}
                     ListFooterComponent={this.addSet}
                     sections={this.props.exerciseData.section.data}
                     keyExtractor={(item, index) => index}

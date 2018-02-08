@@ -1,7 +1,7 @@
 import React from 'react';
 import { Alert, Image, Keyboard, KeyboardAvoidingView, ScrollView, StyleSheet, Text, TextInput, TouchableHighlight, View } from 'react-native';
 import { WebBrowser } from 'expo';
-import { MonoText } from '../components/StyledText';
+
 
 export default class AddCommunityScreen extends React.Component {
 
