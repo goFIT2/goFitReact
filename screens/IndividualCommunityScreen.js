@@ -24,7 +24,7 @@ class IndividualCommunityScreen extends React.Component {
             Denis: require('../assets/images/denis.jpg'),
             Olivia: require('../assets/images/olivia.jpg')
         }
-        var friends = this.props.state.members.map(function(m, i) {
+        var friends = this.props.members.map(function(m, i) {
             return (<Image key={i} source={images[m]} style={styles.smallFriend} />);
         });
         return (
