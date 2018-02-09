@@ -70,7 +70,10 @@ const MainTabNavigator =  TabNavigator(
     }, 
     Community: {
       screen: CommunityStackNavigator
-    }
+    },
+    IndividualCommunityScreen: {
+      screen: IndividualCommunityScreen
+    },
   },
   {
     navigationOptions: ({ navigation }) => ({

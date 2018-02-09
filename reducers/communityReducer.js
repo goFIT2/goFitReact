@@ -47,6 +47,6 @@ const communityReducer = (state = defaultState, action) => {
        default:
             return state
     }
-  }
+}
   
-  export default progressReducer
+export default communityReducer
