@@ -9,16 +9,10 @@ export default class NewsfeedRow extends React.Component {
             friend: props.friend,
             community: props.community,
             text: props.text,
-            time: props.time
+            time: props.time,
+            likes: props.likes,
+            attachment: props.attachment
         }
-    }
-    
-    accept() {
-        Alert.alert('You accepted ' + this.state.friend.split(" ")[0] + '\'s ' + this.state.name + ' challenge!')
-    }
-    
-    reject() {
-        Alert.alert('You rejected ' + this.state.friend.split(" ")[0] + '\'s ' + this.state.name + ' challenge!')
     }
 
     render() {
@@ -30,14 +24,18 @@ export default class NewsfeedRow extends React.Component {
             Denis: require('../assets/images/denis.jpg'),
             Olivia: require('../assets/images/olivia.jpg')
         }
-        return(
+        let text = this.state.text == '' ? null : (<Text style={styles.content}>{this.state.text}</Text>);
+        let attachment = this.state.attachment == '' ? null : (<Text style={styles.attachment}>{this.state.attachment}</Text>);
+        return (
             <View style={styles.row}>
                 <View>
                     <Image source={images[this.state.friend]} style={styles.icon} />
                 </View>
                 <View style={styles.label}>
                     <Text style={styles.smallLabel}>{this.state.community + ' Community • ' + this.state.time}</Text>
-                    <Text>{this.state.text}</Text>
+                    {text}
+                    {attachment}
+                    <Text style={styles.smallLabel}>♥ {this.state.likes.length}</Text>
                 </View>
             </View>
         )
@@ -60,12 +58,23 @@ const styles = StyleSheet.create({
         borderRadius: 25
     },
     label: {
-        padding: 5,
-        flex: 5
+        padding: 10,
+        flex: 1
     },
     smallLabel: {
         color: 'gray',
+        fontSize: 10
+    },
+    content: {
+        paddingVertical: 4
+    },
+    attachment: {
+        color: 'gray',
         fontSize: 10,
-        paddingBottom: 1
+        borderWidth: 1,
+        borderColor: 'lightgray',
+        borderRadius: 5,
+        padding: 3,
+        marginVertical: 4
     }
 });

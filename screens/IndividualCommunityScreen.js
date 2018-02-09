@@ -1,35 +1,22 @@
-import React from 'react';
-import {Alert, Dimensions, Image, FlatList, Platform, ScrollView, StyleSheet, Text, TouchableHighlight, TouchableOpacity, View} from 'react-native';
-import { WebBrowser } from 'expo';
+import React from 'react'
+import {Alert, FlatList, Image, ProgressViewIOS, ScrollView, StyleSheet, Text, TouchableHighlight, View} from 'react-native'
+import NewsfeedRow from '../components/NewsfeedRow'
 
+export default class IndividualCommunityScreen extends React.Component {
 
-import CommunityCell from '../components/CommunityCell.js'
-import ActivityCell from '../components/ActivityCell.js'
-import NewsfeedRow from '../components/NewsfeedRow.js'
-
-export default class HomeScreen extends React.Component {
-
-    static navigationOptions = {
-        title: 'goFIT',
-        headerTitle: (
-            <Image source={require('../assets/images/logo.png')}  style={{resizeMode: 'contain', height:30}}/>
-        ),
-    };
-
-    constructor(props) {
-        super(props);
+    constructor() {
+        super()
         this.state = {
-            activities: [
-                {key:0, icon:'weights', name:'Barbell Bench Press'},
-                {key:1, icon:'jumprope', name:'Chin Ups'},
-            ],
+            name: '#goFITgang',
+            icon: require('../assets/images/social.png'),
+            members: ['Bryce', 'Olivia', 'Chris', 'CJ'],
             newsfeed: [
                 {key:0, friend:'CJ', text:'Wow I just benched 7000 pounds. That\'s a new record for me.', community:'#goFITgang', time:'3h', likes:['Chris'], attachment:'CJ completed bench press today.'},
                 {key:1, friend:'Olivia', text:'I plan on going to the gym later today. Anyone wanna come?', community:'#goFITgang', time:'5h', likes:['Bryce'], attachment:''},
                 {key:2, friend:'Chris', text:'TBH this is way better than SoulCycle.', community:'#goFITgang', time:'20h', likes:['Bryce', 'Olivia'], attachment:'Chris completed outdoor cycling today.'},
                 {key:3, friend:'Bryce', text:'', community:'#goFITgang', time:'1d', likes:['Olivia'], attachment:'Bryce completed bicep curls today.'},
                 {key:4, friend:'CJ', text:'Wow I just benched 6000 pounds. That\'s a new record for me.', community:'#goFITgang', time:'2d', likes:['Chris'], attachment:'CJ completed bench press today.'},
-                {key:5, friend:'Bryce', text:'Olivia I saw you running today. Keep it up!', community:'', time:'2d', likes:['Olivia'], attachment:''},
+                {key:5, friend:'Bryce', text:'Olivia I saw you running today. Keep it up!', community:'#goFITgang', time:'2d', likes:['Olivia'], attachment:''},
                 {key:6, friend:'Olivia', text:'', community:'#goFITgang', time:'2d', likes:[], attachment:'Olivia completed running today.'},
                 {key:7, friend:'Chris', text:'Does anyone want to do SoulCycle with me and Olivia tonight?', community:'#goFITgang', time:'3d', likes:['Olivia'], attachment:''},
                 {key:8, friend:'Chris', text:'', community:'#goFITgang', time:'3d', likes:['Olivia'], attachment:'Chris completed barbell bench press, chin ups today.'},
@@ -49,48 +36,90 @@ export default class HomeScreen extends React.Component {
                 {key:22, friend:'Olivia', text:'', community:'TEAMFITLIT', time:'5d', likes:[], attachment:'Olivia created the TEAMFITLIT community with Bryce.'},
                 {key:23, friend:'Bryce', text:'', community:'goFUT', time:'5d', likes:[], attachment:'Bryce created the goFUT community with Olivia.'},
             ]
-        };
-        
-    }
-    
-    componentDidMount() {
-        setTimeout(() => {this.scrollView.scrollTo({x: -60}) }, 1)
+        }
     }
 
     render() {
+        let images = {
+            Bryce: require('../assets/images/bryce.jpg'),
+            Chris: require('../assets/images/chris.jpg'),
+            Christina: require('../assets/images/christina.jpg'),
+            CJ: require('../assets/images/cj.jpg'),
+            Denis: require('../assets/images/denis.jpg'),
+            Olivia: require('../assets/images/olivia.jpg')
+        }
+        var friends = this.state.members.map(function(m, i) {
+            return (<Image key={i} source={images[m]} style={styles.smallFriend} />);
+        });
         return (
             <View style={styles.container}>
-                <Text style={styles.label}>Quick Add</Text>
-                <ScrollView ref={(scrollView) => { this.scrollView = scrollView; }} horizontal= {true} decelerationRate={0} snapToInterval={width-120} snapToAlignment={"center"} showsHorizontalScrollIndicator={false} contentInset={{top:0,left:60,bottom:0,right:60}} style={{flex:1}}>
-                    <FlatList horizontal={true} data={this.state.activities} renderItem={({item}) => 
-                        <View key={item.key} style={styles.cell}>
-                            <ActivityCell icon={item.icon} name={item.name} navigation={this.props.navigation} />
-                        </View>}/> 
-                </ScrollView>
-                <Text style={styles.label}>Fit Feed</Text>
-                <ScrollView  style={{flex:1}}>
-                    <FlatList data={this.state.newsfeed} renderItem={({item}) => <NewsfeedRow key={item.key} friend={item.friend} text={item.text} community={item.community} time={item.time} likes={item.likes} attachment={item.attachment} />}/>
-                </ScrollView>
+                <View style={styles.header}>
+                    <View style={styles.circle} >
+                        <Image source={this.state.icon} style={styles.icon} />
+                    </View>
+                    <View style={styles.communityLabel}>
+                        <Text style={styles.communityName}>{this.state.name}</Text>
+                        <View style={{flexDirection:'row'}}>
+                            {friends}
+                        </View>
+                    </View>
+                </View>
+                <View style={{flex:5}}>
+                    <Text style={styles.subheader}>Community Feed</Text>
+                    <ScrollView>
+                        <FlatList data={this.state.newsfeed.filter(item => item.community == this.state.name)} renderItem={({item}) => <NewsfeedRow key={item.key} friend={item.friend} text={item.text} community={item.community} time={item.time} likes={item.likes} attachment={item.attachment} />}/>
+                    </ScrollView>
+                </View>
             </View>
         );
     }
-
 }
-
-const {width} = Dimensions.get('window');
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1
+        flex: 1,
+        backgroundColor: 'white'
     },
-    cell: {
-        width: width,
-        marginHorizontal: -60,
-        alignSelf:'center'
+    header: {
+        flex: 2,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center'
     },
-    label: {
-        fontWeight: 'bold',
+    communityLabel: {
+        flex:2,
+        padding:10
+    },
+    communityName: {
+        paddingBottom: 10,
+        fontSize: 35,
+        fontWeight: '200'
+    },
+    subheader: {
+        alignSelf: 'center',
         fontSize: 20,
-        padding: 5
+        fontWeight: '300',
+        paddingVertical: 10
+    },
+    circle: {
+        margin: 10,
+        marginLeft: 20,
+        borderWidth: 3,
+        height: 80,
+        width: 80,
+        borderRadius: 40,
+        justifyContent: 'center',
+        borderColor: '#FB6D00'
+    },
+    icon: {
+        height: 40,
+        width: 40,
+        alignSelf: 'center'
+    },
+    smallFriend: {
+        height: 18,
+        width: 18,
+        borderRadius: 9,
+        margin: 1
     }
 });
