@@ -1,13 +1,21 @@
 import React from 'react'
-import {Alert, FlatList, Image, ProgressViewIOS, ScrollView, StyleSheet, Text, TouchableHighlight, View} from 'react-native'
+import {Alert, AlertIOS, FlatList, Image, ProgressViewIOS, ScrollView, StyleSheet, Text, TouchableHighlight, View} from 'react-native'
 import NewsfeedRow from '../components/NewsfeedRow'
 
 import { connect } from 'react-redux'
 
-
 class IndividualCommunityScreen extends React.Component {
 
+    postStatus() {
+        AlertIOS.prompt('What would you like to post?', null, text => console.log("You posted " + text));
+    }
+    
+    shareProgress() {
+        Alert.alert('This should take the user to ');
+    }
+
     render() {
+        console.log(this.props);
         let images = {
             Bryce: require('../assets/images/bryce.jpg'),
             Chris: require('../assets/images/chris.jpg'),
@@ -32,8 +40,16 @@ class IndividualCommunityScreen extends React.Component {
                         </View>
                     </View>
                 </View>
-                <View style={{flex:5}}>
+                <View style={{flex:6}}>
                     <Text style={styles.subheader}>Community Feed</Text>
+                    <View style={{flexDirection:'row'}}>
+                        <TouchableHighlight onPress={this.postStatus} style={styles.button}>
+                            <Text style={styles.buttonText}>Post Status</Text>
+                        </TouchableHighlight>
+                        <TouchableHighlight onPress={this.shareProgress} style={styles.button}>
+                            <Text style={styles.buttonText}>Share Progress</Text>
+                        </TouchableHighlight>
+                    </View>
                     <ScrollView>
                         <FlatList data={this.props.state.newsfeed.filter(item => item.community == this.state.name)} renderItem={({item}) => <NewsfeedRow key={item.key} friend={item.friend} text={item.text} community={item.community} time={item.time} likes={item.likes} attachment={item.attachment} />}/>
                     </ScrollView>
@@ -84,7 +100,7 @@ const styles = StyleSheet.create({
     subheader: {
         alignSelf: 'center',
         fontSize: 20,
-        fontWeight: '300',
+        fontWeight: '900',
         paddingVertical: 10
     },
     circle: {
@@ -107,5 +123,19 @@ const styles = StyleSheet.create({
         width: 18,
         borderRadius: 9,
         margin: 1
-    }
+    },
+    button: {
+        flex: 1,
+        borderWidth: 1,
+        margin: -0.5,
+        borderColor: 'white',
+        backgroundColor: '#FB6D00'
+    },
+    buttonText: {
+        color: 'white',
+        fontSize: 15,
+        fontWeight: '600',
+        padding: 5,
+        alignSelf: 'center'
+    },
 });
