@@ -1,8 +1,8 @@
 {
-  "expoServerPort": 19002,
-  "packagerPort": 19003,
-  "packagerPid": 7578,
-  "expoServerNgrokUrl": "https://zh-3gh.valashnez.gofitreact.exp.direct",
-  "packagerNgrokUrl": "https://packager.zh-3gh.valashnez.gofitreact.exp.direct",
-  "ngrokPid": 7593
+  "expoServerPort": null,
+  "packagerPort": null,
+  "packagerPid": null,
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null
 }
