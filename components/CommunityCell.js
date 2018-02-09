@@ -14,7 +14,8 @@ export default class CommunityCell extends React.Component {
     }
     
     detail() {
-        Alert.alert('You chose the ' + this.state.name + ' community!')
+        //Alert.alert('You chose the ' + this.state.name + ' community!')
+        console.log(`You chose the ${this.state.name} community.`)
     }
 
     render() {

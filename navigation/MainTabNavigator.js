@@ -12,7 +12,7 @@ import CommunitiesScreen from '../screens/CommunitiesScreen'
 import AddCommunityScreen from '../screens/AddCommunityScreen'
 
 import LogProgressScreen from '../screens/LogProgressScreen'
-import PlaceholderCommunityScreen from '../screens/PlaceholderCommunityScreen'
+import IndividualCommunityScreen from '../screens/IndividualCommunityScreen'
 
 const HomeStackNavigator = StackNavigator( 
   {
@@ -40,7 +40,7 @@ const CommunityStackNavigator = StackNavigator(
       screen: AddCommunityScreen,
     },
     IndividualCommunity: {
-      screen: PlaceholderCommunityScreen,
+      screen: IndividualCommunityScreen,
     }
   },
   {
