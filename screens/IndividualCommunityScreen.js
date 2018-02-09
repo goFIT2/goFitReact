@@ -11,7 +11,7 @@ class IndividualCommunityScreen extends React.Component {
     }
     
     shareProgress() {
-        Alert.alert('This should take the user to ');
+        Alert.alert('This should take the user to a screen that lets them choose which progress to share.');
     }
 
     render() {
