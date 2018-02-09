@@ -6,6 +6,10 @@ import { connect } from 'react-redux'
 
 class IndividualCommunityScreen extends React.Component {
 
+    constructor(props){
+        super(props)
+
+    }
     postStatus() {
         AlertIOS.prompt('What would you like to post?', null, text => console.log("You posted " + text));
     }
@@ -15,7 +19,7 @@ class IndividualCommunityScreen extends React.Component {
     }
 
     render() {
-        console.log(this.props);
+        console.log("individual community screen")
         let images = {
             Bryce: require('../assets/images/bryce.jpg'),
             Chris: require('../assets/images/chris.jpg'),
@@ -24,17 +28,19 @@ class IndividualCommunityScreen extends React.Component {
             Denis: require('../assets/images/denis.jpg'),
             Olivia: require('../assets/images/olivia.jpg')
         }
-        var friends = this.props.state.members.map(function(m, i) {
+        console.log(this.props.community.members)
+        var friends = this.props.community.members.map(function(m, i) {
             return (<Image key={i} source={images[m]} style={styles.smallFriend} />);
         });
+
         return (
             <View style={styles.container}>
                 <View style={styles.header}>
                     <View style={styles.circle} >
-                        <Image source={this.props.state.icon} style={styles.icon} />
+                        <Image source={this.props.community.icon} style={styles.icon} />
                     </View>
                     <View style={styles.communityLabel}>
-                        <Text style={styles.communityName}>{this.props.state.name}</Text>
+                        <Text style={styles.communityName}>{this.props.community.name}</Text>
                         <View style={{flexDirection:'row'}}>
                             {friends}
                         </View>
@@ -51,7 +57,7 @@ class IndividualCommunityScreen extends React.Component {
                         </TouchableHighlight>
                     </View>
                     <ScrollView>
-                        <FlatList data={this.props.state.newsfeed.filter(item => item.community == this.state.name)} renderItem={({item}) => <NewsfeedRow key={item.key} friend={item.friend} text={item.text} community={item.community} time={item.time} likes={item.likes} attachment={item.attachment} />}/>
+                        <FlatList data={this.props.community.newsfeed.filter(item => item.community == this.props.community.name)} renderItem={({item}) => <NewsfeedRow key={item.key} friend={item.friend} text={item.text} community={item.community} time={item.time} likes={item.likes} attachment={item.attachment} />}/>
                     </ScrollView>
                 </View>
             </View>
@@ -61,7 +67,7 @@ class IndividualCommunityScreen extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
     return {
-      state: state
+      community: state.community
     }
 }
 

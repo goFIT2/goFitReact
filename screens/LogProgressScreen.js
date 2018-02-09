@@ -36,7 +36,7 @@ class LogProgressScreen extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
     return {
-      exercises: state.exercises
+      exercises: state.progress.exercises
     }
 }
 

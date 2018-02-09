@@ -5,11 +5,11 @@ import { Ionicons } from '@expo/vector-icons';
 import RootNavigation from './navigation/RootNavigation';
 
 import { createStore, applyMiddleware } from 'redux'
-import progressReducer  from './reducers/progressReducer'
+import rootReducer from './reducers/index'
 import { Provider  } from 'react-redux'
 import logger from 'redux-logger'
 
-const store = createStore(progressReducer, applyMiddleware(logger))
+const store = createStore(rootReducer, applyMiddleware(logger))
 
 export default class App extends React.Component {
   state = {
