@@ -1,2 +1,4 @@
 export const ADD_SET = 'ADD_SET'
 export const CREATE_COMMUNITY = 'CREATE_COMMUNTIY'
+export const POST_STATUS = 'POST_STATUS'
+export const SWITCH_COMMUNITY = 'SWITCH_COMMUNITY'
