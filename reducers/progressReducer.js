@@ -28,17 +28,20 @@ const defaultState = {
     ]
 }
 
-
-
 const progressReducer = (state = defaultState, action) => {
     switch (action.type) {
       case ADD_SET:
-            const { exercise, newSet } = action 
+            const { index } = action 
+            const newSet = {num: 0, reps: 0}
             const newState = _.map(state, (item) => {
-                if (item.index === exercise.index){
-                    item.data.push(newSet)
+                if (index === item.index){
+                    const newData = _.concat(item, newSet)
+                    return newData
                 }
-                return item
+                else {
+                    return item
+                }
+                
             })
             return newState
        default:

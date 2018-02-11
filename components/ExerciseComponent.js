@@ -34,9 +34,9 @@ const ColumnHead = () => {
 
 //Coontains callback for whenever state changes, handled by the parent. 
 const ProgressRow = (props) => {
-    console.log("Progress Row")
-    console.log(props.item.num)
     const { num, reps } = props.item
+    console.log("progress row props")
+    console.log(props)
     //const index = props.index 
     return(
         <View style={{flexDirection: 'row', paddingLeft: 10, paddingRight: 10}}>
@@ -62,10 +62,13 @@ const ProgressRow = (props) => {
     )
 }
 
-const AddSetButton = () => {
+
+const AddSetButton = (props) => {
+    console.log("add set button props")
+    console.log(props)
     return(
         <TouchableHighlight 
-            onPress={() => this.setState({data: []})}
+            onPress={() => console.log("add set pressed")}
             style={styles.button}
         >
             <Text style={{textAlign: 'center', textAlignVertical: 'center', color: 'white', fontFamily: 'sf-bold'}}>ADD SET</Text>
@@ -74,17 +77,14 @@ const AddSetButton = () => {
 }
 
 const ExerciseComponent = (props) => { 
-    console.log("exercise data")
-    console.log(props.exerciseData.section)
-    console.log(props.exerciseData.section.exercise)
-    console.log(props.exerciseData.index + 1)
+    console.log(props)
     return (
         <View style={styles.card}>
             <ExerciseTitle exerciseName={props.exerciseData.section.exercise} />
             <SectionList 
                 renderItem={ProgressRow}
                 ListHeaderComponent={ColumnHead}
-                ListFooterComponent={AddSetButton}
+                ListFooterComponent={() => <AddSetButton addSet={props} />}
                 sections={props.exerciseData.section.data}
                 keyExtractor={(item, index) => index}
             />

@@ -4,27 +4,45 @@ import { TouchableHighlight, SectionList,
     View, StyleSheet, Text } from 'react-native'
 import SearchExercise from '../components/SearchExercise'
 import { connect } from 'react-redux'
-
+import { addSet } from '../actions/index'
 
 class LogProgressScreen extends React.Component {
     static navigationOptions = {
         title: 'myProgress',
     };
 
+    saveButton = () => {
+        console.log("save button pressed")
+        const temp = { 
+            index: 0,
+            exercise: 'Barbell Bench Press', 
+            data: [
+                {
+                data: [
+                    {num: 5, reps: 3}, {num: 2, reps: 4}
+                ],
+                }
+            ],
+        }
+        this.props.addSet(temp)
+        console.log(this.props.addSet)
+    }
     render(){
-        console.log("REDUX")
-        console.log(this.props.exercises)
+        console.log("LOG PROGRESS SCREEN")
         return(
             <View style={{flexDirection: 'column', backgroundColor: '#fcfcfc'}}>
                 <SearchExercise />
                 <SectionList 
                     style={styles.list}
-                    renderItem={(item) => <ExerciseComponent exerciseData={item} />}
+                    renderItem={(item) => <ExerciseComponent 
+                            exerciseData={item} 
+                            />
+                    }
                     sections={this.props.exercises}
                     keyExtractor={(item, index) => index}
                     />
             <TouchableHighlight 
-                onPress={() => console.log("Button pressed")}
+                onPress={this.saveButton}
                 style={styles.button}
             >
                 <Text style={{textAlign: 'center', textAlignVertical: 'center', color: 'white', fontFamily: 'sf-bold'}}>SAVE WORKOUT</Text>
@@ -42,9 +60,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-      onClick: () => {
-        dispatch(setVisibilityFilter(ownProps.filter))
-      }
+      addSet
     }
   }
 
@@ -61,7 +77,8 @@ const styles = StyleSheet.create({
         height: 40,
         alignItems: 'center',
         borderRadius: 5,
-        justifyContent: 'center'
+        justifyContent: 'center',
+    
     }
 })
 
