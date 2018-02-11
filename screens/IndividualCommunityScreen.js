@@ -14,7 +14,7 @@ class IndividualCommunityScreen extends React.Component {
   postStatus = () => {
     let friend = 'Bryce'
     let community = this.props.community.name
-    AlertIOS.prompt('What would you like to say?', null, text => this.props.postStatus(friend, text, community))
+    AlertIOS.prompt('What would you like to say?', null, text => this.props.postStatus(friend, text, community, ''))
   }
 
   shareProgress() {
@@ -73,8 +73,8 @@ const mapStateToProps = (state, ownProps) => {
 // Dummy function for now will use later
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    postStatus: (friend, text, community) => {
-      dispatch(postStatus(friend, text, community))
+    postStatus: (friend, text, community, attachment) => {
+      dispatch(postStatus(friend, text, community, attachment))
     }
   }
 }

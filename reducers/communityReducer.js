@@ -41,22 +41,19 @@ const defaultState = {
 const communityReducer = (state = defaultState, action) => {
   let newState = Object.assign({}, state)
   switch (action.type) {
-    // case CREATE_COMMUNITY:
-    //   const { exercise, newSet } = action
-    //   const newState = _.map(state, (item) => {
-    //     if (item.index === exercise.index){
-    //       item.data.push(newSet)
-    //     }
-    //     return item
-    //   })
-    //   return newState
+    case CREATE_COMMUNITY:
+      const {name, members} = action
+      newCommunity = {key:state.communities.length, name:name, icon: require('../assets/images/social.png'), members:members}
+      newState.communities = state.communities.slice()
+      newState.communities.push(newCommunity)
+      return newState
     case SWITCH_COMMUNITY:
       const {index} = action
       newState.chosenCommunity = index
       return newState
     case POST_STATUS:
-      const {friend, text, community} = action
-      const newRow = {key:state.newsfeed.length, friend:friend, text:text, community:community, time:'0m', likes:[], attachment:''}
+      const {friend, text, community, attachment} = action
+      const newRow = {key:state.newsfeed.length, friend:friend, text:text, community:community, time:'0m', likes:[], attachment:attachment}
       newState.newsfeed = state.newsfeed.slice()
       newState.newsfeed.unshift(newRow)
       return newState

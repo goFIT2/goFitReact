@@ -1,46 +1,50 @@
-import React from 'react';
-import { Alert, Image, Keyboard, KeyboardAvoidingView, ScrollView, StyleSheet, Text, TextInput, TouchableHighlight, View } from 'react-native';
-import { WebBrowser } from 'expo';
+import React from 'react'
+import { Alert, Image, Keyboard, KeyboardAvoidingView, ScrollView, StyleSheet, Text, TextInput, TouchableHighlight, View } from 'react-native'
+import { WebBrowser } from 'expo'
 
+import { connect } from 'react-redux'
+import { createCommunity, postStatus } from '../actions/index.js'
 
-export default class AddCommunityScreen extends React.Component {
+class AddCommunityScreen extends React.Component {
 
     constructor(props) {
-        super(props);
-        this.create = this.create.bind(this);
-        this.checkValues = this.checkValues.bind(this);
+        super(props)
+        this.create = this.create.bind(this)
+        this.checkValues = this.checkValues.bind(this)
         this.state = {
             name: null,
             friends: {Bryce: false, Chris: false, Christina: false, CJ: false, Denis: false, Olivia: false}
-        };
+        }
     }
-    
+
     checkValues() {
         members = []
         for (f in this.state.friends) {
             if (this.state.friends[f]) {
-                members.push(f);
+                members.push(f)
             }
         }
-        return (this.state.name && members.length > 0);
+        return (this.state.name && members.length > 0)
     }
-    
+
     create() {
         members = []
         for (f in this.state.friends) {
             if (this.state.friends[f]) {
-                members.push(f);
+                members.push(f)
             }
         }
         if (this.checkValues()) {
-            this.props.navigation.goBack();
+            this.props.createCommunity(this.state.name, members)
+            this.props.postStatus('Bryce', '', this.state.name, 'Bryce created the ' + this.state.name + ' community!')
+            this.props.navigation.goBack()
         }
     }
-    
+
     toggleMember(f) {
-        newFriends = this.state.friends;
-        newFriends[f] = !newFriends[f];
-        this.setState({friends:newFriends});
+        newFriends = this.state.friends
+        newFriends[f] = !newFriends[f]
+        this.setState({friends:newFriends})
     }
 
     render() {
@@ -60,8 +64,8 @@ export default class AddCommunityScreen extends React.Component {
                         <Text style={this.state.friends[f] ? styles.friendName : styles.friendNameHidden}>{f}</Text>
                     </View>
                 </TouchableHighlight>
-            );
-        }, this);
+            )
+        }, this)
         return (
             <KeyboardAvoidingView style={styles.container} behavior="position" keyboardVerticalOffset={0}>
                 <Text style={styles.text}>Create</Text>
@@ -75,10 +79,30 @@ export default class AddCommunityScreen extends React.Component {
                     <Text style={this.checkValues() ? styles.button : styles.buttonGray}>Create Community</Text>
                 </TouchableHighlight>
             </KeyboardAvoidingView>
-        );
+        )
     }
 
 }
+
+const mapStateToProps = (state, ownProps) => {
+  return {
+
+  }
+}
+
+// Dummy function for now will use later
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    createCommunity: (name, members) => {
+      dispatch(createCommunity(name, members))
+    },
+    postStatus: (friend, text, community, attachment) => {
+      dispatch(postStatus(friend, text, community, attachment))
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddCommunityScreen)
 
 const styles = StyleSheet.create({
     container: {
@@ -127,5 +151,5 @@ const styles = StyleSheet.create({
         fontSize: 10,
         alignSelf: 'center'
     },
-     
-});
+
+})

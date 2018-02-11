@@ -1,4 +1,4 @@
-import { ADD_SET, POST_STATUS, SWITCH_COMMUNITY } from './ActionConstants'
+import { ADD_SET, CREATE_COMMUNITY, POST_STATUS, SWITCH_COMMUNITY } from './ActionConstants'
 
 const addSet = (newSet) => {
     return {
@@ -7,12 +7,21 @@ const addSet = (newSet) => {
     }
   }
 
-const postStatus = (friend, text, community) => {
+const createCommunity = (name, members) => {
+  return {
+    type: CREATE_COMMUNITY,
+    name,
+    members
+  }
+}
+
+const postStatus = (friend, text, community, attachment) => {
   return {
     type: POST_STATUS,
     friend,
     text,
-    community
+    community,
+    attachment
   }
 }
 
@@ -23,4 +32,4 @@ const switchCommunity = (index) => {
   }
 }
 
-export {addSet, postStatus, switchCommunity}
+export {addSet, createCommunity, postStatus, switchCommunity}
