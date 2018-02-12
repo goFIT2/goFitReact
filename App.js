@@ -9,7 +9,7 @@ import rootReducer from './reducers/index'
 import { Provider  } from 'react-redux'
 import logger from 'redux-logger'
 
-const store = createStore(rootReducer)
+const store = createStore(rootReducer, applyMiddleware(logger))
 
 export default class App extends React.Component {
   state = {

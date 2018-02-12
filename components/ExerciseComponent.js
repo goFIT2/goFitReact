@@ -68,7 +68,7 @@ const AddSetButton = (props) => {
     console.log(props)
     return(
         <TouchableHighlight 
-            onPress={() => console.log("add set pressed")}
+            onPress={props.addSetButton}
             style={styles.button}
         >
             <Text style={{textAlign: 'center', textAlignVertical: 'center', color: 'white', fontFamily: 'sf-bold'}}>ADD SET</Text>
@@ -84,7 +84,7 @@ const ExerciseComponent = (props) => {
             <SectionList 
                 renderItem={ProgressRow}
                 ListHeaderComponent={ColumnHead}
-                ListFooterComponent={() => <AddSetButton addSet={props} />}
+                ListFooterComponent={() => <AddSetButton addSetButton={props.addSetButton} />}
                 sections={props.exerciseData.section.data}
                 keyExtractor={(item, index) => index}
             />

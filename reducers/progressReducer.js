@@ -1,8 +1,7 @@
 import { ADD_SET } from '../actions/ActionConstants'
 import { _ } from 'lodash'
 
-const defaultState = { 
-    exercises: [
+const defaultState = [
         { 
             index: 0,
             exercise: 'Barbell Bench Press', 
@@ -26,23 +25,34 @@ const defaultState = {
             ]
         }
     ]
-}
 
 const progressReducer = (state = defaultState, action) => {
     switch (action.type) {
       case ADD_SET:
-            const { index } = action 
+            console.log("Case Addset")
+            const { index } = action
             const newSet = {num: 0, reps: 0}
             const newState = _.map(state, (item) => {
-                if (index === item.index){
-                    const newData = _.concat(item, newSet)
-                    return newData
+                console.log("item:")
+                console.log(item)
+                if (item.index === index){
+                    item.data[0].data.push(newSet)
+                    
+                    console.log(item.data.data)
+                    // let newData = item 
+                    // newData.data.data  = _.concat(newData.data.data, newSet)
+                    // console.log('newData')
+
+                    // console.log(newData)
+                    return item
                 }
                 else {
                     return item
                 }
                 
             })
+            console.log("newState")
+            console.log(newState)
             return newState
        default:
             return state

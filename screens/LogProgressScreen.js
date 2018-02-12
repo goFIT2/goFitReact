@@ -25,7 +25,7 @@ class LogProgressScreen extends React.Component {
             ],
         }
         this.props.addSet(temp)
-        console.log(this.props.addSet)
+        //console.log(this.props.addSet)
     }
     render(){
         console.log("LOG PROGRESS SCREEN")
@@ -36,6 +36,7 @@ class LogProgressScreen extends React.Component {
                     style={styles.list}
                     renderItem={(item) => <ExerciseComponent 
                             exerciseData={item} 
+                            addSetButton={() => this.props.addSet(item.index)}
                             />
                     }
                     sections={this.props.exercises}
@@ -52,15 +53,15 @@ class LogProgressScreen extends React.Component {
     }
 }
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
     return {
-      exercises: state.progress.exercises
+      exercises: state.progress
     }
 }
 
-const mapDispatchToProps = (dispatch, ownProps) => {
+const mapDispatchToProps = (dispatch) => {
     return {
-      addSet
+      addSet: (index) => dispatch(addSet(index))
     }
   }
 
