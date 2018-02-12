@@ -129,8 +129,10 @@ const styles = StyleSheet.create({
         alignSelf: 'center'
     },
     chevron: {
-        marginLeft: 10,
+        marginLeft: 3,
         alignSelf: 'stretch',
+        marginTop: 6,
+        fontSize: 20
     },
     chart: {
         flexDirection: 'row', 

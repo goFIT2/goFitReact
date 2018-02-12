@@ -14,7 +14,7 @@ import AddCommunityScreen from '../screens/AddCommunityScreen'
 import LogProgressScreen from '../screens/LogProgressScreen'
 import IndividualCommunityScreen from '../screens/IndividualCommunityScreen'
 
-const HomeStackNavigator = StackNavigator( 
+const HomeStackNavigator = StackNavigator(
   {
     Home: {
       screen: HomeScreen,
@@ -26,9 +26,7 @@ const HomeStackNavigator = StackNavigator(
   {
     initialRouteName: 'Home',
     headerMode: 'none'
-  },
-
-  
+  }
 )
 
 const CommunityStackNavigator = StackNavigator(
@@ -49,7 +47,7 @@ const CommunityStackNavigator = StackNavigator(
 
 )
 
-const ProgressStackNavigator = StackNavigator( 
+const ProgressStackNavigator = StackNavigator(
   {
     Progress: {
       screen: LogProgressScreen,
@@ -67,13 +65,10 @@ const MainTabNavigator =  TabNavigator(
     },
     Home: {
       screen: HomeScreen
-    }, 
+    },
     Community: {
       screen: CommunityStackNavigator
-    },
-    IndividualCommunityScreen: {
-      screen: IndividualCommunityScreen
-    },
+    }
   },
   {
     navigationOptions: ({ navigation }) => ({
