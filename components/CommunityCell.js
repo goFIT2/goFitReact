@@ -24,6 +24,7 @@ class CommunityCell extends React.Component {
 
   render() {
     let images = {
+      You: require('../assets/images/placeholder.png'),
       Bryce: require('../assets/images/bryce.jpg'),
       Chris: require('../assets/images/chris.jpg'),
       Christina: require('../assets/images/christina.jpg'),

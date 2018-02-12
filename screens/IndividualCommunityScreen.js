@@ -12,7 +12,7 @@ class IndividualCommunityScreen extends React.Component {
   }
 
   postStatus = () => {
-    let friend = 'Bryce'
+    let friend = 'You'
     let community = this.props.community.name
     AlertIOS.prompt('What would you like to say?', null, text => this.props.postStatus(friend, text, community, ''))
   }
@@ -23,6 +23,7 @@ class IndividualCommunityScreen extends React.Component {
 
   render() {
     let images = {
+      You: require('../assets/images/placeholder.png'),
       Bryce: require('../assets/images/bryce.jpg'),
       Chris: require('../assets/images/chris.jpg'),
       Christina: require('../assets/images/christina.jpg'),
