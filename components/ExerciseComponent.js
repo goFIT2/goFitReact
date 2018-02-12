@@ -46,18 +46,25 @@ const ProgressRow = (props) => {
             <View style={[styles.columnText1, styles.progressRow, {borderLeftWidth: 0}]}>
                 <Text style={styles.rowText}>{props.item.num}</Text>
             </View> 
-            <View style={[styles.columnText1, styles.progressRow, 
-                    {borderLeftWidth: 0, alignItems: 'center'}]}>
+
                 <TextInput
                     onChangeText={(text) => console.log(text)}
+                    style={[styles.columnText1, styles.progressRow, 
+                            {borderLeftWidth: 0, alignItems: 'center', 
+                            textAlign: 'center'}]}
+                        
                     >
                 </TextInput>
-            </View> 
-            <View style={[styles.columnText1, styles.progressRow, 
-                    {borderLeftWidth: 0, alignItems: 'center'}]}>
+
+
                 <TextInput 
-                   ></TextInput>
-            </View> 
+                    style={[styles.columnText1, styles.progressRow, 
+                        {borderLeftWidth: 0, alignItems: 'center',
+                        textAlign: 'center'    
+                    }]}
+                   >
+                   </TextInput>
+
         </View>  
     )
 }
