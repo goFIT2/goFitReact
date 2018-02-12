@@ -37,13 +37,6 @@ const progressReducer = (state = defaultState, action) => {
                 console.log(item)
                 if (item.index === index){
                     item.data[0].data.push(newSet)
-                    
-                    console.log(item.data.data)
-                    // let newData = item 
-                    // newData.data.data  = _.concat(newData.data.data, newSet)
-                    // console.log('newData')
-
-                    // console.log(newData)
                     return item
                 }
                 else {
@@ -51,8 +44,6 @@ const progressReducer = (state = defaultState, action) => {
                 }
                 
             })
-            console.log("newState")
-            console.log(newState)
             return newState
        default:
             return state

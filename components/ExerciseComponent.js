@@ -4,7 +4,6 @@ import { SectionList, TouchableHighlight, View, Text,
 import { Entypo } from '@expo/vector-icons'
 
 const ExerciseTitle = (props) => {
-    console.log("ExerciseTitle Props" + props)
     return (
         <TouchableOpacity style={styles.title}>
             <Text style={styles.titleText}>{props.exerciseName}</Text>
@@ -34,45 +33,45 @@ const ColumnHead = () => {
 
 //Coontains callback for whenever state changes, handled by the parent. 
 const ProgressRow = (props) => {
+    const { index } = props //Indexed from 0, make sure to increment 
     const { num, reps } = props.item
-    console.log("progress row props")
-    console.log(props)
-    //const index = props.index 
+
+    const inputReps = (text, index) => {
+        console.log(`Inputting reps:${text} at index:${index}`)
+    }
+    const inputLbs = (text, index) => {
+        console.log(`Inputting lbs:${text} at index:${index}`)
+    }
+
     return(
         <View style={{flexDirection: 'row', paddingLeft: 10, paddingRight: 10}}>
             <View style={[styles.columnText1, styles.progressRow]}>
-                <Text style={styles.rowText}>{props.section.key + 1}</Text>
+                <Text style={styles.rowText}>{index + 1}</Text>
             </View> 
             <View style={[styles.columnText1, styles.progressRow, {borderLeftWidth: 0}]}>
                 <Text style={styles.rowText}>{props.item.num}</Text>
             </View> 
 
-                <TextInput
-                    onChangeText={(text) => console.log(text)}
-                    style={[styles.columnText1, styles.progressRow, 
-                            {borderLeftWidth: 0, alignItems: 'center', 
-                            textAlign: 'center'}]}
-                        
-                    >
-                </TextInput>
-
-
-                <TextInput 
-                    style={[styles.columnText1, styles.progressRow, 
-                        {borderLeftWidth: 0, alignItems: 'center',
-                        textAlign: 'center'    
-                    }]}
-                   >
-                   </TextInput>
-
+            <TextInput
+                onChangeText={(text) => inputReps(text, index)}
+                style={[styles.columnText1, styles.progressRow, 
+                        {borderLeftWidth: 0, alignItems: 'center', 
+                        textAlign: 'center'}]}
+                    
+            />
+            <TextInput 
+                onChangeText={(text) => inputReps(text, index)}
+                style={[styles.columnText1, styles.progressRow, 
+                    {borderLeftWidth: 0, alignItems: 'center',
+                    textAlign: 'center'    
+                }]}
+                />
         </View>  
     )
 }
 
 
 const AddSetButton = (props) => {
-    console.log("add set button props")
-    console.log(props)
     return(
         <TouchableHighlight 
             onPress={props.addSetButton}
@@ -84,7 +83,6 @@ const AddSetButton = (props) => {
 }
 
 const ExerciseComponent = (props) => { 
-    console.log(props)
     return (
         <View style={styles.card}>
             <ExerciseTitle exerciseName={props.exerciseData.section.exercise} />
