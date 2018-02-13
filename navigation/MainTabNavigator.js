@@ -13,6 +13,8 @@ import AddCommunityScreen from '../screens/AddCommunityScreen'
 
 import LogProgressScreen from '../screens/LogProgressScreen'
 import IndividualCommunityScreen from '../screens/IndividualCommunityScreen'
+import ShareProgressScreen from '../screens/ShareProgressScreen';
+
 
 const HomeStackNavigator = StackNavigator(
   {
@@ -39,6 +41,9 @@ const CommunityStackNavigator = StackNavigator(
     },
     IndividualCommunity: {
       screen: IndividualCommunityScreen,
+    },
+    ShareProgress: {
+      screen: ShareProgressScreen
     }
   },
   {

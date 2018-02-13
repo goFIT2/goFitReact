@@ -17,8 +17,10 @@ class IndividualCommunityScreen extends React.Component {
     AlertIOS.prompt('What would you like to say?', null, text => this.props.postStatus(friend, text, community, ''))
   }
 
-  shareProgress() {
-    Alert.alert('This should take the user to a screen that lets them choose which progress to share.')
+  shareProgress = () => {
+    console.log(this.props)
+    this.props.navigation.navigate('ShareProgress')
+    //Alert.alert('This should take the user to a screen that lets them choose which progress to share.')
   }
 
   render() {
