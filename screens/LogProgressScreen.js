@@ -12,20 +12,7 @@ class LogProgressScreen extends React.Component {
     };
 
     saveButton = () => {
-        console.log("save button pressed")
-        const temp = { 
-            index: 0,
-            exercise: 'Barbell Bench Press', 
-            data: [
-                {
-                data: [
-                    {num: 5, reps: 3}, {num: 2, reps: 4}
-                ],
-                }
-            ],
-        }
-        this.props.addSet(temp)
-        //console.log(this.props.addSet)
+        console.log("Save button pressed")
     }
     render(){
         console.log("LOG PROGRESS SCREEN")

@@ -13,14 +13,16 @@ const ExerciseTitle = (props) => {
 }
 
 const ColumnHead = () => {
+    // <View style={[styles.columnText1, {borderLeftWidth: 0}]}>
+    // <Text style={{alignSelf: 'center', fontFamily: 'sf-light'}}>Previous</Text>
+    // </View> 
+
     return(
         <View style={{flexDirection: 'row', paddingLeft: 10, paddingRight: 10}}>
             <View style={styles.columnText1}>
                 <Text style={{alignSelf: 'center', fontFamily: 'sf-light'}}>#</Text>
             </View> 
-            <View style={[styles.columnText1, {borderLeftWidth: 0}]}>
-                <Text style={{alignSelf: 'center', fontFamily: 'sf-light'}}>Previous</Text>
-            </View> 
+
             <View style={[styles.columnText1, {borderLeftWidth: 0}]}>
                 <Text style={{alignSelf: 'center', fontFamily: 'sf-light'}}>Lbs.</Text>
             </View> 
@@ -42,21 +44,23 @@ const ProgressRow = (props) => {
     const inputLbs = (text, index) => {
         console.log(`Inputting lbs:${text} at index:${index}`)
     }
+    // <View style={[styles.columnText1, styles.progressRow, {borderLeftWidth: 0}]}>
+    // <Text style={styles.rowText}>{props.item.num}</Text>
+    // </View> 
 
     return(
         <View style={{flexDirection: 'row', paddingLeft: 10, paddingRight: 10}}>
             <View style={[styles.columnText1, styles.progressRow]}>
                 <Text style={styles.rowText}>{index + 1}</Text>
             </View> 
-            <View style={[styles.columnText1, styles.progressRow, {borderLeftWidth: 0}]}>
-                <Text style={styles.rowText}>{props.item.num}</Text>
-            </View> 
+    
 
             <TextInput
                 onChangeText={(text) => inputReps(text, index)}
                 style={[styles.columnText1, styles.progressRow, 
                         {borderLeftWidth: 0, alignItems: 'center', 
                         textAlign: 'center'}]}
+                placeholder={'25'}
                     
             />
             <TextInput 
@@ -65,6 +69,7 @@ const ProgressRow = (props) => {
                     {borderLeftWidth: 0, alignItems: 'center',
                     textAlign: 'center'    
                 }]}
+                placeholder={'8'}
                 />
         </View>  
     )
