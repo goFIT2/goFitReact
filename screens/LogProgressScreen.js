@@ -21,9 +21,9 @@ class LogProgressScreen extends React.Component {
                 <SearchExercise />
                 <SectionList 
                     style={styles.list}
-                    renderItem={(item) => <ExerciseComponent 
+                    renderItem={(item, index) => <ExerciseComponent 
                             exerciseData={item} 
-                            addSetButton={() => this.props.addSet(item.index)}
+                            addSetButton={() => this.props.addSet(item.section.index)}
                             />
                     }
                     sections={this.props.exercises}

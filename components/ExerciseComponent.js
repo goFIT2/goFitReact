@@ -88,6 +88,8 @@ const AddSetButton = (props) => {
 }
 
 const ExerciseComponent = (props) => { 
+    console.log(props)
+    console.log(`Exercise component index:${props.index}`)
     return (
         <View style={styles.card}>
             <ExerciseTitle exerciseName={props.exerciseData.section.exercise} />
