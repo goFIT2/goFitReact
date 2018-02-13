@@ -1,7 +1,8 @@
 import React from 'react'
-import SearchBar from 'react-native-searchbar'
-import { View, FlatList, StyleSheet } from 'react-native'
-import { List, ListItem } from 'react-native-elements' 
+
+import { View, FlatList, StyleSheet,
+        TouchableHighlight, Text } from 'react-native'
+
 import { Entypo } from '@expo/vector-icons'
 
 const data = [ 
@@ -22,23 +23,23 @@ class SearchExercise extends React.Component {
     render() {
         return (
             <View>
-                <SearchBar 
-                    data={data}
-                    placeholder={'Add An Exercise'}
-                    showOnLoad={true}
-                    fontFamily='sf-light'
-                    hideBack={true}
-                    />
+                <View >
+                    <Text>
+                        This will be the search bar
+                    </Text>
+                </View>
                 <FlatList 
                     data={data}
-                    renderItem={({item}) => (
-
-                    <ListItem
-                        title={item}
-                        
-                    />
-                            
-
+                    renderItem={({item, separators}) => (
+                        <TouchableHighlight
+                            onPress={() => console.log(`${item} pressed`)}
+                            onShowUnderlay={separators.highlight}
+                            onHideUnderlay={separators.unhighlight}
+                        >
+                            <View> 
+                                <Text>{item}</Text>
+                            </View> 
+                        </TouchableHighlight> 
                       )}
                     keyExtractor={(item, index) => index}
                 />
