@@ -12,6 +12,11 @@ const data = [
     'Barbell Curl',
     'Shoulder Press',
 ]
+{/* <View style={{
+    flexDirection: 'row',
+    marginLeft: 10,
+    marginBottom: 5,
+}}> */}
 
 class SearchExercise extends React.Component {
     render() {
@@ -27,19 +32,13 @@ class SearchExercise extends React.Component {
                 <FlatList 
                     data={data}
                     renderItem={({item}) => (
-                        <View style={{
-                            flexDirection: 'row',
-                            marginLeft: 10,
-                            marginBottom: 5,
-                        }}>
-                            <ListItem
-                                title={item}
-                                subtitle={'Test'}
-                                containerStyle={{ borderBottomWidth: 0 }}
-                                chevronColor={'#bdc6cf'}
-                            />
+
+                    <ListItem
+                        title={item}
+                        
+                    />
                             
-                        </View> 
+
                       )}
                     keyExtractor={(item, index) => index}
                 />
