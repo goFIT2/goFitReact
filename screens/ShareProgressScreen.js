@@ -50,8 +50,8 @@ class ShareProgressScreen extends React.Component {
         <Text style={styles.label}>What would you like to say?</Text>
         <TextInput style={styles.textinput} onChangeText={(text) => this.setState({text})} placeholder='Say something...' autoGrow={true} multiline = {true}/>
         <Text style={styles.label}>What would you like to share?</Text>
-        <FlatList data={this.state.progress} extraData={this.state.selected} renderItem={({item}) =>
-          <TouchableHighlight onPress={() => this.toggleExercise(item.exercise)} style={styles.row}>
+        <FlatList data={this.state.progress} extraData={this.state.selected} keyExtractor={(item, index) => index} renderItem={({item}) =>
+          <TouchableHighlight key={item.index} onPress={() => this.toggleExercise(item.exercise)} style={styles.row}>
             <Text style={this.state.selected[item.exercise] ? styles.selected : styles.exercise}>{item.exercise}</Text>
           </TouchableHighlight>
         }/>

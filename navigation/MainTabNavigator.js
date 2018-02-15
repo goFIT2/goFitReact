@@ -7,7 +7,6 @@ import Colors from '../constants/Colors';
 
 import HomeScreen from '../screens/HomeScreen';
 
-import AddProgressScreen from '../screens/AddProgressScreen'
 import CommunitiesScreen from '../screens/CommunitiesScreen'
 import AddCommunityScreen from '../screens/AddCommunityScreen'
 
@@ -20,9 +19,6 @@ const HomeStackNavigator = StackNavigator(
   {
     Home: {
       screen: HomeScreen,
-    },
-    AddProgress: {
-      screen: AddProgressScreen,
     },
   },
   {
