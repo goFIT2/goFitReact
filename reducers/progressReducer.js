@@ -2,9 +2,9 @@ import { ADD_SET } from '../actions/ActionConstants'
 import { _ } from 'lodash'
 
 const defaultState = [
-        { 
+        {
             index: 0,
-            exercise: 'Barbell Bench Press', 
+            exercise: 'Barbell Bench Press',
             data: [
                 {
                 data: [
@@ -14,7 +14,7 @@ const defaultState = [
             ],
         },
         {
-            index: 1, 
+            index: 1,
             exercise: 'Chin Ups',
             data: [
                 {
@@ -42,12 +42,19 @@ const progressReducer = (state = defaultState, action) => {
                 else {
                     return item
                 }
-                
+
             })
             return newState
+       case ADD_ACTIVITY:
+            console.log("Case Add Activity")
+            const {name} = action
+            const newActivity = {index: 2, exercise: {name}, data: []}
+            const newState = _.map(state, (item) => {
+              
+            }
        default:
             return state
     }
   }
-  
+
   export default progressReducer

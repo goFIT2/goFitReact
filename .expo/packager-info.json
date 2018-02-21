@@ -1,8 +1,8 @@
 {
-  "expoServerPort": 19000,
-  "expoServerNgrokUrl": "https://ig-p86.oliviaeg2.gofitreact.exp.direct",
-  "packagerNgrokUrl": "https://packager.ig-p86.oliviaeg2.gofitreact.exp.direct",
-  "ngrokPid": 2646,
-  "packagerPort": 19002,
-  "packagerPid": 2631
+  "expoServerPort": null,
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null,
+  "packagerPort": null,
+  "packagerPid": null
 }

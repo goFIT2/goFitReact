@@ -5,14 +5,11 @@ import { View, FlatList, StyleSheet,
 import { SearchBar } from 'react-native-elements'
 
 import { Entypo } from '@expo/vector-icons'
+import { connect } from 'react-redux'
+import { addSet } from '../actions/index'
 
 const data = [
-    'Barbell Press',
-    'Dumbbell Press',
-    'Running',
-    'Bicep Curl',
-    'Barbell Curl',
-    'Shoulder Press',
+
 ]
 {/* <View style={{
     flexDirection: 'row',
@@ -78,7 +75,20 @@ filterExercises(searchText, exercises) {
     }
 }
 
-export default SearchExercise
+//export default SearchExercise
+const mapStateToProps = (state) => {
+    return {
+      exercises: state.progress
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+      addSet: (index) => dispatch(addSet(index))
+    }
+  }
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchExercise)
 
 const styles = StyleSheet.create({
     chevron: {
