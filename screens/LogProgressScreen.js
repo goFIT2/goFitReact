@@ -18,7 +18,7 @@ class LogProgressScreen extends React.Component {
         console.log("LOG PROGRESS SCREEN")
         return(
             <View style={{flexDirection: 'column', backgroundColor: '#fcfcfc'}}>
-                <SearchExercise />
+  
                 <SectionList 
                     style={styles.list}
                     renderItem={(item, index) => <ExerciseComponent 

@@ -8,6 +8,13 @@ const addSet = (index) => {
     }
   }
 
+  const addActivity = (name) => {
+    return {
+      type: ADD_ACTIVITY,
+      name
+    }
+  }
+
 const createCommunity = (name, members) => {
   return {
     type: CREATE_COMMUNITY,
@@ -33,5 +40,4 @@ const switchCommunity = (index) => {
   }
 }
 
-export {addSet, createCommunity, postStatus, switchCommunity}
-
+export {addSet, createCommunity, postStatus, switchCommunity, addActivity}
