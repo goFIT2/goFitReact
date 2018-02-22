@@ -3,6 +3,7 @@ import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { AppLoading, Asset, Font } from 'expo';
 import { Ionicons } from '@expo/vector-icons';
 import RootNavigation from './navigation/RootNavigation';
+import MainTabNavigator from './navigation/MainTabNavigator';
 
 import { createStore, applyMiddleware } from 'redux'
 import rootReducer from './reducers/index'
@@ -31,7 +32,7 @@ export default class App extends React.Component {
             {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
             {Platform.OS === 'android' && <View style={styles.statusBarUnderlay} />}
             <Provider store={store}>
-              <RootNavigation />
+              <MainTabNavigator />
               </Provider>
             </View>
 

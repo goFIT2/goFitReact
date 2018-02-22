@@ -27,7 +27,7 @@ const HomeStackNavigator = StackNavigator(
   },
   {
     initialRouteName: 'Home',
-    headerMode: 'none'
+    headerMode: 'float'
   }
 )
 
@@ -47,7 +47,7 @@ const CommunityStackNavigator = StackNavigator(
     }
   },
   {
-    headerMode: 'none'
+    headerMode: 'float'
   }
 
 )
@@ -59,7 +59,7 @@ const ProgressStackNavigator = StackNavigator(
     }
   },
   {
-    headerMode: 'none'
+    headerMode: 'float'
   }
 )
 
@@ -69,7 +69,7 @@ const MainTabNavigator =  TabNavigator(
       screen: LogProgressScreen,
     },
     Home: {
-      screen: HomeScreen
+      screen: HomeStackNavigator
     },
     Community: {
       screen: CommunityStackNavigator
