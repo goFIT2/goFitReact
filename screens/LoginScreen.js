@@ -4,6 +4,10 @@ import { FormLabel, FormInput, FormValidationMessage, Button } from 'react-nativ
 
 export default class LoginScreen extends React.Component {
 
+  static navigationOptions = {
+    title: 'Log In',
+  }
+
   constructor(props) {
       super(props)
       this.checkValues = this.checkValues.bind(this)

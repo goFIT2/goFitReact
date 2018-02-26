@@ -4,6 +4,10 @@ import { FormLabel, FormInput, FormValidationMessage, Button } from 'react-nativ
 
 export default class CreateAccountScreen extends React.Component {
 
+  static navigationOptions = {
+    title: 'Create Account',
+  }
+
   constructor(props) {
       super(props)
       this.checkValues = this.checkValues.bind(this)
@@ -31,8 +35,6 @@ export default class CreateAccountScreen extends React.Component {
     return (
       <View style={styles.container}>
         <View style={{flex:1}}>
-        </View>
-        <View style={{flex:10}}>
           <FormLabel>First Name</FormLabel>
           <FormInput onChangeText={(firstname) => this.setState({firstname})} autoCapitalize='none' autoCorrect={false}/>
           <FormLabel>Last Name</FormLabel>
