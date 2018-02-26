@@ -24,8 +24,8 @@ export default class LoginScreen extends React.Component {
     }
   }
 
-  create() {
-    Alert.alert('This should take you to the create account page.')
+  create = () => {
+    this.props.navigation.navigate('Create')
   }
 
   render() {

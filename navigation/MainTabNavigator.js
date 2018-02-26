@@ -62,6 +62,20 @@ const ProgressStackNavigator = StackNavigator(
   }
 )
 
+const LoginStackNavigator = StackNavigator(
+  {
+    Login: {
+      screen: LoginScreen,
+    },
+    Create: {
+      screen: CreateAccountScreen,
+    }
+  },
+  {
+    headerMode: 'float'
+  }
+)
+
 const MainTabNavigator =  TabNavigator(
   {
     Progress: {
@@ -74,7 +88,7 @@ const MainTabNavigator =  TabNavigator(
       screen: CommunityStackNavigator
     },
     Login: {
-      screen: LoginScreen
+      screen: LoginStackNavigator
     }
   },
   {

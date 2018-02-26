@@ -23,6 +23,7 @@ export default class CreateAccountScreen extends React.Component {
   create() {
     if (this.checkValues()) {
       Alert.alert('This should create an account for user ' + this.state.firstname + ' ' + this.state.lastname + ' with email '+ this.state.email + ' and password ' + this.state.password + '.')
+      this.props.navigation.goBack()
     }
   }
 
