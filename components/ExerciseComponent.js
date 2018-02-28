@@ -126,7 +126,6 @@ const styles = StyleSheet.create({
     titleText: {
         fontFamily: 'sf-heavy',
         fontSize: 25,
-        
     },
     rowText: {
         fontFamily: 'sf-bold',
@@ -169,6 +168,4 @@ const styles = StyleSheet.create({
         backgroundColor: '#FB6D00',
         marginBottom: 10
     },
-
-
 })
