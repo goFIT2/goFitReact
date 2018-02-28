@@ -42,12 +42,11 @@ const defaultState = {
 const progressReducer = (state = defaultState, action) => {
 switch (action.type) {
    case ADD_SET:
-        console.log("Case Addset")
         const { index } = action
-        console.log(index)
         const newSet = {num: 0, reps: 0}
-
-        return state
+        let newState = _.cloneDeep(state)
+        newState.users.cvaladez.sessions.TIMESTAMP1[index].sets.push(newSet)
+        return newState
    case ADD_ACTIVITY:
 
         return state
