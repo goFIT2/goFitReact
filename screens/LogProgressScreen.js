@@ -28,7 +28,6 @@ class LogProgressScreen extends React.Component {
         })
         return (
             <View style={{ flexDirection: 'column', backgroundColor: '#fcfcfc', height: height-120 }}>
-                <SearchExercise />
                 <FlatList
                     style={styles.list}
                     renderItem={(item, index) => {
@@ -55,6 +54,8 @@ class LogProgressScreen extends React.Component {
                     textAlignVertical: 'center', color: 'white',
                     fontFamily: 'sf-bold' }}>SAVE WORKOUT</Text>
                 </TouchableHighlight>
+                <SearchExercise />
+
             </View>
         )
     }
@@ -78,7 +79,7 @@ const {height} = Dimensions.get('window');
 
 const styles = StyleSheet.create({
     list: {
-        marginTop: 10
+        marginTop: 50
     },
     button: {
         zIndex: 5,
