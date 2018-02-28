@@ -1,4 +1,4 @@
-import { ADD_SET, LBS_INPUT_CHANGE, ROW_INPUT_CHANGE,
+import { ADD_SET, LBS_INPUT_CHANGE, ROW_INPUT_CHANGE, ADD_EXERCISE,
   CREATE_COMMUNITY, POST_STATUS, SWITCH_COMMUNITY, LIKE_UNLIKE, REPS_INPUT_CHANGE } from './ActionConstants'
 
 export const lbsInputChange = (exerciseIndex, setIndex, nextLbs) => {
@@ -16,9 +16,18 @@ export const repsInputChange = (exerciseIndex, setIndex, nextReps) => {
 }
 
 export const addSet = (exerciseIndex, setIndex) => {
+  return {
+    type: ADD_SET,
+    exerciseIndex, setIndex
+  }
+}
+
+export const addExercise = (exerciseName) => {
+    console.log("ADD EXERISE CALLED")
+    console.log(exerciseName)
     return {
-      type: ADD_SET,
-      exerciseIndex, setIndex
+      type: ADD_EXERCISE,
+      exerciseName
     }
   }
 

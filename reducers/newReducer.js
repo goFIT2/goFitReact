@@ -1,4 +1,5 @@
-import {ADD_SET, ADD_ACTIVITY, LBS_INPUT_CHANGE, REPS_INPUT_CHANGE} from '../actions/ActionConstants'
+import {ADD_SET, ADD_ACTIVITY, LBS_INPUT_CHANGE, REPS_INPUT_CHANGE,
+        ADD_EXERCISE} from '../actions/ActionConstants'
 import {_} from 'lodash'
 
 const defaultState = {
@@ -65,6 +66,16 @@ const newReducer = (state = defaultState, action) => {
             return newState
         }
 
+        case ADD_EXERCISE: {
+            const {exerciseName} = action
+            let newState = _.cloneDeep(state)
+            const newExercise = { exerciseName, sets: {} }
+            const exerciseIndex = Object.keys(state.users.cvaladez.sessions.TIMESTAMP1).length + 1
+            console.log(`exerviseIndex:${exerciseIndex}`)
+            newState.users.cvaladez.sessions.TIMESTAMP1[exerciseIndex] = newExercise
+    
+            return newState
+        }
         default:
             return state
     }
