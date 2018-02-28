@@ -37,14 +37,10 @@ const ColumnHead = () => {
 
 //Coontains callback for whenever state changes, handled by the parent.
 const ProgressRow = (props) => {
-    const { index, lbs, reps } = props //Indexed from 0, make sure to increment
-    console.log(`index:${index}`)
-    const inputReps = (text, index) => {
-        //console.log(`Inputting reps:${text} at index:${index}`)
-    }
-    const inputLbs = (text, index) => {
-        //console.log(`Inputting lbs:${text} at index:${index}`)
-    }
+    const { exerciseIndex, setIndex, lbs, reps, lbsInputChange, repsInputChange } = props //Indexed from 0, make sure to increment
+    console.log(props)
+    console.log(`exerciseIndex:${exerciseIndex} index:${setIndex}`)
+ 
     // <View style={[styles.columnText1, styles.progressRow, {borderLeftWidth: 0}]}>
     // <Text style={styles.rowText}>{props.item.num}</Text>
     // </View>
@@ -52,22 +48,24 @@ const ProgressRow = (props) => {
     return(
         <View style={{flexDirection: 'row', paddingLeft: 10, paddingRight: 10}}>
             <View style={[styles.columnText1, styles.progressRow]}>
-                <Text style={styles.rowText}>{index + 1}</Text>
+                <Text style={styles.rowText}>{setIndex + 1}</Text>
             </View>
             <TextInput
-                onChangeText={(text) => inputReps(text, index)}
+                onChangeText={(text) => lbsInputChange(exerciseIndex, setIndex, text)}
                 style={[styles.columnText1, styles.progressRow,
                         {borderLeftWidth: 0, alignItems: 'center',
                         textAlign: 'center'}]}
                 placeholder={lbs.toString()}
+                keyboardType='numeric'
             />
             <TextInput
-                onChangeText={(text) => inputReps(text, index)}
+                onChangeText={(text) => repsInputChange(exerciseIndex, setIndex, text)}
                 style={[styles.columnText1, styles.progressRow,
                     {borderLeftWidth: 0, alignItems: 'center',
                     textAlign: 'center'
                 }]}
                 placeholder={reps.toString()}
+                keyboardType='numeric'
                 />
         </View>
     )
@@ -91,7 +89,7 @@ const ExerciseComponent = (props) => {
         mutatedData.push({ data: val })
     })
 
-    const { addSetButton, exerciseData } = props
+    const { addSetButton, exerciseData, lbsInputChange, repsInputChange } = props
     const { index } = exerciseData
     const { exerciseName } = exerciseData.item 
 
@@ -99,12 +97,15 @@ const ExerciseComponent = (props) => {
         <View style={styles.card}>
             <ExerciseTitle exerciseName={exerciseName} />
             <FlatList
-                renderItem={(item, index) => {
+                renderItem={(item) => {
                     return (
                         <ProgressRow 
-                            index={item.index}
+                            exerciseIndex={index}
+                            setIndex={item.index}
                             lbs={item.item.data.lbs}
                             reps={item.item.data.reps}
+                            lbsInputChange={lbsInputChange}
+                            repsInputChange={repsInputChange}
                         />
                     )
                 }

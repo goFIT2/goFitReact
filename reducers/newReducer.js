@@ -1,21 +1,21 @@
-import { ADD_SET, ADD_ACTIVITY } from '../actions/ActionConstants'
-import { _ } from 'lodash'
+import {ADD_SET, ADD_ACTIVITY, LBS_INPUT_CHANGE, REPS_INPUT_CHANGE} from '../actions/ActionConstants'
+import {_} from 'lodash'
 
 const defaultState = {
     users: {
         'cvaladez': {
-            sessions : {
+            sessions: {
                 'TIMESTAMP1': {
                     '0': {
                         exerciseName: 'Barbell Press',
                         sets: {
                             '0': {
-                                lbs: 5,
+                                lbs: '5',
                                 reps: 3
                             },
                             '1': {
-                                lbs: 2,
-                                reps: 4
+                                lbs: '2',
+                                reps: '4'
                             }
                         }
                     },
@@ -23,39 +23,51 @@ const defaultState = {
                         exerciseName: 'Chin Ups',
                         sets: {
                             '0': {
-                                lbs: 53,
-                                reps: 23
+                                lbs: '53',
+                                reps: '23'
                             },
                             '1': {
-                                lbs: 26,
-                                reps: 24
+                                lbs: '26',
+                                reps: '24'
                             }
                         }
-                    },    
-                },
+                    }
+                }
             }
         }
     }
 }
 
+const newReducer = (state = defaultState, action) => {
+    switch (action.type) {
+        case ADD_SET: {
+            const {exerciseIndex, setIndex} = action
+            const newSet = {
+                lbs: 0,
+                reps: 0
+            }
+            let newState = _.cloneDeep(state)
+            newState.users.cvaladez.sessions.TIMESTAMP1[exerciseIndex].sets[setIndex] = newSet
+            return newState
+        }
 
-const progressReducer = (state = defaultState, action) => {
-switch (action.type) {
-   case ADD_SET:
-        const { exerciseIndex, setIndex } = action
-        console.log(exerciseIndex)
-        console.log(setIndex)
-        const newSet = {lbs: 0, reps: 0}
-        let newState = _.cloneDeep(state)
-        newState.users.cvaladez.sessions.TIMESTAMP1[exerciseIndex].sets[setIndex] = newSet
-        return newState
-    
-   case ADD_ACTIVITY:
+        case LBS_INPUT_CHANGE: {
+            const {exerciseIndex, setIndex, nextLbs} = action
+            let newState = _.cloneDeep(state)
+            newState.users.cvaladez.sessions.TIMESTAMP1[exerciseIndex].sets[setIndex].lbs = nextLbs
+            return newState
+        }
 
-        return state
-   default:
-        return state
+        case REPS_INPUT_CHANGE: {
+            const {exerciseIndex, setIndex, nextReps} = action
+            let newState = _.cloneDeep(state)
+            newState.users.cvaladez.sessions.TIMESTAMP1[exerciseIndex].sets[setIndex].reps = nextReps
+            return newState
+        }
+
+        default:
+            return state
+    }
 }
-}
 
-export default progressReducer
+export default newReducer

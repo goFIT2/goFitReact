@@ -6,8 +6,9 @@ import {
 } from 'react-native'
 import SearchExercise from '../components/SearchExercise'
 import { connect } from 'react-redux'
-import { addSet } from '../actions/index'
+import { addSet, lbsInputChange, repsInputChange } from '../actions/index'
 import { _ } from 'lodash'
+import { bindActionCreators } from 'redux'
 
 class LogProgressScreen extends React.Component {
     static navigationOptions = {
@@ -35,6 +36,8 @@ class LogProgressScreen extends React.Component {
                             <ExerciseComponent
                             exerciseData={item}
                             addSetButton={() => this.props.addSet(item.index, setIndex)}
+                            lbsInputChange={this.props.lbsInputChange}
+                            repsInputChange={this.props.repsInputChange}
                             />
                         )
                     }
@@ -64,10 +67,11 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        addSet: (exerciseIndex, setIndex) => dispatch(addSet(exerciseIndex, setIndex))
+        addSet: (exerciseIndex, setIndex) => dispatch(addSet(exerciseIndex, setIndex)),
+        lbsInputChange: bindActionCreators(lbsInputChange, dispatch),
+        repsInputChange: bindActionCreators(repsInputChange, dispatch)
     }
 }
-
 
 const styles = StyleSheet.create({
     list: {
