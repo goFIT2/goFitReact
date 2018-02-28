@@ -24,16 +24,20 @@ class LogProgressScreen extends React.Component {
         _.forEach(data, (val, index) => {
             mutatedData.push(val)
         })
-
         return (
             <View style={{ flexDirection: 'column', backgroundColor: '#fcfcfc' }}>
                 <SearchExercise />
                 <FlatList
                     style={styles.list}
-                    renderItem={(item, index) => <ExerciseComponent
-                        exerciseData={item}
-                        addSetButton={() => this.props.addSet(item.index)}
-                    />
+                    renderItem={(item, index) => {
+                        const setIndex = Object.keys(item.item.sets).length
+                        return(
+                            <ExerciseComponent
+                            exerciseData={item}
+                            addSetButton={() => this.props.addSet(item.index, setIndex)}
+                            />
+                        )
+                    }
                     }
                     data={mutatedData}
                     keyExtractor={(item, index) => index}
@@ -54,14 +58,13 @@ class LogProgressScreen extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        exercises: state.progress,
         newReducer: state.newReducer
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        addSet: (index) => dispatch(addSet(index))
+        addSet: (exerciseIndex, setIndex) => dispatch(addSet(exerciseIndex, setIndex))
     }
 }
 

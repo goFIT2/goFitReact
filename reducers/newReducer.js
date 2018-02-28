@@ -8,29 +8,29 @@ const defaultState = {
                 'TIMESTAMP1': {
                     '0': {
                         exerciseName: 'Barbell Press',
-                        sets: [
-                            {
-                                num: 5,
+                        sets: {
+                            '0': {
+                                lbs: 5,
                                 reps: 3
                             },
-                            {
-                                num: 2,
+                            '1': {
+                                lbs: 2,
                                 reps: 4
                             }
-                        ]
+                        }
                     },
                     '1': {
                         exerciseName: 'Chin Ups',
-                        sets: [
-                            {
-                                num: 53,
+                        sets: {
+                            '0': {
+                                lbs: 53,
                                 reps: 23
                             },
-                            {
-                                num: 26,
+                            '1': {
+                                lbs: 26,
                                 reps: 24
                             }
-                        ]
+                        }
                     },    
                 },
             }
@@ -42,11 +42,14 @@ const defaultState = {
 const progressReducer = (state = defaultState, action) => {
 switch (action.type) {
    case ADD_SET:
-        const { index } = action
-        const newSet = {num: 0, reps: 0}
+        const { exerciseIndex, setIndex } = action
+        console.log(exerciseIndex)
+        console.log(setIndex)
+        const newSet = {lbs: 0, reps: 0}
         let newState = _.cloneDeep(state)
-        newState.users.cvaladez.sessions.TIMESTAMP1[index].sets.push(newSet)
+        newState.users.cvaladez.sessions.TIMESTAMP1[exerciseIndex].sets[setIndex] = newSet
         return newState
+    
    case ADD_ACTIVITY:
 
         return state

@@ -37,7 +37,7 @@ const ColumnHead = () => {
 
 //Coontains callback for whenever state changes, handled by the parent.
 const ProgressRow = (props) => {
-    const { index, num, reps } = props //Indexed from 0, make sure to increment
+    const { index, lbs, reps } = props //Indexed from 0, make sure to increment
     console.log(`index:${index}`)
     const inputReps = (text, index) => {
         //console.log(`Inputting reps:${text} at index:${index}`)
@@ -59,7 +59,7 @@ const ProgressRow = (props) => {
                 style={[styles.columnText1, styles.progressRow,
                         {borderLeftWidth: 0, alignItems: 'center',
                         textAlign: 'center'}]}
-                placeholder={num.toString()}
+                placeholder={lbs.toString()}
             />
             <TextInput
                 onChangeText={(text) => inputReps(text, index)}
@@ -77,7 +77,7 @@ const ProgressRow = (props) => {
 const AddSetButton = (props) => {
     return(
         <TouchableHighlight
-            onPress={props.addSetButton}
+            onPress={() => props.addSetButton()}
             style={styles.button}
         >
             <Text style={{textAlign: 'center', textAlignVertical: 'center', color: 'white', fontFamily: 'sf-bold'}}>ADD SET</Text>
@@ -88,10 +88,9 @@ const AddSetButton = (props) => {
 const ExerciseComponent = (props) => {
     let mutatedData = [] 
     _.forEach(props.exerciseData.item.sets, (val, index) => {
-
         mutatedData.push({ data: val })
     })
-    console.log(mutatedData)
+
     const { addSetButton, exerciseData } = props
     const { index } = exerciseData
     const { exerciseName } = exerciseData.item 
@@ -101,18 +100,22 @@ const ExerciseComponent = (props) => {
             <ExerciseTitle exerciseName={exerciseName} />
             <FlatList
                 renderItem={(item, index) => {
-                    console.log(item)
                     return (
                         <ProgressRow 
                             index={item.index}
-                            num={item.item.data.num}
+                            lbs={item.item.data.lbs}
                             reps={item.item.data.reps}
                         />
                     )
                 }
                 }
                 ListHeaderComponent={ColumnHead}
-                ListFooterComponent={() => <AddSetButton addSetButton={addSetButton} />}
+                ListFooterComponent={() => {
+                    return(
+                        <AddSetButton addSetButton={addSetButton} 
+                        />
+                    )
+                }}
                 data={mutatedData}
                 keyExtractor={(item, index) => index}
             />

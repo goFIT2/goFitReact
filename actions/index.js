@@ -1,10 +1,10 @@
 import { ADD_SET, CREATE_COMMUNITY, POST_STATUS, SWITCH_COMMUNITY, LIKE_UNLIKE } from './ActionConstants'
 
 
-const addSet = (index) => {
+const addSet = (exerciseIndex, setIndex) => {
     return {
       type: ADD_SET,
-      index
+      exerciseIndex, setIndex
     }
   }
 
