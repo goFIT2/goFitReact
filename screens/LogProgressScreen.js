@@ -1,6 +1,6 @@
 import React from 'react'
 import ExerciseComponent from '../components/ExerciseComponent.js'
-import { TouchableHighlight, SectionList, 
+import { TouchableHighlight, SectionList,
     View, StyleSheet, Text } from 'react-native'
 import SearchExercise from '../components/SearchExercise'
 import { connect } from 'react-redux'
@@ -12,29 +12,29 @@ class LogProgressScreen extends React.Component {
     };
 
     saveButton = () => {
-        console.log("Save button pressed")
+        //console.log("Save button pressed")
     }
     render(){
-        console.log("LOG PROGRESS SCREEN")
+        //console.log("LOG PROGRESS SCREEN")
         return(
             <View style={{flexDirection: 'column', backgroundColor: '#fcfcfc'}}>
-  
-                <SectionList 
+
+                <SectionList
                     style={styles.list}
-                    renderItem={(item, index) => <ExerciseComponent 
-                            exerciseData={item} 
+                    renderItem={(item, index) => <ExerciseComponent
+                            exerciseData={item}
                             addSetButton={() => this.props.addSet(item.section.index)}
                             />
                     }
                     sections={this.props.exercises}
                     keyExtractor={(item, index) => index}
                     />
-            <TouchableHighlight 
+            <TouchableHighlight
                 onPress={this.saveButton}
                 style={styles.button}
             >
                 <Text style={{textAlign: 'center', textAlignVertical: 'center', color: 'white', fontFamily: 'sf-bold'}}>SAVE WORKOUT</Text>
-            </TouchableHighlight> 
+            </TouchableHighlight>
             </View>
         )
     }
@@ -60,13 +60,13 @@ const styles = StyleSheet.create({
     button: {
         zIndex: 5,
         backgroundColor: '#2b2b2b',
-        marginLeft: 10, 
+        marginLeft: 10,
         marginRight: 10,
         height: 40,
         alignItems: 'center',
         borderRadius: 5,
         justifyContent: 'center',
-    
+
     }
 })
 

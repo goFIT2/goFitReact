@@ -29,15 +29,15 @@ class AddCommunityScreen extends React.Component {
 
   create() {
     var members = ['You']
-    console.log(members)
+    //console.log(members)
     for (f in this.state.friends) {
       if (this.state.friends[f]) {
         members.push(f)
       }
     }
-    console.log(members)
+    //console.log(members)
     if (this.checkValues()) {
-      console.log(members)
+      //console.log(members)
       this.props.createCommunity(this.state.name, members)
       this.props.postStatus('You', '', this.state.name, 'You created the ' + this.state.name + ' community!')
       this.props.navigation.goBack()

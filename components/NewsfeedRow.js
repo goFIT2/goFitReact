@@ -64,7 +64,7 @@ class NewsfeedRow extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  console.log(state.community.newsfeed[1].likes)
+  //console.log(state.community.newsfeed[1].likes)
   return {
   }
 }

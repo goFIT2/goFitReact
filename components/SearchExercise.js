@@ -26,7 +26,7 @@ class SearchExercise extends React.Component {
     this.setState({searchText});
     data = [  'Barbell Press','Dumbbell Press','Running', 'Bicep Curl','Barbell Curl', 'Shoulder Press'];
     let filteredData = this.filterExercises(searchText, data);
-    console.log("Filtered data is " + filteredData);
+    //console.log("Filtered data is " + filteredData);
     data = filteredData;
   }
 

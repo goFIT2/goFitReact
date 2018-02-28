@@ -52,7 +52,7 @@ class CommunitiesScreen extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  console.log(state.community.communities)
+  //console.log(state.community.communities)
   return {
     communities: state.community.communities
   }
