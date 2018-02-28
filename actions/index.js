@@ -1,4 +1,4 @@
-import { ADD_SET, CREATE_COMMUNITY, POST_STATUS, SWITCH_COMMUNITY } from './ActionConstants'
+import { ADD_SET, CREATE_COMMUNITY, POST_STATUS, SWITCH_COMMUNITY, LIKE_UNLIKE } from './ActionConstants'
 
 
 const addSet = (index) => {
@@ -40,4 +40,11 @@ const switchCommunity = (index) => {
   }
 }
 
-export {addSet, createCommunity, postStatus, switchCommunity, addActivity}
+const likeUnlike = (postIndex) => {
+  return {
+    type: LIKE_UNLIKE,
+    postIndex
+  }
+}
+
+export {addSet, createCommunity, postStatus, switchCommunity, addActivity, likeUnlike}

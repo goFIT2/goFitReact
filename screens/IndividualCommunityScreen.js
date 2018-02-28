@@ -59,7 +59,7 @@ class IndividualCommunityScreen extends React.Component {
               <Text style={styles.buttonText}>Share Progress</Text>
             </TouchableHighlight>
           </View>
-          <FlatList data={this.props.newsfeed.filter(item => item.community == this.props.community.name)} renderItem={({item}) => <NewsfeedRow key={item.key} friend={item.friend} text={item.text} community={item.community} time={item.time} likes={item.likes} attachment={item.attachment} />}/>
+          <FlatList data={this.props.newsfeed.filter(item => item.community == this.props.community.name)} renderItem={({item}) => <NewsfeedRow key={item.key} id={item.key} friend={item.friend} text={item.text} community={item.community} time={item.time} likes={item.likes} attachment={item.attachment} />}/>
         </View>
       </View>
     )

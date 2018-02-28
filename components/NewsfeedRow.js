@@ -1,11 +1,15 @@
 import React from 'react';
 import { Alert, Image, StyleSheet, Text, TouchableHighlight, View } from 'react-native'
 
-export default class NewsfeedRow extends React.Component {
+import { connect } from 'react-redux'
+import { likeUnlike } from '../actions/index.js'
+
+class NewsfeedRow extends React.Component {
 
   constructor(props) {
     super(props)
     this.state = {
+      id: props.id,
       friend: props.friend,
       community: props.community,
       text: props.text,
@@ -13,6 +17,20 @@ export default class NewsfeedRow extends React.Component {
       likes: props.likes,
       attachment: props.attachment
     }
+  }
+
+  like = () => {
+    // modify the current state first
+    newLikes = this.state.likes.slice()
+    if (newLikes.indexOf("You") >= 0) {
+      newLikes.splice(newLikes.indexOf("You"), 1)
+    } else {
+      newLikes.push('You')
+    }
+    this.setState({likes:newLikes})
+    // then modify the state on redux
+    this.props.likeUnlike(this.state.id)
+    // yes i know this is shitty lol -Bryce
   }
 
   render() {
@@ -36,12 +54,31 @@ export default class NewsfeedRow extends React.Component {
           <Text style={styles.smallLabel}>{this.state.community + ' Community • ' + this.state.time}</Text>
           {text}
           {attachment}
-          <Text style={styles.smallLabel}>♥ {this.state.likes.length}</Text>
+          <TouchableHighlight onPress={this.like}>
+            <Text style={this.state.likes.indexOf("You") >= 0 ? styles.likeLabelRed : styles.likeLabelGray}>♥ {this.state.likes.length}</Text>
+          </TouchableHighlight>
         </View>
       </View>
     )
   }
 }
+
+const mapStateToProps = (state, ownProps) => {
+  console.log(state.community.newsfeed[1].likes)
+  return {
+  }
+}
+
+// Dummy function for now will use later
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    likeUnlike: (postIndex) => {
+      dispatch(likeUnlike(postIndex))
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(NewsfeedRow)
 
 const styles = StyleSheet.create({
   row: {
@@ -77,5 +114,13 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     padding: 3,
     marginVertical: 4
+  },
+  likeLabelGray: {
+    color: 'gray',
+    fontSize: 10
+  },
+  likeLabelRed: {
+    color: 'red',
+    fontSize: 10
   }
 });
