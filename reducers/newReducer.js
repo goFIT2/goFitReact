@@ -42,6 +42,11 @@ const defaultState = {
 const progressReducer = (state = defaultState, action) => {
 switch (action.type) {
    case ADD_SET:
+        console.log("Case Addset")
+        const { index } = action
+        console.log(index)
+        const newSet = {num: 0, reps: 0}
+
         return state
    case ADD_ACTIVITY:
 

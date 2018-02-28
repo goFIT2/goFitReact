@@ -59,7 +59,7 @@ const ProgressRow = (props) => {
                 style={[styles.columnText1, styles.progressRow,
                         {borderLeftWidth: 0, alignItems: 'center',
                         textAlign: 'center'}]}
-                placeholder={'25'}
+                placeholder={num.toString()}
             />
             <TextInput
                 onChangeText={(text) => inputReps(text, index)}
@@ -67,7 +67,7 @@ const ProgressRow = (props) => {
                     {borderLeftWidth: 0, alignItems: 'center',
                     textAlign: 'center'
                 }]}
-                placeholder={'8'}
+                placeholder={reps.toString()}
                 />
         </View>
     )

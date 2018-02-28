@@ -19,15 +19,12 @@ class LogProgressScreen extends React.Component {
     }
     render() {
         let data = this.props.newReducer.users.cvaladez.sessions.TIMESTAMP1
-        console.log(data)
         
         let mutatedData = [] 
         _.forEach(data, (val, index) => {
-            console.log(val)
             mutatedData.push(val)
         })
-        console.log(mutatedData)
-        console.log('mutatedData')
+
         return (
             <View style={{ flexDirection: 'column', backgroundColor: '#fcfcfc' }}>
                 <SearchExercise />
@@ -35,11 +32,12 @@ class LogProgressScreen extends React.Component {
                     style={styles.list}
                     renderItem={(item, index) => <ExerciseComponent
                         exerciseData={item}
-                        addSetButton={() => console.log('addset pressed')}
+                        addSetButton={() => this.props.addSet(item.index)}
                     />
                     }
                     data={mutatedData}
                     keyExtractor={(item, index) => index}
+                    extraData={this.props.newReducer}
                 />
                 <TouchableHighlight
                     onPress={this.saveButton}
