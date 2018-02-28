@@ -29,7 +29,7 @@ class HomeScreen extends React.Component {
   }
 
   componentDidMount() {
-    setTimeout(() => {this.scrollView.scrollTo({x: -60}) }, 1)
+    setTimeout(() => {this.scrollView.scrollTo({x: -60}) }, 100)
   }
 
   render() {
@@ -43,8 +43,8 @@ class HomeScreen extends React.Component {
             </View>}
           />
         </ScrollView>
-        <Text style={styles.label}>Fit Feed</Text>
-        <ScrollView  style={{flex:1}}>
+        <ScrollView style={{flex:1, backgroundColor:'white'}}>
+          <Text style={styles.label}>Fit Feed</Text>
           <FlatList data={this.props.newsfeed} renderItem={({item}) => <NewsfeedRow key={item.key} id={item.key} friend={item.friend} text={item.text} community={item.community} time={item.time} likes={item.likes} attachment={item.attachment} />}/>
           </ScrollView>
       </View>
@@ -57,14 +57,13 @@ const {width} = Dimensions.get('window');
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    newsfeed: state.community.newsfeed
+    newsfeed: state.community.newsfeed.slice().sort(function(a,b){return b.key-a.key})
   }
 }
 
 // Dummy function for now will use later
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-
   }
 }
 

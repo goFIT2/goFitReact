@@ -33,6 +33,21 @@ class NewsfeedRow extends React.Component {
     // yes i know this is shitty lol -Bryce
   }
 
+  get_time_ago(post_time) {
+    seconds = Math.round((Date.now()-this.state.time)/1000)
+    if (seconds < 60) {
+      return seconds + 's'
+    } else if (60 <= seconds && seconds < 3600) {
+      return Math.round(seconds/60) + 'm'
+    } else if (3600 <= seconds && seconds < 86400) {
+      return Math.round(seconds/3600) + 'h'
+    } else if (86400 <= seconds && seconds < 604800) {
+      return Math.round(seconds/86400) + 'd'
+    } else {
+      return Math.round(seconds/86400) + 'w'
+    }
+  }
+
   render() {
     let images = {
       You: require('../assets/images/placeholder.png'),
@@ -43,29 +58,35 @@ class NewsfeedRow extends React.Component {
       Denis: require('../assets/images/denis.jpg'),
       Olivia: require('../assets/images/olivia.jpg')
     }
+    let community_name = this.props.communities[this.state.community].name
+    let time_ago = this.get_time_ago(this.state.time)
     let text = this.state.text == '' ? null : (<Text style={styles.content}>{this.state.text}</Text>);
     let attachment = this.state.attachment == '' ? null : (<Text style={styles.attachment}>{this.state.attachment}</Text>);
     return (
-      <View style={styles.row}>
-        <View>
-          <Image source={images[this.state.friend]} style={styles.icon} />
+      <View>
+        <View style={styles.row}>
+          <View>
+            <Image source={images[this.state.friend]} style={styles.icon} />
+          </View>
+          <View style={styles.label}>
+            <Text style={styles.smallLabel}>{community_name + ' Community • ' + time_ago}</Text>
+            {text}
+            {attachment}
+            <TouchableHighlight onPress={this.like}>
+              <Text style={this.state.likes.indexOf("You") >= 0 ? styles.likeLabelRed : styles.likeLabelGray}>♥ {this.state.likes.length}</Text>
+            </TouchableHighlight>
+          </View>
         </View>
-        <View style={styles.label}>
-          <Text style={styles.smallLabel}>{this.state.community + ' Community • ' + this.state.time}</Text>
-          {text}
-          {attachment}
-          <TouchableHighlight onPress={this.like}>
-            <Text style={this.state.likes.indexOf("You") >= 0 ? styles.likeLabelRed : styles.likeLabelGray}>♥ {this.state.likes.length}</Text>
-          </TouchableHighlight>
-        </View>
+        <View style={{margin: 10, borderBottomColor: 'lightgray', borderBottomWidth: StyleSheet.hairlineWidth}}/>
       </View>
     )
   }
 }
 
 const mapStateToProps = (state, ownProps) => {
-  //console.log(state.community.newsfeed[1].likes)
   return {
+    communities: state.community.communities,
+    newsfeed: state.community.newsfeed
   }
 }
 
