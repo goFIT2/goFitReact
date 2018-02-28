@@ -45,7 +45,7 @@ class HomeScreen extends React.Component {
         </ScrollView>
         <Text style={styles.label}>Fit Feed</Text>
         <ScrollView  style={{flex:1}}>
-          <FlatList data={this.props.newsfeed} renderItem={({item}) => <NewsfeedRow key={item.key} friend={item.friend} text={item.text} community={item.community} time={item.time} likes={item.likes} attachment={item.attachment} />}/>
+          <FlatList data={this.props.newsfeed} renderItem={({item}) => <NewsfeedRow key={item.key} id={item.key} friend={item.friend} text={item.text} community={item.community} time={item.time} likes={item.likes} attachment={item.attachment} />}/>
           </ScrollView>
       </View>
     );

@@ -14,8 +14,8 @@ class ChartsScreen extends React.Component {
         };
       }
    render() {
-     console.log("OLIVIA'S PRINTING THIS");
-     console.log(this.props);
+     //console.log("OLIVIA'S PRINTING THIS");
+     //console.log(this.props);
      return (
        <View>
           <PureChart data={this.state.sampleData} type='line' />

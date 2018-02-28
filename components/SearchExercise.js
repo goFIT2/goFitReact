@@ -21,14 +21,17 @@ const data = [
 
 class SearchExercise extends React.Component {
 
-  setSearchText(event) {
-    let searchText = event.nativeEvent.text;
-    this.setState({searchText});
-    data = [  'Barbell Press','Dumbbell Press','Running', 'Bicep Curl','Barbell Curl', 'Shoulder Press'];
-    let filteredData = this.filterExercises(searchText, data);
-    console.log("Filtered data is " + filteredData);
-    data = filteredData;
-  }
+
+    setSearchText(text) {
+        console.log(text)
+        const searchText = text
+        this.setState({searchText});
+        data = [  'Barbell Press','Dumbbell Press','Running', 'Bicep Curl','Barbell Curl', 'Shoulder Press'];
+        let filteredData = this.filterExercises(searchText, data);
+        console.log("Filtered data is " + filteredData);
+        data = filteredData;
+        this.setState({data})
+    }
 
 filterExercises(searchText, exercises) {
   let text = searchText.toLowerCase();
@@ -36,12 +39,16 @@ filterExercises(searchText, exercises) {
   return exercises.filter(exercise => exercise.toLowerCase().indexOf(text) >= 0);
 }
 
-
   constructor(props) {
         super(props);
-        this.state= {
+        this.state = {
           searchText: '',
-          data: [  'Barbell Press','Dumbbell Press','Running', 'Bicep Curl','Barbell Curl', 'Shoulder Press'],
+          data: ['Barbell Press',
+            'Dumbbell Press',
+            'Running', 
+            'Bicep Curl',
+            'Barbell Curl', 
+            'Shoulder Press'],
         };
       }
     render() {
@@ -51,12 +58,11 @@ filterExercises(searchText, exercises) {
                 <TextInput
                   style={styles.searchBar}
                   value={this.state.searchText}
-                  onChange={this.setSearchText.bind(this)}
+                  onChangeText={(text) => this.setSearchText(text)}
                   placeholder='Search' />
-
                 </View>
                 <FlatList
-                    data={data}
+                    data={this.state.data}
                     renderItem={({item, separators}) => (
                         <TouchableHighlight
                             onPress={() => console.log(`${item} pressed`)}
@@ -100,7 +106,6 @@ const styles = StyleSheet.create({
     searchBar: {
       fontSize: 16,
       height: 40,
-      flex: .1,
       borderWidth: 9,
       borderColor: '#E4E4E4',
     },

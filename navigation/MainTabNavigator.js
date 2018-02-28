@@ -8,11 +8,14 @@ import Colors from '../constants/Colors';
 import HomeScreen from '../screens/HomeScreen';
 
 import CommunitiesScreen from '../screens/CommunitiesScreen'
-import AddCommunityScreen from '../screens/AddCommunityScreen'
+import CreateCommunityScreen from '../screens/CreateCommunityScreen'
 
 import LogProgressScreen from '../screens/LogProgressScreen'
 import IndividualCommunityScreen from '../screens/IndividualCommunityScreen'
-import ShareProgressScreen from '../screens/ShareProgressScreen';
+import ShareProgressScreen from '../screens/ShareProgressScreen'
+
+import LoginScreen from '../screens/LoginScreen'
+import CreateAccountScreen from '../screens/CreateAccountScreen'
 
 
 const HomeStackNavigator = StackNavigator(
@@ -33,7 +36,7 @@ const CommunityStackNavigator = StackNavigator(
       screen: CommunitiesScreen,
     },
     AddCommunity: {
-      screen: AddCommunityScreen,
+      screen: CreateCommunityScreen,
     },
     IndividualCommunity: {
       screen: IndividualCommunityScreen,
@@ -59,6 +62,20 @@ const ProgressStackNavigator = StackNavigator(
   }
 )
 
+const LoginStackNavigator = StackNavigator(
+  {
+    Login: {
+      screen: LoginScreen,
+    },
+    Create: {
+      screen: CreateAccountScreen,
+    }
+  },
+  {
+    headerMode: 'float'
+  }
+)
+
 const MainTabNavigator =  TabNavigator(
   {
     Progress: {
@@ -69,6 +86,9 @@ const MainTabNavigator =  TabNavigator(
     },
     Community: {
       screen: CommunityStackNavigator
+    },
+    Login: {
+      screen: LoginStackNavigator
     }
   },
   {

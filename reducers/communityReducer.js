@@ -1,4 +1,4 @@
-import { CREATE_COMMUNITY, POST_STATUS, SWITCH_COMMUNITY } from '../actions/ActionConstants'
+import { CREATE_COMMUNITY, POST_STATUS, SWITCH_COMMUNITY, LIKE_UNLIKE } from '../actions/ActionConstants'
 import { _ } from 'lodash'
 
 const defaultState = {
@@ -8,7 +8,7 @@ const defaultState = {
     {key: 1, name: 'Meathead', icon: require('../assets/images/social.png'), members: ['You', 'CJ']}
   ],
   newsfeed: [
-    {key:21, friend:'CJ', text:'Wow I just benched 7000 pounds. That\'s a new record for me.', community:'#goFITgang', time:'3h', likes:['Chris'], attachment:'CJ completed bench press today.'},
+    {key:21, friend:'CJ', text:'Wow I just benched 7000 pounds. That\'s a new record for me.', community:'#goFITgang', time:'3h', likes:['You', 'Chris'], attachment:'CJ completed bench press today.'},
     {key:20, friend:'Olivia', text:'I plan on going to the gym later today. Anyone wanna come?', community:'#goFITgang', time:'5h', likes:['Bryce'], attachment:''},
     {key:19, friend:'Chris', text:'TBH this is way better than SoulCycle.', community:'#goFITgang', time:'20h', likes:['Bryce', 'Olivia'], attachment:'Chris completed outdoor cycling today.'},
     {key:18, friend:'Bryce', text:'', community:'#goFITgang', time:'1d', likes:['Olivia'], attachment:'Bryce completed bicep curls today.'},
@@ -51,6 +51,20 @@ const communityReducer = (state = defaultState, action) => {
       const newRow = {key:state.newsfeed.length, friend:friend, text:text, community:community, time:'0m', likes:[], attachment:attachment}
       newState.newsfeed = state.newsfeed.slice()
       newState.newsfeed.unshift(newRow)
+      return newState
+    case LIKE_UNLIKE:
+      const {postIndex} = action
+      newState.newsfeed = state.newsfeed.slice()
+      for (var i in newState.newsfeed) {
+        if (newState.newsfeed[i].key == postIndex) {
+          if (newState.newsfeed[i].likes.indexOf("You") >= 0) {
+            newState.newsfeed[i].likes.splice(newState.newsfeed[i].likes.indexOf("You"), 1)
+          } else {
+            newState.newsfeed[i].likes.push('You')
+          }
+          break //Stop this loop, we found it!
+        }
+      }
       return newState
     default:
       return state
