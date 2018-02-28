@@ -75,7 +75,7 @@ const mapDispatchToProps = (dispatch) => {
 
 const styles = StyleSheet.create({
     list: {
-        marginTop: 100
+        marginTop: 10
     },
     button: {
         zIndex: 5,
