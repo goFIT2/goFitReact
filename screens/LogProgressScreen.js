@@ -1,10 +1,13 @@
 import React from 'react'
 import ExerciseComponent from '../components/ExerciseComponent.js'
-import { TouchableHighlight, SectionList,
-    View, StyleSheet, Text } from 'react-native'
+import {
+    TouchableHighlight, SectionList,
+    View, StyleSheet, Text, FlatList
+} from 'react-native'
 import SearchExercise from '../components/SearchExercise'
 import { connect } from 'react-redux'
 import { addSet } from '../actions/index'
+import { _ } from 'lodash'
 
 class LogProgressScreen extends React.Component {
     static navigationOptions = {
@@ -14,27 +17,38 @@ class LogProgressScreen extends React.Component {
     saveButton = () => {
         //console.log("Save button pressed")
     }
-    render(){
-        //console.log("LOG PROGRESS SCREEN")
-        return(
-            <View style={{flexDirection: 'column', backgroundColor: '#fcfcfc'}}>
-                <SearchExercise /> 
-                <SectionList
+    render() {
+        let data = this.props.newReducer.users.cvaladez.sessions.TIMESTAMP1
+        console.log(data)
+        
+        let mutatedData = [] 
+        _.forEach(data, (val, index) => {
+            console.log(val)
+            mutatedData.push(val)
+        })
+        console.log(mutatedData)
+        console.log('mutatedData')
+        return (
+            <View style={{ flexDirection: 'column', backgroundColor: '#fcfcfc' }}>
+                <SearchExercise />
+                <FlatList
                     style={styles.list}
                     renderItem={(item, index) => <ExerciseComponent
-                            exerciseData={item}
-                            addSetButton={() => this.props.addSet(item.section.index)}
-                            />
-                    }
-                    sections={this.props.exercises}
-                    keyExtractor={(item, index) => index}
+                        exerciseData={item}
+                        addSetButton={() => console.log('addset pressed')}
                     />
-            <TouchableHighlight
-                onPress={this.saveButton}
-                style={styles.button}
-            >
-                <Text style={{textAlign: 'center', textAlignVertical: 'center', color: 'white', fontFamily: 'sf-bold'}}>SAVE WORKOUT</Text>
-            </TouchableHighlight>
+                    }
+                    data={mutatedData}
+                    keyExtractor={(item, index) => index}
+                />
+                <TouchableHighlight
+                    onPress={this.saveButton}
+                    style={styles.button}
+                >
+                    <Text style={{ textAlign: 'center', 
+                    textAlignVertical: 'center', color: 'white', 
+                    fontFamily: 'sf-bold' }}>SAVE WORKOUT</Text>
+                </TouchableHighlight>
             </View>
         )
     }
@@ -42,15 +56,16 @@ class LogProgressScreen extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-      exercises: state.progress
+        exercises: state.progress,
+        newReducer: state.newReducer
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-      addSet: (index) => dispatch(addSet(index))
+        addSet: (index) => dispatch(addSet(index))
     }
-  }
+}
 
 
 const styles = StyleSheet.create({

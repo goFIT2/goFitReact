@@ -1,7 +1,9 @@
 import React from 'react'
-import { SectionList, TouchableHighlight, View, Text,
-    TouchableOpacity, StyleSheet, TextInput } from 'react-native'
+import {  TouchableHighlight, View, Text,
+    TouchableOpacity, StyleSheet, TextInput, FlatList } from 'react-native'
 import { Entypo } from '@expo/vector-icons'
+
+import { _ } from 'lodash'
 
 const ExerciseTitle = (props) => {
     return (
@@ -35,9 +37,8 @@ const ColumnHead = () => {
 
 //Coontains callback for whenever state changes, handled by the parent.
 const ProgressRow = (props) => {
-    const { index } = props //Indexed from 0, make sure to increment
-    const { num, reps } = props.item
-
+    const { index, num, reps } = props //Indexed from 0, make sure to increment
+    console.log(`index:${index}`)
     const inputReps = (text, index) => {
         //console.log(`Inputting reps:${text} at index:${index}`)
     }
@@ -53,15 +54,12 @@ const ProgressRow = (props) => {
             <View style={[styles.columnText1, styles.progressRow]}>
                 <Text style={styles.rowText}>{index + 1}</Text>
             </View>
-
-
             <TextInput
                 onChangeText={(text) => inputReps(text, index)}
                 style={[styles.columnText1, styles.progressRow,
                         {borderLeftWidth: 0, alignItems: 'center',
                         textAlign: 'center'}]}
                 placeholder={'25'}
-
             />
             <TextInput
                 onChangeText={(text) => inputReps(text, index)}
@@ -88,16 +86,34 @@ const AddSetButton = (props) => {
 }
 
 const ExerciseComponent = (props) => {
-    //console.log(props)
-    //console.log(`Exercise component index:${props.index}`)
+    let mutatedData = [] 
+    _.forEach(props.exerciseData.item.sets, (val, index) => {
+
+        mutatedData.push({ data: val })
+    })
+    console.log(mutatedData)
+    const { addSetButton, exerciseData } = props
+    const { index } = exerciseData
+    const { exerciseName } = exerciseData.item 
+
     return (
         <View style={styles.card}>
-            <ExerciseTitle exerciseName={props.exerciseData.section.exercise} />
-            <SectionList
-                renderItem={ProgressRow}
+            <ExerciseTitle exerciseName={exerciseName} />
+            <FlatList
+                renderItem={(item, index) => {
+                    console.log(item)
+                    return (
+                        <ProgressRow 
+                            index={item.index}
+                            num={item.item.data.num}
+                            reps={item.item.data.reps}
+                        />
+                    )
+                }
+                }
                 ListHeaderComponent={ColumnHead}
-                ListFooterComponent={() => <AddSetButton addSetButton={props.addSetButton} />}
-                sections={props.exerciseData.section.data}
+                ListFooterComponent={() => <AddSetButton addSetButton={addSetButton} />}
+                data={mutatedData}
                 keyExtractor={(item, index) => index}
             />
         </View>
