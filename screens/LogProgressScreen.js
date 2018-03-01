@@ -31,7 +31,7 @@ class LogProgressScreen extends React.Component {
         val['timestamp'] = d
         mutatedData.push(val)
       })
-      sessions.unshift(mutatedData)
+      sessions.push(mutatedData)
     }
 
     return (

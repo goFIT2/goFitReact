@@ -74,9 +74,9 @@ class ShareProgressScreen extends React.Component {
 const mapStateToProps = (state, ownProps) => {
   selected = {}
   exercises = []
-  for (i in state.newReducer.users.cvaladez.sessions.TIMESTAMP1) {
-    selected[state.newReducer.users.cvaladez.sessions.TIMESTAMP1[i].exerciseName] = false
-    exercises.push(state.newReducer.users.cvaladez.sessions.TIMESTAMP1[i])
+  for (i in state.newReducer.users.cvaladez.sessions['Thu Mar 01 2018']) {
+    selected[state.newReducer.users.cvaladez.sessions['Thu Mar 01 2018'][i].exerciseName] = false
+    exercises.push(state.newReducer.users.cvaladez.sessions['Thu Mar 01 2018'][i])
   }
   return {
     exercises: exercises,
