@@ -1,6 +1,7 @@
 import React from 'react'
 import ExerciseComponent from '../components/ExerciseComponent.js'
 import {
+    Dimensions,
     TouchableHighlight, SectionList,
     View, StyleSheet, Text, FlatList
 } from 'react-native'
@@ -20,14 +21,13 @@ class LogProgressScreen extends React.Component {
     }
     render() {
         let data = this.props.newReducer.users.cvaladez.sessions.TIMESTAMP1
-        
-        let mutatedData = [] 
+
+        let mutatedData = []
         _.forEach(data, (val, index) => {
             mutatedData.push(val)
         })
         return (
-            <View style={{ flexDirection: 'column', backgroundColor: '#fcfcfc' }}>
-                <SearchExercise />
+            <View style={{ flexDirection: 'column', backgroundColor: '#fcfcfc', height: height-120 }}>
                 <FlatList
                     style={styles.list}
                     renderItem={(item, index) => {
@@ -50,10 +50,12 @@ class LogProgressScreen extends React.Component {
                     onPress={this.saveButton}
                     style={styles.button}
                 >
-                    <Text style={{ textAlign: 'center', 
-                    textAlignVertical: 'center', color: 'white', 
+                    <Text style={{ textAlign: 'center',
+                    textAlignVertical: 'center', color: 'white',
                     fontFamily: 'sf-bold' }}>SAVE WORKOUT</Text>
                 </TouchableHighlight>
+                <SearchExercise />
+
             </View>
         )
     }
@@ -73,9 +75,11 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
+const {height} = Dimensions.get('window');
+
 const styles = StyleSheet.create({
     list: {
-        marginTop: 10
+        marginTop: 50
     },
     button: {
         zIndex: 5,

@@ -13,7 +13,7 @@ class IndividualCommunityScreen extends React.Component {
 
   postStatus = () => {
     let friend = 'You'
-    let community = this.props.community.name
+    let community = this.props.community.key
     AlertIOS.prompt('What would you like to say?', null, text => this.props.postStatus(friend, text, community, ''))
   }
 
@@ -59,7 +59,7 @@ class IndividualCommunityScreen extends React.Component {
               <Text style={styles.buttonText}>Share Progress</Text>
             </TouchableHighlight>
           </View>
-          <FlatList data={this.props.newsfeed.filter(item => item.community == this.props.community.name)} renderItem={({item}) => <NewsfeedRow key={item.key} id={item.key} friend={item.friend} text={item.text} community={item.community} time={item.time} likes={item.likes} attachment={item.attachment} />}/>
+          <FlatList data={this.props.newsfeed.filter(item => item.community == this.props.community.key)} renderItem={({item}) => <NewsfeedRow key={item.key} id={item.key} friend={item.friend} text={item.text} community={item.community} time={item.time} likes={item.likes} attachment={item.attachment} />}/>
         </View>
       </View>
     )
@@ -69,7 +69,7 @@ class IndividualCommunityScreen extends React.Component {
 const mapStateToProps = (state, ownProps) => {
   return {
     community: state.community.communities[state.community.chosenCommunity],
-    newsfeed: state.community.newsfeed
+    newsfeed: state.community.newsfeed.slice().sort(function(a,b){return b.key-a.key})
   }
 }
 

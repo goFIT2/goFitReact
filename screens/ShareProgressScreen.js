@@ -29,7 +29,7 @@ class ShareProgressScreen extends React.Component {
     if (selected.length > 0) {
       let friend = 'You'
       let text = this.state.text ? this.state.text : ''
-      let community = this.props.community.name
+      let community = this.props.community.key
       let attachment = friend + ' completed ' + selected.join(', ') + ' today!'
       this.props.postStatus(friend, text, community, attachment)
       this.props.navigation.goBack()
@@ -51,7 +51,7 @@ class ShareProgressScreen extends React.Component {
         <TextInput style={styles.textinput} onChangeText={(text) => this.setState({text})} placeholder='Say something...' autoGrow={true} multiline = {true}/>
         <Text style={styles.label}>What would you like to share?</Text>
         <FlatList data={this.state.progress} extraData={this.state.selected} keyExtractor={(item, index) => index} renderItem={({item}) =>
-          <TouchableHighlight key={item.index} onPress={() => this.toggleExercise(item.exercise)} style={styles.row}>
+          <TouchableHighlight onPress={() => this.toggleExercise(item.exercise)} style={styles.row}>
             <Text style={this.state.selected[item.exercise] ? styles.selected : styles.exercise}>{item.exercise}</Text>
           </TouchableHighlight>
         }/>
