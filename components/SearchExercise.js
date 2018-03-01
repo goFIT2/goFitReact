@@ -69,7 +69,7 @@ class SearchExercise extends React.Component {
     return (
       <View style={{width: width, position:'absolute'}}>
         <View>
-          <TextInput style={styles.searchBar} value={this.state.searchText} onChangeText={(text) => this.setSearchText(text)} placeholder='Search'/>
+          <TextInput style={styles.searchBar} value={this.state.searchText} onChangeText={(text) => this.setSearchText(text)} placeholder='Add An Exercise'/>
         </View>
         <FlatList data={this.state.data} keyExtractor={(item, index) => index} renderItem={({item, separators}) => {
           return (
@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
     fontSize: 20
   },
   searchBar: {
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: '400',
     height: 50,
     borderWidth: 9,
@@ -115,6 +115,6 @@ const styles = StyleSheet.create({
   },
   dropdownItem: {
     backgroundColor:'white',
-    padding: 5
+    padding: 4
   }
 })

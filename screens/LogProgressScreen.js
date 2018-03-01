@@ -28,6 +28,7 @@ class LogProgressScreen extends React.Component {
     for (var d in data) {
       let mutatedData = []
       _.forEach(data[d], (val, index) => {
+        val['timestamp'] = d
         mutatedData.push(val)
       })
       sessions.unshift(mutatedData)
@@ -40,10 +41,14 @@ class LogProgressScreen extends React.Component {
 
           <FlatList horizontal={true} data={sessions} keyExtractor={(item, index) => index} renderItem={({item}) =>
 
-            <FlatList style={styles.list} data={item} extraData={this.props.newReducer} keyExtractor={(item, index) => index} renderItem={(item, index) => {
-              const setIndex = Object.keys(item.item.sets).length
-              return (<ExerciseComponent exerciseData={item} addSetButton={() => this.props.addSet(item.index, setIndex)} lbsInputChange={this.props.lbsInputChange} repsInputChange={this.props.repsInputChange} />)
-            }}/>
+            <View>
+              <Text style={styles.timestamp}>{item[0].timestamp}</Text>
+              <View style={{margin: 10, borderBottomColor: 'lightgray', borderBottomWidth: StyleSheet.hairlineWidth}}/>
+              <FlatList style={styles.list} data={item} extraData={this.props.newReducer} showsVerticalScrollIndicator={false} keyExtractor={(item, index) => index} renderItem={(item, index) => {
+                const setIndex = Object.keys(item.item.sets).length
+                return (<ExerciseComponent exerciseData={item} addSetButton={() => this.props.addSet(item.index, setIndex)} lbsInputChange={this.props.lbsInputChange} repsInputChange={this.props.repsInputChange} />)
+              }}/>
+            </View>
 
           }/>
 
@@ -77,8 +82,12 @@ const mapDispatchToProps = (dispatch) => {
 const {width, height} = Dimensions.get('window');
 
 const styles = StyleSheet.create({
+  timestamp: {
+    marginTop: 60,
+    color: 'gray',
+    alignSelf: 'center'
+  },
   list: {
-    marginTop: 50,
     width: width-50
   },
   button: {
