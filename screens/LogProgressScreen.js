@@ -7,7 +7,7 @@ import {
 } from 'react-native'
 import SearchExercise from '../components/SearchExercise'
 import { connect } from 'react-redux'
-import { addSet, lbsInputChange, repsInputChange } from '../actions/index'
+import { addSet, lbsInputChange, repsInputChange, saveWorkout } from '../actions/index'
 import { _ } from 'lodash'
 import { bindActionCreators } from 'redux'
 
@@ -17,7 +17,7 @@ class LogProgressScreen extends React.Component {
     };
 
     saveButton = () => {
-        //console.log("Save button pressed")
+        this.props.saveWorkout()
     }
     render() {
         let data = this.props.newReducer.users.cvaladez.sessions.TIMESTAMP1
@@ -71,7 +71,8 @@ const mapDispatchToProps = (dispatch) => {
     return {
         addSet: (exerciseIndex, setIndex) => dispatch(addSet(exerciseIndex, setIndex)),
         lbsInputChange: bindActionCreators(lbsInputChange, dispatch),
-        repsInputChange: bindActionCreators(repsInputChange, dispatch)
+        repsInputChange: bindActionCreators(repsInputChange, dispatch),
+        saveWorkout: () => dispatch(saveWorkout()) 
     }
 }
 

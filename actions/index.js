@@ -1,5 +1,11 @@
 import { ADD_SET, LBS_INPUT_CHANGE, ROW_INPUT_CHANGE, ADD_EXERCISE,
-  CREATE_COMMUNITY, POST_STATUS, SWITCH_COMMUNITY, LIKE_UNLIKE, REPS_INPUT_CHANGE } from './ActionConstants'
+  CREATE_COMMUNITY, POST_STATUS, SWITCH_COMMUNITY, LIKE_UNLIKE, REPS_INPUT_CHANGE, SAVE_WORKOUT } from './ActionConstants'
+
+export const saveWorkout = () => {
+  return {
+    type: SAVE_WORKOUT
+  }
+}
 
 export const lbsInputChange = (exerciseIndex, setIndex, nextLbs) => {
   return {

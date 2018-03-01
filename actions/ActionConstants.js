@@ -1,6 +1,7 @@
 export const ADD_SET = 'ADD_SET'
 export const LBS_INPUT_CHANGE = 'LBS_INPUT_CHANGE'
 export const REPS_INPUT_CHANGE = 'REPS_INPUT_CHANGE'
+export const SAVE_WORKOUT = 'SAVE_WORKOUT'
 
 export const CREATE_COMMUNITY = 'CREATE_COMMUNTIY'
 export const POST_STATUS = 'POST_STATUS'

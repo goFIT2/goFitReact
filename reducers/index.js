@@ -4,12 +4,11 @@ import { compose, createStore, combineReducers,
 import communityReducer from './communityReducer'
 import newReducer from './newReducer'
 import logger from 'redux-logger'
-import firebase from 'firebase'
-import RNFirebase from 'react-native-firebase'
+
 import * as firebase from 'firebase';
 
 // Initialize Firebase
-const config = {
+const firebaseConfig = {
     apiKey: "AIzaSyBau_IQa_QOEVSeGyghOBqOn7S35m47CeA",
     authDomain: "gofit-33d52.firebaseapp.com",
     databaseURL: "https://gofit-33d52.firebaseio.com",
