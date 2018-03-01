@@ -7,11 +7,11 @@ const defaultState = {
         'cvaladez': {
             sessions: {
                 'TIMESTAMP1': {
-                    // '0': {
-                    //     exerciseName: 'Barbell Press',
-                    //     sets: {
+                    '0': {
+                        exerciseName: 'Barbell Press',
+                        sets: {
 
-                    //     }
+                        }
                     // },
                     // '1': {
                     //     exerciseName: 'Chin Ups',
@@ -25,7 +25,28 @@ const defaultState = {
                     //             reps: '24'
                     //         }
                     //     }
-                    // }
+                    }
+                },
+                'TIMESTAMP0': {
+                    '0': {
+                        exerciseName: 'Barbell Press',
+                        sets: {
+
+                        }
+                    },
+                    '1': {
+                        exerciseName: 'Chin Ups',
+                        sets: {
+                            '0': {
+                                lbs: '53',
+                                reps: '23'
+                            },
+                            '1': {
+                                lbs: '26',
+                                reps: '24'
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -62,8 +83,8 @@ const newReducer = (state = defaultState, action) => {
         case ADD_EXERCISE: {
             const {exerciseName} = action
             let newState = _.cloneDeep(state)
-            const newExercise = { 
-                exerciseName, 
+            const newExercise = {
+                exerciseName,
                 sets: {
                     '0': {
                         lbs: '0',
@@ -71,10 +92,10 @@ const newReducer = (state = defaultState, action) => {
                     }
                 }
             }
-            const exerciseIndex = Object.keys(state.users.cvaladez.sessions.TIMESTAMP1).length 
+            const exerciseIndex = Object.keys(state.users.cvaladez.sessions.TIMESTAMP1).length
             console.log(`exerviseIndex:${exerciseIndex}`)
             newState.users.cvaladez.sessions.TIMESTAMP1[exerciseIndex] = newExercise
-    
+
             return newState
         }
         default:
