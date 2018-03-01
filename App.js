@@ -4,13 +4,8 @@ import { AppLoading, Asset, Font } from 'expo';
 import { Ionicons } from '@expo/vector-icons';
 import RootNavigation from './navigation/RootNavigation';
 import MainTabNavigator from './navigation/MainTabNavigator';
-
-import { createStore, applyMiddleware } from 'redux'
-import rootReducer from './reducers/index'
 import { Provider  } from 'react-redux'
-import logger from 'redux-logger'
-
-const store = createStore(rootReducer, applyMiddleware(logger))
+import { store } from './reducers/index'
 
 export default class App extends React.Component {
   state = {
