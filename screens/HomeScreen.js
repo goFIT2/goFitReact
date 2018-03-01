@@ -45,8 +45,9 @@ class HomeScreen extends React.Component {
         </ScrollView>
         <ScrollView style={{flex:1, backgroundColor:'white'}}>
           <Text style={styles.label}>Fit Feed</Text>
+          <View style={{margin: 10, borderBottomColor: 'lightgray', borderBottomWidth: StyleSheet.hairlineWidth}}/>
           <FlatList data={this.props.newsfeed} renderItem={({item}) => <NewsfeedRow key={item.key} id={item.key} friend={item.friend} text={item.text} community={item.community} time={item.time} likes={item.likes} attachment={item.attachment} />}/>
-          </ScrollView>
+        </ScrollView>
       </View>
     );
   }
