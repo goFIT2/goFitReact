@@ -3,7 +3,7 @@ import ExerciseComponent from '../components/ExerciseComponent.js'
 import { Dimensions, ScrollView, TouchableHighlight, SectionList, View, StyleSheet, Text, FlatList } from 'react-native'
 import SearchExercise from '../components/SearchExercise'
 import { connect } from 'react-redux'
-import { addSet, lbsInputChange, repsInputChange } from '../actions/index'
+import { addSet, lbsInputChange, repsInputChange, addSession } from '../actions/index'
 import { _ } from 'lodash'
 import { bindActionCreators } from 'redux'
 
@@ -17,13 +17,22 @@ class LogProgressScreen extends React.Component {
   }
 
   componentDidMount() {
+    let data = this.props.newReducer.users.cvaladez.sessions
+
+    if (!data[new Date(Date.now()).toDateString()]) {
+      console.log('ADDING TODAYS SESSION')
+      this.props.addSession(new Date(Date.now()).toDateString())
+    }
+
     setTimeout(() => {this.scrollView.scrollToEnd() }, 100)
   }
 
   render() {
     //let data = this.props.newReducer.users.cvaladez.sessions.TIMESTAMP1
     let data = this.props.newReducer.users.cvaladez.sessions
+
     var sessions = []
+    var timestamps = []
 
     for (var d in data) {
       let mutatedData = []
@@ -32,6 +41,7 @@ class LogProgressScreen extends React.Component {
         mutatedData.push(val)
       })
       sessions.push(mutatedData)
+      timestamps.push(d)
     }
 
     return (
@@ -39,10 +49,10 @@ class LogProgressScreen extends React.Component {
 
         <ScrollView ref={(scrollView) => { this.scrollView = scrollView; }} horizontal= {true} decelerationRate={0} snapToInterval={width-50} snapToAlignment={"center"} showsHorizontalScrollIndicator={false} contentInset={{top:0,left:25,bottom:0,right:25}} style={{flex:1}}>
 
-          <FlatList horizontal={true} data={sessions} keyExtractor={(item, index) => index} renderItem={({item}) =>
+          <FlatList horizontal={true} data={sessions} keyExtractor={(item, index) => index} renderItem={({item, index}) =>
 
             <View>
-              <Text style={styles.timestamp}>{item[0].timestamp}</Text>
+              <Text style={styles.timestamp}>{timestamps[index]}</Text>
               <View style={{margin: 10, borderBottomColor: 'lightgray', borderBottomWidth: StyleSheet.hairlineWidth}}/>
               <FlatList style={styles.list} data={item} extraData={this.props.newReducer} showsVerticalScrollIndicator={false} keyExtractor={(item, index) => index} renderItem={(item, index) => {
                 const setIndex = Object.keys(item.item.sets).length
@@ -74,6 +84,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     addSet: (exerciseIndex, setIndex, timestamp) => dispatch(addSet(exerciseIndex, setIndex, timestamp)),
+    addSession: (timestamp) => dispatch(addSession(timestamp)),
     lbsInputChange: bindActionCreators(lbsInputChange, dispatch),
     repsInputChange: bindActionCreators(repsInputChange, dispatch)
   }

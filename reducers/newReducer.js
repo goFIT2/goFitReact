@@ -1,5 +1,5 @@
 import {ADD_SET, ADD_ACTIVITY, LBS_INPUT_CHANGE, REPS_INPUT_CHANGE,
-        ADD_EXERCISE} from '../actions/ActionConstants'
+        ADD_EXERCISE, ADD_SESSION} from '../actions/ActionConstants'
 import {_} from 'lodash'
 
 const defaultState = {
@@ -42,17 +42,6 @@ const defaultState = {
                                 lbs: '45',
                                 reps: '15'
                             }
-                        }
-                    }
-                },
-                'Thu Mar 01 2018': {
-                    '0': {
-                        exerciseName: 'Barbell Press',
-                        sets: {
-                          '0': {
-                              lbs: '0',
-                              reps: '0'
-                          },
                         }
                     }
                 }
@@ -106,6 +95,14 @@ const newReducer = (state = defaultState, action) => {
 
             return newState
         }
+
+        case ADD_SESSION: {
+            const {timestamp} = action
+            let newState = _.cloneDeep(state)
+            newState.users.cvaladez.sessions[timestamp] = {}
+            return newState
+        }
+
         default:
             return state
     }
