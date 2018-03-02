@@ -70,7 +70,7 @@ class SearchExercise extends React.Component {
     return (
       <View style={{width: width, position:'absolute'}}>
         <View>
-          <TextInput style={styles.searchBar} value={this.state.searchText} onChangeText={(text) => this.setSearchText(text)} placeholder='Add An Exercise'/>
+          <TextInput style={styles.searchBar} value={this.state.searchText} onChangeText={(text) => this.setSearchText(text)} placeholder='Add An Exercise' autoCorrect={false}/>
         </View>
         <FlatList data={this.state.data} keyExtractor={(item, index) => index} renderItem={({item, separators}) => {
           return (

@@ -55,8 +55,8 @@ const newReducer = (state = defaultState, action) => {
         case ADD_SET: {
             const {exerciseIndex, setIndex, timestamp} = action
             const newSet = {
-                lbs: '0',
-                reps: '0'
+                lbs: '',
+                reps: ''
             }
             let newState = _.cloneDeep(state)
             newState.users.cvaladez.sessions[timestamp][exerciseIndex].sets[setIndex] = newSet
@@ -84,8 +84,8 @@ const newReducer = (state = defaultState, action) => {
                 exerciseName,
                 sets: {
                     '0': {
-                        lbs: '0',
-                        reps: '0'
+                        lbs: '',
+                        reps: ''
                     }
                 }
             }

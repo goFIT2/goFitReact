@@ -26,10 +26,10 @@ const ColumnHead = () => {
             </View>
 
             <View style={[styles.columnText1, {borderLeftWidth: 0}]}>
-                <Text style={{alignSelf: 'center', fontFamily: 'sf-light'}}>Lbs.</Text>
+                <Text style={{alignSelf: 'center', fontFamily: 'sf-light'}}>lbs</Text>
             </View>
             <View style={[styles.columnText1, {borderLeftWidth: 0}]}>
-                <Text style={{alignSelf: 'center', fontFamily: 'sf-light'}}>Reps</Text>
+                <Text style={{alignSelf: 'center', fontFamily: 'sf-light'}}>reps</Text>
             </View>
         </View>
     )
@@ -55,7 +55,8 @@ const ProgressRow = (props) => {
                 style={[styles.columnText1, styles.progressRow,
                         {borderLeftWidth: 0, alignItems: 'center',
                         textAlign: 'center'}]}
-                placeholder={lbs.toString()}
+                value={lbs.toString()}
+                placeholder='0'
                 keyboardType='numeric'
             />
             <TextInput
@@ -64,7 +65,8 @@ const ProgressRow = (props) => {
                     {borderLeftWidth: 0, alignItems: 'center',
                     textAlign: 'center'
                 }]}
-                placeholder={reps.toString()}
+                value={reps.toString()}
+                placeholder='0'
                 keyboardType='numeric'
                 />
         </View>
