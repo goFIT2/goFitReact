@@ -37,10 +37,10 @@ const ColumnHead = () => {
 
 //Coontains callback for whenever state changes, handled by the parent.
 const ProgressRow = (props) => {
-    const { exerciseIndex, setIndex, lbs, reps, lbsInputChange, repsInputChange } = props //Indexed from 0, make sure to increment
-    console.log(props)
-    console.log(`exerciseIndex:${exerciseIndex} index:${setIndex}`)
- 
+    const { exerciseIndex, setIndex, lbs, reps, lbsInputChange, repsInputChange, timestamp } = props //Indexed from 0, make sure to increment
+    // console.log(props)
+    // console.log(`exerciseIndex:${exerciseIndex} index:${setIndex}`)
+
     // <View style={[styles.columnText1, styles.progressRow, {borderLeftWidth: 0}]}>
     // <Text style={styles.rowText}>{props.item.num}</Text>
     // </View>
@@ -51,7 +51,7 @@ const ProgressRow = (props) => {
                 <Text style={styles.rowText}>{setIndex + 1}</Text>
             </View>
             <TextInput
-                onChangeText={(text) => lbsInputChange(exerciseIndex, setIndex, text)}
+                onChangeText={(text) => lbsInputChange(exerciseIndex, setIndex, text, timestamp)}
                 style={[styles.columnText1, styles.progressRow,
                         {borderLeftWidth: 0, alignItems: 'center',
                         textAlign: 'center'}]}
@@ -59,7 +59,7 @@ const ProgressRow = (props) => {
                 keyboardType='numeric'
             />
             <TextInput
-                onChangeText={(text) => repsInputChange(exerciseIndex, setIndex, text)}
+                onChangeText={(text) => repsInputChange(exerciseIndex, setIndex, text, timestamp)}
                 style={[styles.columnText1, styles.progressRow,
                     {borderLeftWidth: 0, alignItems: 'center',
                     textAlign: 'center'
@@ -84,14 +84,14 @@ const AddSetButton = (props) => {
 }
 
 const ExerciseComponent = (props) => {
-    let mutatedData = [] 
+    let mutatedData = []
     _.forEach(props.exerciseData.item.sets, (val, index) => {
         mutatedData.push({ data: val })
     })
 
     const { addSetButton, exerciseData, lbsInputChange, repsInputChange } = props
     const { index } = exerciseData
-    const { exerciseName } = exerciseData.item 
+    const { exerciseName } = exerciseData.item
 
     return (
         <View style={styles.card}>
@@ -99,13 +99,14 @@ const ExerciseComponent = (props) => {
             <FlatList
                 renderItem={(item) => {
                     return (
-                        <ProgressRow 
+                        <ProgressRow
                             exerciseIndex={index}
                             setIndex={item.index}
                             lbs={item.item.data.lbs}
                             reps={item.item.data.reps}
                             lbsInputChange={lbsInputChange}
                             repsInputChange={repsInputChange}
+                            timestamp={exerciseData.item.timestamp}
                         />
                     )
                 }
@@ -113,7 +114,7 @@ const ExerciseComponent = (props) => {
                 ListHeaderComponent={ColumnHead}
                 ListFooterComponent={() => {
                     return(
-                        <AddSetButton addSetButton={addSetButton} 
+                        <AddSetButton addSetButton={addSetButton}
                         />
                     )
                 }}

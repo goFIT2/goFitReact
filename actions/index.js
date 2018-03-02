@@ -1,33 +1,33 @@
 import { ADD_SET, LBS_INPUT_CHANGE, ROW_INPUT_CHANGE, ADD_EXERCISE,
   CREATE_COMMUNITY, POST_STATUS, SWITCH_COMMUNITY, LIKE_UNLIKE, REPS_INPUT_CHANGE } from './ActionConstants'
 
-export const lbsInputChange = (exerciseIndex, setIndex, nextLbs) => {
+export const lbsInputChange = (exerciseIndex, setIndex, nextLbs, timestamp) => {
   return {
     type: LBS_INPUT_CHANGE,
-    exerciseIndex, setIndex, nextLbs
+    exerciseIndex, setIndex, nextLbs, timestamp
   }
 }
 
-export const repsInputChange = (exerciseIndex, setIndex, nextReps) => {
+export const repsInputChange = (exerciseIndex, setIndex, nextReps, timestamp) => {
   return {
-    type: REPS_INPUT_CHANGE, 
-    exerciseIndex, setIndex, nextReps
+    type: REPS_INPUT_CHANGE,
+    exerciseIndex, setIndex, nextReps, timestamp
   }
 }
 
-export const addSet = (exerciseIndex, setIndex) => {
+export const addSet = (exerciseIndex, setIndex, timestamp) => {
   return {
     type: ADD_SET,
-    exerciseIndex, setIndex
+    exerciseIndex, setIndex, timestamp
   }
 }
 
-export const addExercise = (exerciseName) => {
-    console.log("ADD EXERISE CALLED")
-    console.log(exerciseName)
+export const addExercise = (exerciseName, timestamp) => {
+    //console.log("ADD EXERISE CALLED")
+    //console.log(exerciseName)
     return {
       type: ADD_EXERCISE,
-      exerciseName
+      exerciseName, timestamp
     }
   }
 
@@ -69,4 +69,3 @@ export const likeUnlike = (postIndex) => {
     postIndex
   }
 }
-

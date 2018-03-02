@@ -64,32 +64,32 @@ const defaultState = {
 const newReducer = (state = defaultState, action) => {
     switch (action.type) {
         case ADD_SET: {
-            const {exerciseIndex, setIndex} = action
+            const {exerciseIndex, setIndex, timestamp} = action
             const newSet = {
                 lbs: '0',
                 reps: '0'
             }
             let newState = _.cloneDeep(state)
-            newState.users.cvaladez.sessions['Thu Mar 01 2018'][exerciseIndex].sets[setIndex] = newSet
+            newState.users.cvaladez.sessions[timestamp][exerciseIndex].sets[setIndex] = newSet
             return newState
         }
 
         case LBS_INPUT_CHANGE: {
-            const {exerciseIndex, setIndex, nextLbs} = action
+            const {exerciseIndex, setIndex, nextLbs, timestamp} = action
             let newState = _.cloneDeep(state)
-            newState.users.cvaladez.sessions['Thu Mar 01 2018'][exerciseIndex].sets[setIndex].lbs = nextLbs
+            newState.users.cvaladez.sessions[timestamp][exerciseIndex].sets[setIndex].lbs = nextLbs
             return newState
         }
 
         case REPS_INPUT_CHANGE: {
-            const {exerciseIndex, setIndex, nextReps} = action
+            const {exerciseIndex, setIndex, nextReps, timestamp} = action
             let newState = _.cloneDeep(state)
-            newState.users.cvaladez.sessions['Thu Mar 01 2018'][exerciseIndex].sets[setIndex].reps = nextReps
+            newState.users.cvaladez.sessions[timestamp][exerciseIndex].sets[setIndex].reps = nextReps
             return newState
         }
 
         case ADD_EXERCISE: {
-            const {exerciseName} = action
+            const {exerciseName, timestamp} = action
             let newState = _.cloneDeep(state)
             const newExercise = {
                 exerciseName,
@@ -100,9 +100,9 @@ const newReducer = (state = defaultState, action) => {
                     }
                 }
             }
-            const exerciseIndex = Object.keys(state.users.cvaladez.sessions['Thu Mar 01 2018']).length
-            console.log(`exerviseIndex:${exerciseIndex}`)
-            newState.users.cvaladez.sessions['Thu Mar 01 2018'][exerciseIndex] = newExercise
+            const exerciseIndex = Object.keys(state.users.cvaladez.sessions[timestamp]).length
+            //console.log(`exerviseIndex:${exerciseIndex}`)
+            newState.users.cvaladez.sessions[timestamp][exerciseIndex] = newExercise
 
             return newState
         }

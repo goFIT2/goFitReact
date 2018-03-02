@@ -46,7 +46,7 @@ class LogProgressScreen extends React.Component {
               <View style={{margin: 10, borderBottomColor: 'lightgray', borderBottomWidth: StyleSheet.hairlineWidth}}/>
               <FlatList style={styles.list} data={item} extraData={this.props.newReducer} showsVerticalScrollIndicator={false} keyExtractor={(item, index) => index} renderItem={(item, index) => {
                 const setIndex = Object.keys(item.item.sets).length
-                return (<ExerciseComponent exerciseData={item} addSetButton={() => this.props.addSet(item.index, setIndex)} lbsInputChange={this.props.lbsInputChange} repsInputChange={this.props.repsInputChange} />)
+                return (<ExerciseComponent exerciseData={item} addSetButton={() => this.props.addSet(item.index, setIndex, item.item.timestamp)} lbsInputChange={this.props.lbsInputChange} repsInputChange={this.props.repsInputChange} />)
               }}/>
             </View>
 
@@ -73,7 +73,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addSet: (exerciseIndex, setIndex) => dispatch(addSet(exerciseIndex, setIndex)),
+    addSet: (exerciseIndex, setIndex, timestamp) => dispatch(addSet(exerciseIndex, setIndex, timestamp)),
     lbsInputChange: bindActionCreators(lbsInputChange, dispatch),
     repsInputChange: bindActionCreators(repsInputChange, dispatch)
   }

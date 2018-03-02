@@ -27,11 +27,12 @@ class SearchExercise extends React.Component {
 
   toggleAddExercise(item) {
     this.setState({searchText:'', data:[]})
-    this.props.addExercise(item)
+    timestamp = new Date(Date.now()).toDateString() // only add exercises to today
+    this.props.addExercise(item, timestamp)
   }
 
   setSearchText(text) {
-    console.log(text)
+    // console.log(text)
     const searchText = text
     this.setState({searchText})
     data = [
@@ -43,7 +44,7 @@ class SearchExercise extends React.Component {
       'Shoulder Press'
     ]
     let filteredData = this.filterExercises(searchText, data);
-    console.log("Filtered data is " + filteredData);
+    // console.log("Filtered data is " + filteredData);
     data = filteredData;
     this.setState({data})
   }
@@ -90,7 +91,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addExercise: (exerciseName) => dispatch(addExercise(exerciseName))
+    addExercise: (exerciseName, timestamp) => dispatch(addExercise(exerciseName, timestamp))
   }
 }
 
