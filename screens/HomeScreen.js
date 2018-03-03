@@ -21,8 +21,8 @@ class HomeScreen extends React.Component {
     super(props);
     this.state = {
       activities: [
-        {key:0, icon:'weights', name:'Barbell Bench Press'},
-        {key:1, icon:'jumprope', name:'Chin Ups'},
+        {key:0, icon:'weights', name:'Barbell Press'},
+        {key:1, icon:'weights', name:'Dumbell Press'},
       ]
     };
 
@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
     alignSelf:'center'
   },
   label: {
-    fontWeight: '200',
+    fontWeight: '900',
     fontSize: 18,
     color: 'gray',
     alignSelf: 'center',

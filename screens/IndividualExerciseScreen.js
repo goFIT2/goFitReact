@@ -63,6 +63,7 @@ const mapStateToProps = (state, ownProps) => {
     for (e in sessions[s]) {
       if (sessions[s][e].exerciseName == 'Barbell Press') {
         for (ss in sessions[s][e].sets) {
+          if (sessions[s][e].sets[ss].lbs && sessions[s][e].sets[ss].reps)
           sets.push(sessions[s][e].sets[ss])
         }
       }
@@ -71,7 +72,7 @@ const mapStateToProps = (state, ownProps) => {
       var item = {}
       item['timestamp'] = s
       item['sets'] = sets
-      history.push(item)
+      history.unshift(item)
     }
   }
   return {
