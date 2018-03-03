@@ -9,9 +9,6 @@ class IndividualExerciseScreen extends React.Component {
 
   constructor(props){
     super(props)
-    this.state = {
-      exerciseName: 'Barbell Press'
-    }
   }
 
   render() {
@@ -24,7 +21,7 @@ class IndividualExerciseScreen extends React.Component {
             <Image source={require('../assets/images/weights.png')} style={styles.icon} />
           </View>
           <View style={styles.exerciseLabel}>
-            <Text style={styles.exerciseName}>{this.state.exerciseName}</Text>
+            <Text style={styles.exerciseName}>{this.props.exercise}</Text>
           </View>
         </View>
         <View style={{flex:6}}>
@@ -57,11 +54,12 @@ class IndividualExerciseScreen extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
   let sessions = state.newReducer.users.cvaladez.sessions
+  let exercise = state.newReducer.users.cvaladez.chosenExercise
   var history = [] // [{1/1/2000: [sets]}]
   for (s in sessions) {
     var sets = []
     for (e in sessions[s]) {
-      if (sessions[s][e].exerciseName == 'Barbell Press') {
+      if (sessions[s][e].exerciseName == exercise) {
         for (ss in sessions[s][e].sets) {
           if (sessions[s][e].sets[ss].lbs && sessions[s][e].sets[ss].reps)
           sets.push(sessions[s][e].sets[ss])
@@ -76,7 +74,8 @@ const mapStateToProps = (state, ownProps) => {
     }
   }
   return {
-    history: history
+    history: history,
+    exercise: exercise
   }
 }
 

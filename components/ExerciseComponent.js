@@ -5,9 +5,16 @@ import { Entypo } from '@expo/vector-icons'
 
 import { _ } from 'lodash'
 
+import { connect } from 'react-redux'
+import { switchExercise } from '../actions/index.js'
+
 const ExerciseTitle = (props) => {
+    function goToIndividualExerciseScreen() {
+      props.switchExercise(props.exerciseName)
+      props.navigation.navigate('IndividualExercise')
+    }
     return (
-        <TouchableOpacity style={styles.title} onPress={() => props.navigation.navigate('IndividualExercise')}>
+        <TouchableOpacity style={styles.title} onPress={() => goToIndividualExerciseScreen()}>
             <Text style={styles.titleText}>{props.exerciseName}</Text>
             <Entypo name='chevron-right' style={styles.chevron} />
         </TouchableOpacity>
@@ -94,10 +101,11 @@ const ExerciseComponent = (props) => {
     const { addSetButton, exerciseData, lbsInputChange, repsInputChange, navigation } = props
     const { index } = exerciseData
     const { exerciseName } = exerciseData.item
+    const { switchExercise } = props
 
     return (
         <View style={styles.card}>
-            <ExerciseTitle exerciseName={exerciseName} navigation={navigation} />
+            <ExerciseTitle exerciseName={exerciseName} navigation={navigation} switchExercise={switchExercise} />
             <FlatList
                 renderItem={(item) => {
                     return (
@@ -127,7 +135,21 @@ const ExerciseComponent = (props) => {
     )
 }
 
-export default ExerciseComponent
+const mapStateToProps = (state, ownProps) => {
+  return {
+  }
+}
+
+// Dummy function for now will use later
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    switchExercise: (name) => {
+      dispatch(switchExercise(name))
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ExerciseComponent)
 
 const styles = StyleSheet.create({
     card: {

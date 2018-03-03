@@ -1,10 +1,11 @@
 import {ADD_SET, ADD_ACTIVITY, LBS_INPUT_CHANGE, REPS_INPUT_CHANGE,
-        ADD_EXERCISE, ADD_SESSION} from '../actions/ActionConstants'
+        ADD_EXERCISE, ADD_SESSION, SWITCH_EXERCISE} from '../actions/ActionConstants'
 import {_} from 'lodash'
 
 const defaultState = {
     users: {
         'cvaladez': {
+            chosenExercise: 'Barbell Press',
             sessions: {
                 'Tue Feb 27 2018': {
                     '0': {
@@ -100,6 +101,13 @@ const newReducer = (state = defaultState, action) => {
             const {timestamp} = action
             let newState = _.cloneDeep(state)
             newState.users.cvaladez.sessions[timestamp] = {}
+            return newState
+        }
+
+        case SWITCH_EXERCISE: {
+            const {name} = action
+            let newState = _.cloneDeep(state)
+            newState.users.cvaladez.chosenExercise = name
             return newState
         }
 

@@ -1,4 +1,4 @@
-import { ADD_SET, LBS_INPUT_CHANGE, ROW_INPUT_CHANGE, ADD_EXERCISE, ADD_SESSION,
+import { ADD_SET, LBS_INPUT_CHANGE, ROW_INPUT_CHANGE, ADD_EXERCISE, ADD_SESSION, SWITCH_EXERCISE,
   CREATE_COMMUNITY, POST_STATUS, SWITCH_COMMUNITY, LIKE_UNLIKE, REPS_INPUT_CHANGE } from './ActionConstants'
 
   export const lbsInputChange = (exerciseIndex, setIndex, nextLbs, timestamp) => {
@@ -41,6 +41,13 @@ import { ADD_SET, LBS_INPUT_CHANGE, ROW_INPUT_CHANGE, ADD_EXERCISE, ADD_SESSION,
   export const addActivity = (name) => {
     return {
       type: ADD_ACTIVITY,
+      name
+    }
+  }
+
+  export const switchExercise = (name) => {
+    return {
+      type: SWITCH_EXERCISE,
       name
     }
   }
