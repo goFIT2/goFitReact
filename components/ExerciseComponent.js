@@ -7,7 +7,7 @@ import { _ } from 'lodash'
 
 const ExerciseTitle = (props) => {
     return (
-        <TouchableOpacity style={styles.title}>
+        <TouchableOpacity style={styles.title} onPress={() => props.navigation.navigate('IndividualExercise')}>
             <Text style={styles.titleText}>{props.exerciseName}</Text>
             <Entypo name='chevron-right' style={styles.chevron} />
         </TouchableOpacity>
@@ -91,13 +91,13 @@ const ExerciseComponent = (props) => {
         mutatedData.push({ data: val })
     })
 
-    const { addSetButton, exerciseData, lbsInputChange, repsInputChange } = props
+    const { addSetButton, exerciseData, lbsInputChange, repsInputChange, navigation } = props
     const { index } = exerciseData
     const { exerciseName } = exerciseData.item
 
     return (
         <View style={styles.card}>
-            <ExerciseTitle exerciseName={exerciseName} />
+            <ExerciseTitle exerciseName={exerciseName} navigation={navigation} />
             <FlatList
                 renderItem={(item) => {
                     return (
