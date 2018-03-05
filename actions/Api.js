@@ -15,19 +15,27 @@ class FirebaseAPI {
     }
 
     saveSessionToFirebase(userId, sessionTime, exercises) {
-        console.log(`API with params| userId:${userId}, \
-        sessionTime:${sessionTime}, exercises:${exercises}`)
-
-        console.log(firebase.database().ref())
-
         //Use brackets for ES6 computed property names
-        firebase.database().ref('users/' + userId).set({
+        firebase.database().ref('users/' + userId).update({
             sessions: {
                 [sessionTime]: exercises
             }   
         });
-        console.log("done")
     }
+
+    fetchProgress(userId) {
+        // Attach an asynchronous callback to read the data 
+        console.log('ABOUT TO CALL FIREBASE')
+        return new Promise ((resolve, reject) => {
+            firebase.database().ref('users/' + userId)
+            .on('value', (snapshot) => {
+                resolve(snapshot.val())
+            }, (errorObject) => {
+                reject(errorObject.code)
+            })
+        })
+    }
+
 }
 
 export default new FirebaseAPI() 

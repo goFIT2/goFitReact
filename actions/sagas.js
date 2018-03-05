@@ -18,15 +18,24 @@ function* postToFirebase(action) {
         const {sessionTime, exercises} = action 
         //Call API function with these args 
         console.log(exercises)
-       const apiCall = yield call(FirebaseAPI.saveSessionToFirebase, 'cvaladez', sessionTime, exercises);
-
+        const apiCall = yield call(FirebaseAPI.saveSessionToFirebase, 'cvaladez', sessionTime, exercises);
        //Dispatches this action to reducer store 
        //yield put({type: "USER_FETCH_SUCCEEDED", user: user});
     } catch (e) {
         console.log(`Error: ${e.message}`)
-       //yield put({type: "USER_FETCH_FAILED", message: e.message});
     }
   }
   
+export function* getProgressData() {
+    yield takeEvery('FETCH_DATA', fetchFromFirebase)
+}
 
-  
+function* fetchFromFirebase(action) {
+    try {
+        const result = yield call(FirebaseAPI.fetchProgress, 'cvaladez')
+        yield put ({type: 'FETCH_SUCCEEDED', result})
+    }
+    catch(e) {
+        console.log(`Error: ${e.message}`)
+    }
+}

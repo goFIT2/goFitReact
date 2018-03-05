@@ -22,7 +22,9 @@ class LogProgressScreen extends React.Component {
     this.props.saveSession(sessionTime, exercises)
   }
 
+  //Grab data from Firebase and rehydrate Redux tree
   componentDidMount() {
+    this.props.fetchProgressData() 
     let data = this.props.newReducer.users.cvaladez.sessions
 
     if (!data[new Date(Date.now()).toDateString()]) {
@@ -95,7 +97,8 @@ const mapDispatchToProps = (dispatch) => {
     repsInputChange: bindActionCreators(repsInputChange, dispatch),
     saveSession: (sessionTime, exercises) => {
       return dispatch({type: SAVE_SESSION, sessionTime, exercises}) 
-    }
+    },
+    fetchProgressData: () => dispatch({type: 'FETCH_DATA'})
   }
 }
 
