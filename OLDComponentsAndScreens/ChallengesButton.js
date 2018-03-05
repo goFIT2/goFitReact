@@ -5,24 +5,24 @@ class ChallengesButton extends React.Component {
 
     constructor(props){
         super(props)
-        console.log(this.props.whichOne)
-        console.log(this.props.imageURL)
-        this.state = { 
+        //console.log(this.props.whichOne)
+        //console.log(this.props.imageURL)
+        this.state = {
             counter: 0
         }
     }
 
 
-    pressedButton = () => { 
+    pressedButton = () => {
         this.setState({counter: this.state.counter + 1 })
-        console.log(this.state.counter)
+        //console.log(this.state.counter)
     }
 
     render(){
     //     let imageURL = ''
     //     let text = ''
     //     if (this.props.whichOne === 'challenges'){
-    //         imageURL = 
+    //         imageURL =
     //         text = 'challenges'
     //     }
     //     else if (this.props.whichOne === 'social'){
@@ -31,13 +31,13 @@ class ChallengesButton extends React.Component {
     //    }
     //    console.log(imageURL)
         return(
-            <View> 
-                <TouchableHighlight onPress={this.pressedButton}> 
+            <View>
+                <TouchableHighlight onPress={this.pressedButton}>
                     <Image source={require('../assets/images/challenges_blue.png')}
-                        style={styles.image} /> 
-                </TouchableHighlight> 
-                <Text style={styles.text}>{this.props.text}</Text> 
-            </View> 
+                        style={styles.image} />
+                </TouchableHighlight>
+                <Text style={styles.text}>{this.props.text}</Text>
+            </View>
         )
     }
 }

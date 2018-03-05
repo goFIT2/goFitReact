@@ -22,30 +22,59 @@ class ShareProgressScreen extends React.Component {
   }
 
   share = () => {
-    // var selected = []
-    // for (s in this.state.selected) {
-    //   if (this.state.selected[s]) {
-    //     selected.push(s.toLowerCase())
-    //   }
-    // }
-    // if (selected.length == 0 && this.state.text) {
-    //   let friend = 'You'
-    //   let text = this.state.text
-    //   let community = this.props.community.key
-    //   let attachment = ''
-    //   this.props.postStatus(friend, text, community, attachment)
-    //   this.props.navigation.goBack()
-    // }
-    // else if (selected.length > 0) {
-    //   let friend = 'You'
-    //   let text = this.state.text ? this.state.text : ''
-    //   let community = this.props.community.key
-    //   let attachment = friend + ' completed ' + selected.join(', ') + ' today!'
-    //   this.props.postStatus(friend, text, community, attachment)
-    //   this.props.navigation.goBack()
-    // } else {
-    //   Alert.alert('Please say something or choose an exercise to share.')
-    // }
+    console.log("About to share!")
+    var selected = []
+    var selectedCommunity = []
+    var friend = ''
+    var text = ''
+    var community = 0
+    var attachment = ''
+    for (s in this.state.selected) {
+      if (this.state.selected[s]) {
+        selected.push(s.toLowerCase())
+      }
+    }
+    for (c in this.state.selectedCommunity) {
+      if (this.state.selectedCommunity[c]) {
+        selectedCommunity.push(c)
+      }
+    }
+    if (selected.length == 0 && this.state.text) {
+      friend = 'You'
+      text = this.state.text
+      attachment = ''
+      //this.props.postStatus(friend, text, community, attachment)
+      //this.props.navigation.goBack()
+    }
+    else if (selected.length > 0) {
+      friend = 'You'
+      text = this.state.text ? this.state.text : ''
+      attachment = friend + ' completed ' + selected.join(', ') + ' today!'
+      //this.props.postStatus(friend, text, community, attachment)
+      //this.props.navigation.goBack()
+    } else {
+      Alert.alert('Please say something or choose an exercise to share.')
+      return;
+    }
+    if (selectedCommunity.length > 0) {
+      console.log("INSIDE HERE!")
+      let allCommunities = this.state.communities
+      for (s in this.state.selected) {
+         if (this.state.selectedCommunity[s]) {
+           for (curCommunity in allCommunities) {
+               if (s === curCommunity.name) {
+                  community = curCommunity.key;
+               }
+           }
+        }
+      }
+    } else {
+      Alert.alert('Please choose a community.')
+      return;
+    }
+    console.log("Made it past conditionals")
+    this.props.postStatus(friend, text, community, attachment)
+    this.props.navigation.goBack()
   }
 
   toggleExercise(i) {

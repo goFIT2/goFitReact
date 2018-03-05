@@ -31,7 +31,7 @@ const ColumnHead = (exerciseName, units) => {
     lbsHeader = ""
     secondHeader = null;
     //repsHeader = ""
-    console.log("exercise name is " + units[exerciseName]);
+    //console.log("exercise name is " + units[exerciseName]);
     if (units[exerciseName].length > 1) {
       secondHeader = <View style={[styles.columnText1, {borderLeftWidth: 0}]}>
                     <Text style={{alignSelf: 'center', fontFamily: 'sf-light', fontSize: 16}}>{units[exerciseName][1]}</Text>
