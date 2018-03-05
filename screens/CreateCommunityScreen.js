@@ -39,7 +39,7 @@ class AddCommunityScreen extends React.Component {
     if (this.checkValues()) {
       //console.log(members)
       this.props.createCommunity(this.state.name, members)
-      this.props.postStatus('You', '', this.state.name, 'You created the ' + this.state.name + ' community!')
+      this.props.postStatus('You', '', this.props.newCommunityIndex, 'You created the ' + this.state.name + ' community!')
       this.props.navigation.goBack()
     }
   }
@@ -89,7 +89,7 @@ class AddCommunityScreen extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-
+    newCommunityIndex: state.community.communities.length
   }
 }
 
