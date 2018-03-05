@@ -11,7 +11,7 @@ const defaultState = {
      "Shoulder Press": ["lbs", "reps"],
      "Running" : ["mi", "min"],
      "Swimming" : ["mi", "min"],
-    // "Chin Ups" : ["reps", ]
+     "Chin Ups" : ["reps"],
    },
     users: {
         'cvaladez': {
@@ -43,7 +43,7 @@ const defaultState = {
                         }
                     },
                     '1': {
-                        exerciseName: 'Dumbell Press',
+                        exerciseName: 'Dumbbell Press',
                         sets: {
                             '0': {
                                 lbs: '50',

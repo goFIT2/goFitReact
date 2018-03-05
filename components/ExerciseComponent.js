@@ -29,15 +29,17 @@ const ColumnHead = (exerciseName, units) => {
     // </View>
 
     lbsHeader = ""
-    repsHeader = ""
-    // if (!exercisesWithoutLbs.includes(exerciseName)) {
-    //   lbsHeader = <View style={[styles.columnText1, {borderLeftWidth: 0}]}>
-    //                 <Text style={{alignSelf: 'center', fontFamily: 'sf-light'}}>lbs</Text>
-    //               </View>
-    // }
+    secondHeader = null;
+    //repsHeader = ""
+    console.log("exercise name is " + units[exerciseName]);
+    if (units[exerciseName].length > 1) {
+      secondHeader = <View style={[styles.columnText1, {borderLeftWidth: 0}]}>
+                    <Text style={{alignSelf: 'center', fontFamily: 'sf-light'}}>{units[exerciseName][1]}</Text>
+                  </View>
+    }
     if (units[exerciseName]) {
       lbsHeader = units[exerciseName][0];
-      repsHeader = units[exerciseName][1];
+      //repsHeader = units[exerciseName][1];
     }
     return(
         <View style={{flexDirection: 'row', paddingLeft: 10, paddingRight: 10}}>
@@ -48,10 +50,11 @@ const ColumnHead = (exerciseName, units) => {
             <View style={[styles.columnText1, {borderLeftWidth: 0}]}>
                 <Text style={{alignSelf: 'center', fontFamily: 'sf-light'}}>{lbsHeader}</Text>
             </View>
-
-            <View style={[styles.columnText1, {borderLeftWidth: 0}]}>
-                <Text style={{alignSelf: 'center', fontFamily: 'sf-light'}}>{repsHeader}</Text>
-            </View>
+            {secondHeader}
+            {// <View style={[styles.columnText1, {borderLeftWidth: 0}]}>
+            //     <Text style={{alignSelf: 'center', fontFamily: 'sf-light'}}>{repsHeader}</Text>
+            // </View>
+          }
         </View>
     )
 }
