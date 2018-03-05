@@ -30,13 +30,23 @@ const CommunityStackNavigator = StackNavigator(
       screen: IndividualCommunityScreen,
     },
     ShareProgress: {
-      screen: ShareProgressScreen
+      screen: ShareProgressScreen,
     }
   },
   {
     headerMode: 'float'
   }
+)
 
+const HomeStackNavigator = StackNavigator(
+  {
+    Home: {
+      screen: HomeScreen,
+    }
+  },
+  {
+    headerMode: 'float'
+  }
 )
 
 const ProgressStackNavigator = StackNavigator(
@@ -53,31 +63,13 @@ const ProgressStackNavigator = StackNavigator(
   }
 )
 
-const LoginStackNavigator = StackNavigator(
-  {
-    Login: {
-      screen: LoginScreen,
-    },
-    Create: {
-      screen: CreateAccountScreen,
-    },
-    Home: {
-      screen: HomeScreen,
-    }
-  },
-  {
-    initialRouteName: 'Login',
-    headerMode: 'float'
-  }
-)
-
 const MainTabNavigator =  TabNavigator(
   {
     Progress: {
-      screen: ProgressStackNavigator,
+      screen: ProgressStackNavigator
     },
     Home: {
-      screen: LoginStackNavigator
+      screen: HomeStackNavigator
     },
     Communities: {
       screen: CommunityStackNavigator
@@ -85,6 +77,7 @@ const MainTabNavigator =  TabNavigator(
   },
   {
     navigationOptions: ({ navigation }) => ({
+      headerLeft: null,
       tabBarIcon: ({ focused }) => {
         const { routeName } = navigation.state;
         let iconName;
@@ -120,5 +113,26 @@ const MainTabNavigator =  TabNavigator(
   }
 );
 
+const LoginStackNavigator = StackNavigator(
+  {
+    Login: {
+      screen: LoginScreen,
+    },
+    Create: {
+      screen: CreateAccountScreen,
+    },
+    Home: {
+      screen: MainTabNavigator,
+    }
+  },
+  {
+    initialRouteName: 'Login',
+    headerMode: 'none',
+    navigationOptions: {
+        gesturesEnabled: false,
+        headerVisible: false,
+    }
+  }
+)
 
-export default MainTabNavigator
+export default LoginStackNavigator
