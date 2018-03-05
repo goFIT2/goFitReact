@@ -111,7 +111,7 @@ const AddSetButton = (props) => {
             onPress={() => props.addSetButton()}
             style={styles.button}
         >
-            <Text style={{textAlign: 'center', textAlignVertical: 'center', color: 'white', fontFamily: 'sf-bold', fontSize: 16}}>ADD SET</Text>
+            <Text style={{textAlign: 'center', textAlignVertical: 'center', color: 'white', fontFamily: 'sf-bold', fontSize: 15}}>ADD SET</Text>
         </TouchableHighlight>
     )
 }
@@ -197,7 +197,7 @@ const styles = StyleSheet.create({
     },
     titleText: {
         fontFamily: 'sf-heavy',
-        fontSize: 25,
+        fontSize: 28,
 
     },
     rowText: {
