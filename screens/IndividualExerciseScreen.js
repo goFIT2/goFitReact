@@ -60,6 +60,9 @@ class IndividualExerciseScreen extends React.Component {
 
           }/>
         </View>
+        <TouchableHighlight onPress={this.share} style={styles.button}>
+            <Text style={{textAlign: 'center', textAlignVertical: 'center', color: 'white', fontFamily: 'sf-bold'}}>SHARE</Text>
+        </TouchableHighlight>
       </View>
     )
   }
@@ -147,4 +150,15 @@ const styles = StyleSheet.create({
       fontSize: 14,
       alignSelf: 'center',
   },
+  button: {
+      zIndex: 5,
+      backgroundColor: '#2b2b2b',
+      marginLeft: 10,
+      marginRight: 10,
+      height: 40,
+      alignItems: 'center',
+      borderRadius: 5,
+      justifyContent: 'center',
+      margin: 5
+  }
 })
