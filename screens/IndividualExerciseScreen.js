@@ -14,7 +14,7 @@ class IndividualExerciseScreen extends React.Component {
   displayLbsRow = (lbs, exerciseName) => {
     //const exercisesWithoutLbs = ['Chin Ups']
     if (this.props.units[exerciseName].length > 1) {
-      return <Text style={{flex:1, alignItems: 'center', textAlign: 'center'}}>{lbs + " " + this.props.units[exerciseName][1]}</Text>
+      return <Text style={{flex: 1, alignItems: 'center', textAlign: 'center', fontSize: 16}}>{lbs + " " + this.props.units[exerciseName][1]}</Text>
     } else {
       return null
     }
@@ -38,17 +38,17 @@ class IndividualExerciseScreen extends React.Component {
           <FlatList data={this.props.history} keyExtractor={(item, index) => index} renderItem={({item}) =>
 
             <View>
-              <Text style={{margin: 5, marginTop:10, fontWeight:'bold'}}>{item.timestamp}</Text>
+              <Text style={{margin: 5, marginTop:10, fontWeight:'bold', fontSize:16}}>{item.timestamp}</Text>
               <View style={{marginHorizontal: 10, borderBottomColor: 'lightgray', borderBottomWidth: StyleSheet.hairlineWidth}}/>
 
               <FlatList data={item.sets} keyExtractor={(item, index) => index} renderItem={(item, index) =>
 
                 <View style={{flexDirection: 'row', paddingLeft: 10, paddingRight: 20}}>
-                    <View style={{flex:1}}>
+                    <View style={{flex: 1}}>
                         <Text style={styles.rowText}>{item.index+1}</Text>
                     </View>
 
-                   <Text style={{flex:1, alignItems: 'center', textAlign: 'center'}}>{item.item.lbs + " " + this.props.units[this.props.exercise][0]}</Text>
+                   <Text style={{flex: 1, alignItems: 'center', textAlign: 'center', fontSize: 16}}>{item.item.lbs + " " + this.props.units[this.props.exercise][0]}</Text>
 
                   {//  <Text style={{flex:1, alignItems: 'center', textAlign: 'center'}}>{item.item.reps + " " + this.props.units[this.props.exercise][1]}</Text>
                 }
@@ -147,7 +147,7 @@ const styles = StyleSheet.create({
   },
   rowText: {
       fontFamily: 'sf-bold',
-      fontSize: 14,
+      fontSize: 16,
       alignSelf: 'center',
   },
   button: {
