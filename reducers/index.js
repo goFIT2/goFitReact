@@ -19,7 +19,6 @@ const firebaseConfig = {
   
 firebase.initializeApp(firebaseConfig);
 
-
 const rootReducer = combineReducers({
     community: communityReducer, newReducer})
 
