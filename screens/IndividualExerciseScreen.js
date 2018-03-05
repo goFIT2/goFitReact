@@ -35,7 +35,7 @@ class IndividualExerciseScreen extends React.Component {
       <View style={styles.container}>
         <View style={styles.header}>
           <View style={styles.circle} >
-            <Image source={require('../assets/images/weights.png')} style={styles.icon} />
+            <Image source={this.props.icons[this.props.exercise]} style={styles.icon} />
           </View>
           <View style={styles.exerciseLabel}>
             <Text style={styles.exerciseName}>{this.props.exercise}</Text>
@@ -101,6 +101,7 @@ const mapStateToProps = (state, ownProps) => {
     history: history,
     exercise: exercise,
     units: state.newReducer.units,
+    icons: state.newReducer.icons,
   }
 }
 
