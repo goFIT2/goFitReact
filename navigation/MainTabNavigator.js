@@ -18,19 +18,6 @@ import IndividualExerciseScreen from '../screens/IndividualExerciseScreen'
 import LoginScreen from '../screens/LoginScreen'
 import CreateAccountScreen from '../screens/CreateAccountScreen'
 
-
-const HomeStackNavigator = StackNavigator(
-  {
-    Home: {
-      screen: HomeScreen,
-    },
-  },
-  {
-    initialRouteName: 'Home',
-    headerMode: 'float'
-  }
-)
-
 const CommunityStackNavigator = StackNavigator(
   {
     Community: {
@@ -73,9 +60,13 @@ const LoginStackNavigator = StackNavigator(
     },
     Create: {
       screen: CreateAccountScreen,
+    },
+    Home: {
+      screen: HomeScreen,
     }
   },
   {
+    initialRouteName: 'Login',
     headerMode: 'float'
   }
 )
@@ -86,13 +77,10 @@ const MainTabNavigator =  TabNavigator(
       screen: ProgressStackNavigator,
     },
     Home: {
-      screen: HomeStackNavigator
+      screen: LoginStackNavigator
     },
     Community: {
       screen: CommunityStackNavigator
-    },
-    Login: {
-      screen: LoginStackNavigator
     }
   },
   {

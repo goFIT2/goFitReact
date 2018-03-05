@@ -5,13 +5,15 @@ import { FormLabel, FormInput, FormValidationMessage, Button } from 'react-nativ
 export default class LoginScreen extends React.Component {
 
   static navigationOptions = {
-    title: 'Log In',
-  }
+    title: 'Login',
+    headerTitle: (
+      <Image source={require('../assets/images/logo.png')}  style={{resizeMode: 'contain', height:30}}/>
+    ),
+  };
 
   constructor(props) {
       super(props)
       this.checkValues = this.checkValues.bind(this)
-      this.login = this.login.bind(this)
       this.state = {
           email: '',
           password: ''
@@ -22,9 +24,9 @@ export default class LoginScreen extends React.Component {
     return (this.state.email && this.state.password)
   }
 
-  login() {
+  login = () => {
     if (this.checkValues()) {
-      Alert.alert('This should log in user ' + this.state.email + ' with password ' + this.state.password + '.')
+      this.props.navigation.navigate('Home')
     }
   }
 
