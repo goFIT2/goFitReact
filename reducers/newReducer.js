@@ -11,7 +11,16 @@ const defaultState = {
      "Shoulder Press": ["lbs", "reps"],
      "Running" : ["mi", "min"],
      "Swimming" : ["mi", "min"],
+     "Biking" : ["mi", "min"],
+     "Walking": ["mi", "min"],
      "Chin Ups" : ["reps"],
+     "Push Ups" : ["reps"],
+     "Pull Ups" : ["reps"],
+     "Jump Rope" : ["reps"],
+     "Squats" : ["lbs", "reps"],
+     "Lunges": ["lbs", "reps"],
+     "Deadlifts": ["lbs", "reps"],
+     "Crunches": ["lbs", "reps"],
    },
     users: {
         'cvaladez': {
