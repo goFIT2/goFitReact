@@ -23,28 +23,34 @@ const ExerciseTitle = (props) => {
     )
 }
 
-const ColumnHead = (exerciseName) => {
+const ColumnHead = (exerciseName, units) => {
     // <View style={[styles.columnText1, {borderLeftWidth: 0}]}>
     // <Text style={{alignSelf: 'center', fontFamily: 'sf-light'}}>Previous</Text>
     // </View>
 
-    lbsHeader = null
-    if (!exercisesWithoutLbs.includes(exerciseName)) {
-      lbsHeader = <View style={[styles.columnText1, {borderLeftWidth: 0}]}>
-                    <Text style={{alignSelf: 'center', fontFamily: 'sf-light'}}>lbs</Text>
-                  </View>
+    lbsHeader = ""
+    repsHeader = ""
+    // if (!exercisesWithoutLbs.includes(exerciseName)) {
+    //   lbsHeader = <View style={[styles.columnText1, {borderLeftWidth: 0}]}>
+    //                 <Text style={{alignSelf: 'center', fontFamily: 'sf-light'}}>lbs</Text>
+    //               </View>
+    // }
+    if (units[exerciseName]) {
+      lbsHeader = units[exerciseName][0];
+      repsHeader = units[exerciseName][1];
     }
-
     return(
         <View style={{flexDirection: 'row', paddingLeft: 10, paddingRight: 10}}>
             <View style={styles.columnText1}>
                 <Text style={{alignSelf: 'center', fontFamily: 'sf-light'}}>#</Text>
             </View>
 
-            {lbsHeader}
+            <View style={[styles.columnText1, {borderLeftWidth: 0}]}>
+                <Text style={{alignSelf: 'center', fontFamily: 'sf-light'}}>{lbsHeader}</Text>
+            </View>
 
             <View style={[styles.columnText1, {borderLeftWidth: 0}]}>
-                <Text style={{alignSelf: 'center', fontFamily: 'sf-light'}}>reps</Text>
+                <Text style={{alignSelf: 'center', fontFamily: 'sf-light'}}>{repsHeader}</Text>
             </View>
         </View>
     )
@@ -113,7 +119,7 @@ const ExerciseComponent = (props) => {
         mutatedData.push({ data: val })
     })
 
-    const { addSetButton, exerciseData, lbsInputChange, repsInputChange, navigation } = props
+    const { addSetButton, exerciseData, lbsInputChange, repsInputChange, navigation, units } = props
     const { index } = exerciseData
     const { exerciseName } = exerciseData.item
     const { switchExercise } = props
@@ -137,7 +143,7 @@ const ExerciseComponent = (props) => {
                     )
                 }
                 }
-                ListHeaderComponent={ColumnHead(exerciseName)}
+                ListHeaderComponent={ColumnHead(exerciseName, units)}
                 ListFooterComponent={() => {
                     return(
                         <AddSetButton addSetButton={addSetButton}
@@ -153,6 +159,7 @@ const ExerciseComponent = (props) => {
 
 const mapStateToProps = (state, ownProps) => {
   return {
+    units: state.newReducer.units
   }
 }
 

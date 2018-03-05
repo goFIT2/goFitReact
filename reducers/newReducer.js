@@ -3,6 +3,16 @@ import {ADD_SET, ADD_ACTIVITY, LBS_INPUT_CHANGE, REPS_INPUT_CHANGE,
 import {_} from 'lodash'
 
 const defaultState = {
+   units: {
+     "Barbell Press": ["lbs", "reps"],
+     "Dumbbell Press": ["lbs", "reps"],
+     "Bicep Curl": ["lbs", "reps"],
+     "Barbell Curl": ["lbs", "reps"],
+     "Shoulder Press": ["lbs", "reps"],
+     "Running" : ["mi", "min"],
+     "Swimming" : ["mi", "min"],
+    // "Chin Ups" : ["reps", ]
+   },
     users: {
         'cvaladez': {
             chosenExercise: 'Barbell Press',

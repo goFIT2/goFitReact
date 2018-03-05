@@ -1,8 +1,8 @@
 {
   "expoServerPort": 19000,
-  "expoServerNgrokUrl": "https://hw-abb.valashnez.gofitreact.exp.direct",
-  "packagerNgrokUrl": "https://packager.hw-abb.valashnez.gofitreact.exp.direct",
-  "ngrokPid": 16675,
-  "packagerPort": 19001,
-  "packagerPid": 16640
+  "expoServerNgrokUrl": "https://tq-pys.oliviaeg2.gofitreact.exp.direct",
+  "packagerNgrokUrl": "https://packager.tq-pys.oliviaeg2.gofitreact.exp.direct",
+  "ngrokPid": 6439,
+  "packagerPort": 19006,
+  "packagerPid": 6731
 }
