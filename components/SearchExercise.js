@@ -46,7 +46,6 @@ class SearchExercise extends React.Component {
       "Swimming",
       "Biking",
       "Walking",
-      "Chin Ups",
       "Push Ups",
       "Pull Ups",
       "Jump Rope",
