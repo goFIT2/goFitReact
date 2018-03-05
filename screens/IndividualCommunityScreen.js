@@ -52,11 +52,8 @@ class IndividualCommunityScreen extends React.Component {
         <View style={{flex:6}}>
           <Text style={styles.subheader}>Community Feed</Text>
           <View style={{flexDirection:'row'}}>
-            <TouchableHighlight onPress={this.postStatus} style={styles.button}>
-              <Text style={styles.buttonText}>Post Status</Text>
-            </TouchableHighlight>
             <TouchableHighlight onPress={this.shareProgress} style={styles.button}>
-              <Text style={styles.buttonText}>Share Progress</Text>
+              <Text style={styles.buttonText}>ADD A POST</Text>
             </TouchableHighlight>
           </View>
           <FlatList data={this.props.newsfeed.filter(item => item.community == this.props.community.key)} renderItem={({item}) => <NewsfeedRow key={item.key} id={item.key} friend={item.friend} text={item.text} community={item.community} time={item.time} likes={item.likes} attachment={item.attachment} />}/>
@@ -140,8 +137,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: 'white',
-    fontSize: 15,
-    fontWeight: '600',
+    fontWeight: 'bold',
     padding: 5,
     alignSelf: 'center'
   },

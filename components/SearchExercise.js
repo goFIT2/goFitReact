@@ -27,11 +27,12 @@ class SearchExercise extends React.Component {
 
   toggleAddExercise(item) {
     this.setState({searchText:'', data:[]})
-    this.props.addExercise(item)
+    timestamp = new Date(Date.now()).toDateString() // only add exercises to today
+    this.props.addExercise(item, timestamp)
   }
 
   setSearchText(text) {
-    console.log(text)
+    // console.log(text)
     const searchText = text
     this.setState({searchText})
     data = [
@@ -40,10 +41,11 @@ class SearchExercise extends React.Component {
       'Running',
       'Bicep Curl',
       'Barbell Curl',
-      'Shoulder Press'
+      'Shoulder Press',
+      'Chin Ups'
     ]
     let filteredData = this.filterExercises(searchText, data);
-    console.log("Filtered data is " + filteredData);
+    // console.log("Filtered data is " + filteredData);
     data = filteredData;
     this.setState({data})
   }
@@ -69,7 +71,7 @@ class SearchExercise extends React.Component {
     return (
       <View style={{width: width, position:'absolute'}}>
         <View>
-          <TextInput style={styles.searchBar} value={this.state.searchText} onChangeText={(text) => this.setSearchText(text)} placeholder='Search'/>
+          <TextInput style={styles.searchBar} value={this.state.searchText} onChangeText={(text) => this.setSearchText(text)} placeholder='Add An Exercise' autoCorrect={false}/>
         </View>
         <FlatList data={this.state.data} keyExtractor={(item, index) => index} renderItem={({item, separators}) => {
           return (
@@ -90,7 +92,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addExercise: (exerciseName) => dispatch(addExercise(exerciseName))
+    addExercise: (exerciseName, timestamp) => dispatch(addExercise(exerciseName, timestamp))
   }
 }
 
@@ -106,7 +108,7 @@ const styles = StyleSheet.create({
     fontSize: 20
   },
   searchBar: {
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: '400',
     height: 50,
     borderWidth: 9,
@@ -115,6 +117,6 @@ const styles = StyleSheet.create({
   },
   dropdownItem: {
     backgroundColor:'white',
-    padding: 5
+    padding: 4
   }
 })

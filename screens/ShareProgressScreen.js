@@ -15,7 +15,7 @@ class ShareProgressScreen extends React.Component {
     this.state = {
       text: null,
       selected: this.props.selected,
-      progress: this.props.progress
+      exercises: this.props.exercises
     }
   }
 
@@ -26,7 +26,15 @@ class ShareProgressScreen extends React.Component {
         selected.push(s.toLowerCase())
       }
     }
-    if (selected.length > 0) {
+    if (selected.length == 0 && this.state.text) {
+      let friend = 'You'
+      let text = this.state.text
+      let community = this.props.community.key
+      let attachment = ''
+      this.props.postStatus(friend, text, community, attachment)
+      this.props.navigation.goBack()
+    }
+    else if (selected.length > 0) {
       let friend = 'You'
       let text = this.state.text ? this.state.text : ''
       let community = this.props.community.key
@@ -34,7 +42,7 @@ class ShareProgressScreen extends React.Component {
       this.props.postStatus(friend, text, community, attachment)
       this.props.navigation.goBack()
     } else {
-      Alert.alert('Please choose at least one exercise to share.')
+      Alert.alert('Please say something or choose an exercise to share.')
     }
   }
 
@@ -50,13 +58,13 @@ class ShareProgressScreen extends React.Component {
         <Text style={styles.label}>What would you like to say?</Text>
         <TextInput style={styles.textinput} onChangeText={(text) => this.setState({text})} placeholder='Say something...' autoGrow={true} multiline = {true}/>
         <Text style={styles.label}>What would you like to share?</Text>
-        <FlatList data={this.state.progress} extraData={this.state.selected} keyExtractor={(item, index) => index} renderItem={({item}) =>
-          <TouchableHighlight onPress={() => this.toggleExercise(item.exercise)} style={styles.row}>
-            <Text style={this.state.selected[item.exercise] ? styles.selected : styles.exercise}>{item.exercise}</Text>
+        <FlatList data={this.state.exercises} extraData={this.state.selected} keyExtractor={(item, index) => index} renderItem={({item}) =>
+          <TouchableHighlight onPress={() => this.toggleExercise(item.exerciseName)} style={this.state.selected[item.exerciseName] ? styles.selectedRow : styles.row}>
+            <Text style={this.state.selected[item.exerciseName] ? styles.selectedExercise : styles.exercise}>{item.exerciseName}</Text>
           </TouchableHighlight>
         }/>
         <TouchableHighlight onPress={this.share} style={styles.button}>
-            <Text style={{textAlign: 'center', textAlignVertical: 'center', color: 'white', fontFamily: 'sf-bold'}}>SHARE PROGRESS</Text>
+            <Text style={{textAlign: 'center', textAlignVertical: 'center', color: 'white', fontFamily: 'sf-bold'}}>POST</Text>
         </TouchableHighlight>
       </View>
     )
@@ -65,11 +73,16 @@ class ShareProgressScreen extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
   selected = {}
-  for (i in state.progress) {
-    selected[state.progress[i].exercise] = false
+  exercises = []
+  todays_session = state.newReducer.users.cvaladez.sessions[new Date(Date.now()).toDateString()]
+  for (i in todays_session) {
+    if (!selected.hasOwnProperty(todays_session[i].exerciseName)) {
+      selected[todays_session[i].exerciseName] = false
+      exercises.push(todays_session[i])
+    }
   }
   return {
-    progress: state.progress,
+    exercises: exercises,
     selected: selected,
     community: state.community.communities[state.community.chosenCommunity]
   }
@@ -94,8 +107,9 @@ const styles = StyleSheet.create({
   exercise: {
     fontWeight: '100'
   },
-  selected: {
-    fontWeight: '900'
+  selectedExercise: {
+    fontWeight: '900',
+    color: 'white'
   },
   row: {
     flex: 1,
@@ -105,10 +119,19 @@ const styles = StyleSheet.create({
     height: 50,
     padding: 10
   },
+  selectedRow: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: 'white',
+    height: 50,
+    padding: 10,
+    backgroundColor: '#FB6D00'
+  },
   textinput: {
     fontSize: 15,
     fontWeight: '400',
-    color: '#FB6D00',
+    //color: '#FB6D00',
     padding: 5,
     minHeight: 100,
     backgroundColor: 'white'

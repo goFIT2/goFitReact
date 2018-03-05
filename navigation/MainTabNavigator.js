@@ -9,10 +9,11 @@ import HomeScreen from '../screens/HomeScreen';
 
 import CommunitiesScreen from '../screens/CommunitiesScreen'
 import CreateCommunityScreen from '../screens/CreateCommunityScreen'
-
-import LogProgressScreen from '../screens/LogProgressScreen'
 import IndividualCommunityScreen from '../screens/IndividualCommunityScreen'
 import ShareProgressScreen from '../screens/ShareProgressScreen'
+
+import LogProgressScreen from '../screens/LogProgressScreen'
+import IndividualExerciseScreen from '../screens/IndividualExerciseScreen'
 
 import LoginScreen from '../screens/LoginScreen'
 import CreateAccountScreen from '../screens/CreateAccountScreen'
@@ -55,6 +56,9 @@ const ProgressStackNavigator = StackNavigator(
   {
     Progress: {
       screen: LogProgressScreen,
+    },
+    IndividualExercise: {
+      screen: IndividualExerciseScreen
     }
   },
   {

@@ -1,22 +1,26 @@
 import React from 'react';
 import { Alert, Image, StyleSheet, Text, TouchableHighlight, View } from 'react-native'
-import { StackNavigator } from 'react-navigation' 
+import { StackNavigator } from 'react-navigation'
 
-class CommunityCell extends React.Component {
+import { connect } from 'react-redux'
+import { addExercise } from '../actions/index'
+
+class ActivityCell extends React.Component {
 
     constructor(props) {
         super(props)
-        this.detail = this.detail.bind(this)
+        this.add = this.add.bind(this)
         this.state = {
             icon: props.icon,
             name: props.name,
             members: props.members
         }
     }
-    
-    detail = () => {
-        Alert.alert('You chose the ' + this.state.name + ' activity!')
-        this.props.navigation.navigate('AddProgress')
+
+    add = () => {
+        timestamp = new Date(Date.now()).toDateString() // only add exercises to today
+        this.props.addExercise(this.state.name, timestamp)
+        this.props.navigation.navigate('Progress')
     }
 
     render() {
@@ -32,7 +36,7 @@ class CommunityCell extends React.Component {
         }
         return(
             <View style={styles.cell}>
-                <TouchableHighlight onPress={() => this.detail()}>
+                <TouchableHighlight onPress={() => this.add()}>
                     <View style={styles.circle} >
                         <Image source={images[this.state.icon]} style={styles.icon} />
                     </View>
@@ -42,6 +46,19 @@ class CommunityCell extends React.Component {
         )
     }
 }
+
+const mapStateToProps = (state) => {
+  return {
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addExercise: (exerciseName, timestamp) => dispatch(addExercise(exerciseName, timestamp))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ActivityCell)
 
 const styles = StyleSheet.create({
     cell: {
@@ -68,5 +85,3 @@ const styles = StyleSheet.create({
         margin: 10
     }
 });
-
-export default CommunityCell

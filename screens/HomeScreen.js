@@ -21,8 +21,8 @@ class HomeScreen extends React.Component {
     super(props);
     this.state = {
       activities: [
-        {key:0, icon:'weights', name:'Barbell Bench Press'},
-        {key:1, icon:'jumprope', name:'Chin Ups'},
+        {key:0, icon:'weights', name:'Barbell Press'},
+        {key:1, icon:'weights', name:'Dumbell Press'},
       ]
     };
 
@@ -36,6 +36,7 @@ class HomeScreen extends React.Component {
     return (
       <View style={styles.container}>
         <Text style={styles.label}>Quick Add</Text>
+        <View style={{marginHorizontal: 10, borderBottomColor: 'lightgray', borderBottomWidth: StyleSheet.hairlineWidth}}/>
         <ScrollView ref={(scrollView) => { this.scrollView = scrollView; }} horizontal= {true} decelerationRate={0} snapToInterval={width-120} snapToAlignment={"center"} showsHorizontalScrollIndicator={false} contentInset={{top:0,left:60,bottom:0,right:60}} style={{flex:1}}>
           <FlatList horizontal={true} data={this.state.activities} renderItem={({item}) =>
             <View key={item.key} style={styles.cell}>
@@ -45,8 +46,9 @@ class HomeScreen extends React.Component {
         </ScrollView>
         <ScrollView style={{flex:1, backgroundColor:'white'}}>
           <Text style={styles.label}>Fit Feed</Text>
+          <View style={{marginHorizontal: 10, borderBottomColor: 'lightgray', borderBottomWidth: StyleSheet.hairlineWidth}}/>
           <FlatList data={this.props.newsfeed} renderItem={({item}) => <NewsfeedRow key={item.key} id={item.key} friend={item.friend} text={item.text} community={item.community} time={item.time} likes={item.likes} attachment={item.attachment} />}/>
-          </ScrollView>
+        </ScrollView>
       </View>
     );
   }
@@ -79,8 +81,10 @@ const styles = StyleSheet.create({
     alignSelf:'center'
   },
   label: {
-    fontWeight: 'bold',
-    fontSize: 20,
+    fontWeight: '900',
+    fontSize: 18,
+    color: 'gray',
+    alignSelf: 'center',
     padding: 5
   }
 });
