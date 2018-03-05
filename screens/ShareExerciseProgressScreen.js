@@ -22,12 +22,12 @@ class ShareProgressScreen extends React.Component {
   }
 
   share = () => {
-    console.log("About to share!")
+    //console.log("About to share!")
     var selected = []
     var selectedCommunity = []
     var friend = ''
     var text = ''
-    var community = 0
+    var community = ''
     var attachment = ''
     for (s in this.state.selected) {
       if (this.state.selected[s]) {
@@ -36,43 +36,38 @@ class ShareProgressScreen extends React.Component {
     }
     for (c in this.state.selectedCommunity) {
       if (this.state.selectedCommunity[c]) {
-        selectedCommunity.push(c)
+        //console.log("About to push" + c);
+        selectedCommunity.push(c.toLowerCase())
       }
     }
+    //console.log(selectedCommunity)
     if (selected.length == 0 && this.state.text) {
       friend = 'You'
       text = this.state.text
       attachment = ''
-      //this.props.postStatus(friend, text, community, attachment)
-      //this.props.navigation.goBack()
     }
     else if (selected.length > 0) {
       friend = 'You'
       text = this.state.text ? this.state.text : ''
       attachment = friend + ' completed ' + selected.join(', ') + ' today!'
-      //this.props.postStatus(friend, text, community, attachment)
-      //this.props.navigation.goBack()
     } else {
       Alert.alert('Please say something or choose an exercise to share.')
       return;
     }
     if (selectedCommunity.length > 0) {
-      console.log("INSIDE HERE!")
       let allCommunities = this.state.communities
-      for (s in this.state.selected) {
-         if (this.state.selectedCommunity[s]) {
-           for (curCommunity in allCommunities) {
-               if (s === curCommunity.name) {
-                  community = curCommunity.key;
-               }
-           }
-        }
-      }
+
+      selectedCommunity.map(c => {
+        allCommunities.map(curCommunity => {
+          if (c === curCommunity.name.toLowerCase()) {
+            community = curCommunity.key;
+          }
+        })
+      })
     } else {
       Alert.alert('Please choose a community.')
       return;
     }
-    console.log("Made it past conditionals")
     this.props.postStatus(friend, text, community, attachment)
     this.props.navigation.goBack()
   }
@@ -85,7 +80,10 @@ class ShareProgressScreen extends React.Component {
 
   toggleCommunity(i) {
     var newSelected = Object.assign({}, this.state.selectedCommunity);
+    //console.log("Toggling")
+    //console.log(i)
     newSelected[i] = !newSelected[i]
+    //console.log(newSelected[i])
     this.setState({selectedCommunity:newSelected})
   }
 
