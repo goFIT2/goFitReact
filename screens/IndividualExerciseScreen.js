@@ -11,9 +11,18 @@ class IndividualExerciseScreen extends React.Component {
     super(props)
   }
 
+  displayLbsRow(lbs, exerciseName) {
+    const exercisesWithoutLbs = ['Chin Ups']
+    if (!exercisesWithoutLbs.includes(exerciseName)) {
+      return <Text style={{flex:1, alignItems: 'center', textAlign: 'center'}}>{lbs + ' lbs'}</Text>
+    } else {
+      return null
+    }
+  }
+
   render() {
-    console.log('OKAY')
-    console.log(this.props.history)
+    // console.log('OKAY')
+    // console.log(this.props.history)
     return (
       <View style={styles.container}>
         <View style={styles.header}>
@@ -34,11 +43,13 @@ class IndividualExerciseScreen extends React.Component {
 
               <FlatList data={item.sets} keyExtractor={(item, index) => index} renderItem={(item, index) =>
 
-                <View style={{flexDirection: 'row', paddingLeft: 10, paddingRight: 10}}>
+                <View style={{flexDirection: 'row', paddingLeft: 10, paddingRight: 20}}>
                     <View style={{flex:1}}>
                         <Text style={styles.rowText}>{item.index+1}</Text>
                     </View>
-                    <Text style={{flex:1, alignItems: 'center', textAlign: 'center'}}>{item.item.lbs + ' lbs'}</Text>
+
+                    {this.displayLbsRow(item.item.lbs, this.props.exercise)}
+
                     <Text style={{flex:1, alignItems: 'center', textAlign: 'center'}}>{item.item.reps + ' reps'}</Text>
                 </View>
 
@@ -61,7 +72,7 @@ const mapStateToProps = (state, ownProps) => {
     for (e in sessions[s]) {
       if (sessions[s][e].exerciseName == exercise) {
         for (ss in sessions[s][e].sets) {
-          if (sessions[s][e].sets[ss].lbs && sessions[s][e].sets[ss].reps)
+          if (/*sessions[s][e].sets[ss].lbs &&*/ sessions[s][e].sets[ss].reps)
           sets.push(sessions[s][e].sets[ss])
         }
       }

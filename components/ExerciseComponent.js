@@ -8,6 +8,8 @@ import { _ } from 'lodash'
 import { connect } from 'react-redux'
 import { switchExercise } from '../actions/index.js'
 
+const exercisesWithoutLbs = ['Chin Ups']
+
 const ExerciseTitle = (props) => {
     function goToIndividualExerciseScreen() {
       props.switchExercise(props.exerciseName)
@@ -21,10 +23,17 @@ const ExerciseTitle = (props) => {
     )
 }
 
-const ColumnHead = () => {
+const ColumnHead = (exerciseName) => {
     // <View style={[styles.columnText1, {borderLeftWidth: 0}]}>
     // <Text style={{alignSelf: 'center', fontFamily: 'sf-light'}}>Previous</Text>
     // </View>
+
+    lbsHeader = null
+    if (!exercisesWithoutLbs.includes(exerciseName)) {
+      lbsHeader = <View style={[styles.columnText1, {borderLeftWidth: 0}]}>
+                    <Text style={{alignSelf: 'center', fontFamily: 'sf-light'}}>lbs</Text>
+                  </View>
+    }
 
     return(
         <View style={{flexDirection: 'row', paddingLeft: 10, paddingRight: 10}}>
@@ -32,9 +41,8 @@ const ColumnHead = () => {
                 <Text style={{alignSelf: 'center', fontFamily: 'sf-light'}}>#</Text>
             </View>
 
-            <View style={[styles.columnText1, {borderLeftWidth: 0}]}>
-                <Text style={{alignSelf: 'center', fontFamily: 'sf-light'}}>lbs</Text>
-            </View>
+            {lbsHeader}
+
             <View style={[styles.columnText1, {borderLeftWidth: 0}]}>
                 <Text style={{alignSelf: 'center', fontFamily: 'sf-light'}}>reps</Text>
             </View>
@@ -44,7 +52,7 @@ const ColumnHead = () => {
 
 //Coontains callback for whenever state changes, handled by the parent.
 const ProgressRow = (props) => {
-    const { exerciseIndex, setIndex, lbs, reps, lbsInputChange, repsInputChange, timestamp } = props //Indexed from 0, make sure to increment
+    const { exerciseName, exerciseIndex, setIndex, lbs, reps, lbsInputChange, repsInputChange, timestamp } = props //Indexed from 0, make sure to increment
     // console.log(props)
     // console.log(`exerciseIndex:${exerciseIndex} index:${setIndex}`)
 
@@ -52,20 +60,27 @@ const ProgressRow = (props) => {
     // <Text style={styles.rowText}>{props.item.num}</Text>
     // </View>
 
+    lbsColumn = null
+    if (!exercisesWithoutLbs.includes(exerciseName)) {
+      lbsColumn = <TextInput
+                      onChangeText={(text) => lbsInputChange(exerciseIndex, setIndex, text, timestamp)}
+                      style={[styles.columnText1, styles.progressRow,
+                              {borderLeftWidth: 0, alignItems: 'center',
+                              textAlign: 'center'}]}
+                      value={lbs.toString()}
+                      placeholder='0'
+                      keyboardType='numeric'
+                  />
+    }
+
     return(
         <View style={{flexDirection: 'row', paddingLeft: 10, paddingRight: 10}}>
             <View style={[styles.columnText1, styles.progressRow]}>
                 <Text style={styles.rowText}>{setIndex + 1}</Text>
             </View>
-            <TextInput
-                onChangeText={(text) => lbsInputChange(exerciseIndex, setIndex, text, timestamp)}
-                style={[styles.columnText1, styles.progressRow,
-                        {borderLeftWidth: 0, alignItems: 'center',
-                        textAlign: 'center'}]}
-                value={lbs.toString()}
-                placeholder='0'
-                keyboardType='numeric'
-            />
+
+            {lbsColumn}
+
             <TextInput
                 onChangeText={(text) => repsInputChange(exerciseIndex, setIndex, text, timestamp)}
                 style={[styles.columnText1, styles.progressRow,
@@ -110,6 +125,7 @@ const ExerciseComponent = (props) => {
                 renderItem={(item) => {
                     return (
                         <ProgressRow
+                            exerciseName={exerciseName}
                             exerciseIndex={index}
                             setIndex={item.index}
                             lbs={item.item.data.lbs}
@@ -121,7 +137,7 @@ const ExerciseComponent = (props) => {
                     )
                 }
                 }
-                ListHeaderComponent={ColumnHead}
+                ListHeaderComponent={ColumnHead(exerciseName)}
                 ListFooterComponent={() => {
                     return(
                         <AddSetButton addSetButton={addSetButton}
