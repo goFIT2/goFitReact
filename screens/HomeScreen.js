@@ -29,7 +29,7 @@ class HomeScreen extends React.Component {
   }
 
   componentDidMount() {
-    setTimeout(() => {this.scrollView.scrollTo({x: -60}) }, 400)
+    setTimeout(() => {this.scrollView.scrollTo({x: -60}) }, 50)
   }
 
   render() {
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
   },
   label: {
     fontWeight: '900',
-    fontSize: 18,
+    fontSize: 20,
     // color: 'gray',
     // alignSelf: 'center',
     padding: 5

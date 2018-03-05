@@ -90,7 +90,8 @@ const styles = StyleSheet.create({
   },
   name: {
     fontWeight: '200',
-    margin: 5
+    margin: 5,
+    fontSize: 16
   },
   smallFriend: {
     height: 18,

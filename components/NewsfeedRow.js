@@ -122,14 +122,15 @@ const styles = StyleSheet.create({
   },
   smallLabel: {
     color: 'gray',
-    fontSize: 10
+    fontSize: 13
   },
   content: {
-    paddingVertical: 4
+    paddingVertical: 4,
+    fontSize: 16
   },
   attachment: {
     color: 'gray',
-    fontSize: 10,
+    fontSize: 12,
     borderWidth: 1,
     borderColor: 'lightgray',
     borderRadius: 5,
@@ -138,10 +139,10 @@ const styles = StyleSheet.create({
   },
   likeLabelGray: {
     color: 'gray',
-    fontSize: 10
+    fontSize: 13
   },
   likeLabelRed: {
     color: 'red',
-    fontSize: 10
+    fontSize: 13
   }
 });
