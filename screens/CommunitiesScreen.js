@@ -7,7 +7,7 @@ import { connect } from 'react-redux'
 class CommunitiesScreen extends React.Component {
 
   static navigationOptions = {
-    title: 'myCommunities',
+    title: 'Communities',
   }
 
   constructor(props) {

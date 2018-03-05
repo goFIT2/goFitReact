@@ -34,7 +34,7 @@ const ColumnHead = (exerciseName, units) => {
     console.log("exercise name is " + units[exerciseName]);
     if (units[exerciseName].length > 1) {
       secondHeader = <View style={[styles.columnText1, {borderLeftWidth: 0}]}>
-                    <Text style={{alignSelf: 'center', fontFamily: 'sf-light'}}>{units[exerciseName][1]}</Text>
+                    <Text style={{alignSelf: 'center', fontFamily: 'sf-light', fontSize: 16}}>{units[exerciseName][1]}</Text>
                   </View>
     }
     if (units[exerciseName]) {
@@ -44,11 +44,11 @@ const ColumnHead = (exerciseName, units) => {
     return(
         <View style={{flexDirection: 'row', paddingLeft: 10, paddingRight: 10}}>
             <View style={styles.columnText1}>
-                <Text style={{alignSelf: 'center', fontFamily: 'sf-light'}}>#</Text>
+                <Text style={{alignSelf: 'center', fontFamily: 'sf-light', fontSize: 16}}>#</Text>
             </View>
 
             <View style={[styles.columnText1, {borderLeftWidth: 0}]}>
-                <Text style={{alignSelf: 'center', fontFamily: 'sf-light'}}>{lbsHeader}</Text>
+                <Text style={{alignSelf: 'center', fontFamily: 'sf-light', fontSize: 16}}>{lbsHeader}</Text>
             </View>
             {secondHeader}
             {// <View style={[styles.columnText1, {borderLeftWidth: 0}]}>
@@ -75,7 +75,7 @@ const ProgressRow = (props) => {
                       onChangeText={(text) => repsInputChange(exerciseIndex, setIndex, text, timestamp)}
                       style={[styles.columnText1, styles.progressRow,
                               {borderLeftWidth: 0, alignItems: 'center',
-                              textAlign: 'center'}]}
+                              textAlign: 'center', fontSize: 16}]}
                       value={reps.toString()}
                       placeholder='0'
                       keyboardType='numeric'
@@ -91,7 +91,7 @@ const ProgressRow = (props) => {
                 onChangeText={(text) => lbsInputChange(exerciseIndex, setIndex, text, timestamp)}
                 style={[styles.columnText1, styles.progressRow,
                     {borderLeftWidth: 0, alignItems: 'center',
-                    textAlign: 'center'
+                    textAlign: 'center', fontSize: 16
                 }]}
                 value={lbs.toString()}
                 placeholder='0'
@@ -111,7 +111,7 @@ const AddSetButton = (props) => {
             onPress={() => props.addSetButton()}
             style={styles.button}
         >
-            <Text style={{textAlign: 'center', textAlignVertical: 'center', color: 'white', fontFamily: 'sf-bold'}}>ADD SET</Text>
+            <Text style={{textAlign: 'center', textAlignVertical: 'center', color: 'white', fontFamily: 'sf-bold', fontSize: 16}}>ADD SET</Text>
         </TouchableHighlight>
     )
 }
@@ -202,7 +202,7 @@ const styles = StyleSheet.create({
     },
     rowText: {
         fontFamily: 'sf-bold',
-        fontSize: 14,
+        fontSize: 16,
         alignSelf: 'center'
     },
     chevron: {
@@ -225,7 +225,11 @@ const styles = StyleSheet.create({
         flex: 1
     },
     progressRow: {
-        borderTopWidth: 0
+        borderTopWidth: 0,
+        height: 30,
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     headerColumnBox: {
         borderColor: '#D8D8D8'
@@ -239,6 +243,10 @@ const styles = StyleSheet.create({
         marginLeft: 10,
         marginRight: 10,
         backgroundColor: '#FB6D00',
-        marginBottom: 10
+        marginBottom: 10,
+        height: 30,
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
     },
 })

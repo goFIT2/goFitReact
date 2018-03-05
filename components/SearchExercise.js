@@ -55,6 +55,7 @@ class SearchExercise extends React.Component {
       "Deadlifts",
       "Crunches",
     ]
+    data.sort()
     let filteredData = this.filterExercises(searchText, data);
     // console.log("Filtered data is " + filteredData);
     data = filteredData;

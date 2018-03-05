@@ -79,7 +79,7 @@ const MainTabNavigator =  TabNavigator(
     Home: {
       screen: LoginStackNavigator
     },
-    Community: {
+    Communities: {
       screen: CommunityStackNavigator
     }
   },
@@ -98,7 +98,7 @@ const MainTabNavigator =  TabNavigator(
           case 'Progress':
             iconName = `ios-trending-up${focused ? '' : '-outline'}`
             break;
-          case 'Community':
+          case 'Communities':
             iconName = `ios-people${focused ? '' : '-outline'}`
             break
         }

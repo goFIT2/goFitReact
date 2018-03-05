@@ -9,7 +9,7 @@ import { bindActionCreators } from 'redux'
 
 class LogProgressScreen extends React.Component {
   static navigationOptions = {
-    title: 'myProgress',
+    title: 'Progress',
   };
 
   saveButton = () => {
