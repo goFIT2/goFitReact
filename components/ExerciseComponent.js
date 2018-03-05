@@ -61,7 +61,7 @@ const ColumnHead = (exerciseName, units) => {
 
 //Coontains callback for whenever state changes, handled by the parent.
 const ProgressRow = (props) => {
-    const { exerciseName, exerciseIndex, setIndex, lbs, reps, lbsInputChange, repsInputChange, timestamp } = props //Indexed from 0, make sure to increment
+    const { exerciseName, exerciseIndex, setIndex, lbs, reps, lbsInputChange, repsInputChange, timestamp, units } = props //Indexed from 0, make sure to increment
     // console.log(props)
     // console.log(`exerciseIndex:${exerciseIndex} index:${setIndex}`)
 
@@ -69,14 +69,14 @@ const ProgressRow = (props) => {
     // <Text style={styles.rowText}>{props.item.num}</Text>
     // </View>
 
-    lbsColumn = null
-    if (!exercisesWithoutLbs.includes(exerciseName)) {
-      lbsColumn = <TextInput
-                      onChangeText={(text) => lbsInputChange(exerciseIndex, setIndex, text, timestamp)}
+    secondColumn = null
+    if (units[exerciseName].length > 1) {
+      secondColumn = <TextInput
+                      onChangeText={(text) => repsInputChange(exerciseIndex, setIndex, text, timestamp)}
                       style={[styles.columnText1, styles.progressRow,
                               {borderLeftWidth: 0, alignItems: 'center',
                               textAlign: 'center'}]}
-                      value={lbs.toString()}
+                      value={reps.toString()}
                       placeholder='0'
                       keyboardType='numeric'
                   />
@@ -87,19 +87,19 @@ const ProgressRow = (props) => {
             <View style={[styles.columnText1, styles.progressRow]}>
                 <Text style={styles.rowText}>{setIndex + 1}</Text>
             </View>
-
-            {lbsColumn}
-
             <TextInput
-                onChangeText={(text) => repsInputChange(exerciseIndex, setIndex, text, timestamp)}
+                onChangeText={(text) => lbsInputChange(exerciseIndex, setIndex, text, timestamp)}
                 style={[styles.columnText1, styles.progressRow,
                     {borderLeftWidth: 0, alignItems: 'center',
                     textAlign: 'center'
                 }]}
-                value={reps.toString()}
+                value={lbs.toString()}
                 placeholder='0'
                 keyboardType='numeric'
                 />
+
+            {secondColumn}
+
         </View>
     )
 }
@@ -142,6 +142,7 @@ const ExerciseComponent = (props) => {
                             lbsInputChange={lbsInputChange}
                             repsInputChange={repsInputChange}
                             timestamp={exerciseData.item.timestamp}
+                            units = {units}
                         />
                     )
                 }

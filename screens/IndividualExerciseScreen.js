@@ -11,14 +11,14 @@ class IndividualExerciseScreen extends React.Component {
     super(props)
   }
 
-  // displayLbsRow(lbs, exerciseName) {
-  //   const exercisesWithoutLbs = ['Chin Ups']
-  //   if (!exercisesWithoutLbs.includes(exerciseName)) {
-  //     return <Text style={{flex:1, alignItems: 'center', textAlign: 'center'}}>{lbs + ' lbs'}</Text>
-  //   } else {
-  //     return null
-  //   }
-  // }
+  displayLbsRow = (lbs, exerciseName) => {
+    //const exercisesWithoutLbs = ['Chin Ups']
+    if (this.props.units[exerciseName].length > 1) {
+      return <Text style={{flex:1, alignItems: 'center', textAlign: 'center'}}>{lbs + " " + this.props.units[exerciseName][1]}</Text>
+    } else {
+      return null
+    }
+  }
 
   render() {
     // console.log('OKAY')
@@ -50,7 +50,9 @@ class IndividualExerciseScreen extends React.Component {
 
                    <Text style={{flex:1, alignItems: 'center', textAlign: 'center'}}>{item.item.lbs + " " + this.props.units[this.props.exercise][0]}</Text>
 
-                    <Text style={{flex:1, alignItems: 'center', textAlign: 'center'}}>{item.item.reps + " " + this.props.units[this.props.exercise][1]}</Text>
+                  {//  <Text style={{flex:1, alignItems: 'center', textAlign: 'center'}}>{item.item.reps + " " + this.props.units[this.props.exercise][1]}</Text>
+                }
+                {this.displayLbsRow(item.item.reps, this.props.exercise)}
                 </View>
 
               }/>
@@ -72,7 +74,7 @@ const mapStateToProps = (state, ownProps) => {
     for (e in sessions[s]) {
       if (sessions[s][e].exerciseName == exercise) {
         for (ss in sessions[s][e].sets) {
-          if (/*sessions[s][e].sets[ss].lbs &&*/ sessions[s][e].sets[ss].reps)
+          if (sessions[s][e].sets[ss].lbs /*&& sessions[s][e].sets[ss].reps*/)
           sets.push(sessions[s][e].sets[ss])
         }
       }
