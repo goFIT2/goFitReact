@@ -10,19 +10,26 @@ import { connect } from 'react-redux'
 
 class HomeScreen extends React.Component {
 
+  static navigationOptions = {
+    title: 'Home',
+    headerTitle: (
+      <Image source={require('../assets/images/logo.png')}  style={{resizeMode: 'contain', height:30}}/>
+    ),
+  };
+
   constructor(props) {
     super(props);
     this.state = {
       activities: [
         {key:0, icon:'weights', name:'Barbell Press'},
-        {key:1, icon:'weights', name:'Dumbell Press'},
+        {key:1, icon:'weights', name:'Dumbbell Press'},
       ]
     };
 
   }
 
   componentDidMount() {
-    setTimeout(() => {this.scrollView.scrollTo({x: -60}) }, 100)
+    setTimeout(() => {this.scrollView.scrollTo({x: -60}) }, 400)
   }
 
   render() {
@@ -76,8 +83,8 @@ const styles = StyleSheet.create({
   label: {
     fontWeight: '900',
     fontSize: 18,
-    color: 'gray',
-    alignSelf: 'center',
+    // color: 'gray',
+    // alignSelf: 'center',
     padding: 5
   }
 });
