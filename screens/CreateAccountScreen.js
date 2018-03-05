@@ -26,7 +26,7 @@ export default class CreateAccountScreen extends React.Component {
 
   create() {
     if (this.checkValues()) {
-      Alert.alert('This should create an account for user ' + this.state.firstname + ' ' + this.state.lastname + ' with email '+ this.state.email + ' and password ' + this.state.password + '.')
+      Alert.alert('Account for ' + this.state.firstname + ' ' + this.state.lastname + ' created!')
       this.props.navigation.goBack()
     }
   }
@@ -34,7 +34,7 @@ export default class CreateAccountScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={{flex:1}}>
+        <View style={{flex:1, marginTop:40}}>
           <FormLabel>First Name</FormLabel>
           <FormInput onChangeText={(firstname) => this.setState({firstname})} autoCapitalize='none' autoCorrect={false}/>
           <FormLabel>Last Name</FormLabel>
