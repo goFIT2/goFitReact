@@ -17,6 +17,7 @@ import IndividualExerciseScreen from '../screens/IndividualExerciseScreen'
 
 import LoginScreen from '../screens/LoginScreen'
 import CreateAccountScreen from '../screens/CreateAccountScreen'
+import ShareExerciseProgressScreen from '../screens/ShareExerciseProgressScreen'
 
 const CommunityStackNavigator = StackNavigator(
   {
@@ -55,7 +56,10 @@ const ProgressStackNavigator = StackNavigator(
       screen: LogProgressScreen,
     },
     IndividualExercise: {
-      screen: IndividualExerciseScreen
+      screen: IndividualExerciseScreen,
+    },
+    ShareExerciseProgressScreen: {
+      screen: ShareExerciseProgressScreen,
     }
   },
   {

@@ -12,8 +12,9 @@ class LogProgressScreen extends React.Component {
     title: 'Progress',
   };
 
-  saveButton = () => {
-    //console.log("Save button pressed")
+  shareButton = () => {
+    console.log("Share button pressed");
+    this.props.navigation.navigate('ShareExerciseProgressScreen')
   }
 
   componentDidMount() {
@@ -64,8 +65,8 @@ class LogProgressScreen extends React.Component {
 
         </ScrollView>
 
-        <TouchableHighlight onPress={this.saveButton} style={styles.button}>
-          <Text style={{ textAlign: 'center', textAlignVertical: 'center', color: 'white', fontFamily: 'sf-bold' }}>SAVE WORKOUT</Text>
+        <TouchableHighlight onPress={this.shareButton} style={styles.button}>
+          <Text style={{ textAlign: 'center', textAlignVertical: 'center', color: 'white', fontFamily: 'sf-bold' }}>SHARE WORKOUT</Text>
         </TouchableHighlight>
         <SearchExercise />
 

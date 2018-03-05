@@ -11,6 +11,14 @@ class IndividualExerciseScreen extends React.Component {
     super(props)
   }
 
+  static navigationOptions = {
+    title: 'Exercise Progress',
+  }
+
+  share = () => {
+    this.props.navigation.navigate('Share Exercise Progress')
+  }
+
   displayLbsRow = (lbs, exerciseName) => {
     //const exercisesWithoutLbs = ['Chin Ups']
     if (this.props.units[exerciseName].length > 1) {
