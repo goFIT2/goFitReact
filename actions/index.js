@@ -25,8 +25,6 @@ import { ADD_SET, LBS_INPUT_CHANGE, ROW_INPUT_CHANGE, ADD_EXERCISE, ADD_SESSION,
   }
 
   export const addExercise = (exerciseName, timestamp) => {
-    //console.log("ADD EXERISE CALLED")
-    //console.log(exerciseName)
     return {
       type: ADD_EXERCISE,
       exerciseName, timestamp

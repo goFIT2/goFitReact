@@ -103,21 +103,21 @@ const newReducer = (state = defaultState, action) => {
                     }
                 }
             }
+            console.log(timestamp)
             const exerciseIndex = Object.keys(state.users.cvaladez.sessions[timestamp]).length
-            //console.log(`exerviseIndex:${exerciseIndex}`)
+            console.log(`exerviseIndex:${exerciseIndex}`)
             newState.users.cvaladez.sessions[timestamp][exerciseIndex] = newExercise
-
             return newState
         }
 
-        case ADD_SESSION: {
-            const {timestamp} = action
-            let newState = _.cloneDeep(state)
-            newState.users.cvaladez.sessions[timestamp] = {}
-            newState.currentSession = timestamp
+        // case ADD_SESSION: {
+        //     const {timestamp} = action
+        //     let newState = _.cloneDeep(state)
+        //     newState.users.cvaladez.sessions[timestamp] = {}
+        //     newState.currentSession = timestamp
 
-            return newState
-        }
+        //     return newState
+        // }
 
         case SWITCH_EXERCISE: {
             const {name} = action
@@ -125,7 +125,13 @@ const newReducer = (state = defaultState, action) => {
             newState.users.cvaladez.chosenExercise = name
             return newState
         }
-
+        
+        case 'FETCH_SUCCEEDED': {
+            const {result} = action 
+            let newState = _.cloneDeep(state)
+            newState.users.cvaladez.sessions = result.sessions
+            return newState
+        }
         default:
             return state
     }

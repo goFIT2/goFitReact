@@ -14,17 +14,15 @@ class LogProgressScreen extends React.Component {
   };
 
   saveButton = () => {
-    //console.log("Save button pressed")
-    //this.props.addSession(new Date(Date.now()).toDateString())
-    const sessionTime = this.props.newReducer.currentSession 
+    const timestamp = this.props.newReducer.currentSession 
     const exercises = this.props.newReducer.users.cvaladez.sessions[sessionTime]
 
-    this.props.saveSession(sessionTime, exercises)
+    this.props.saveSession(timestamp, exercises)
   }
 
   //Grab data from Firebase and rehydrate Redux tree
   componentDidMount() {
-    this.props.fetchProgressData() 
+    //this.props.fetchProgressData() 
     let data = this.props.newReducer.users.cvaladez.sessions
 
     if (!data[new Date(Date.now()).toDateString()]) {
@@ -56,9 +54,7 @@ class LogProgressScreen extends React.Component {
       <View style={{ flexDirection: 'column', backgroundColor: '#fcfcfc', height: height-120 }}>
 
         <ScrollView ref={(scrollView) => { this.scrollView = scrollView; }} horizontal= {true} decelerationRate={0} snapToInterval={width-50} snapToAlignment={"center"} showsHorizontalScrollIndicator={false} contentInset={{top:0,left:25,bottom:0,right:25}} style={{flex:1}}>
-
           <FlatList horizontal={true} data={sessions} keyExtractor={(item, index) => index} renderItem={({item, index}) =>
-
             <View>
               <Text style={styles.timestamp}>{timestamps[index]}</Text>
               <View style={{margin: 10, borderBottomColor: 'lightgray', borderBottomWidth: StyleSheet.hairlineWidth}}/>
@@ -92,11 +88,11 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     addSet: (exerciseIndex, setIndex, timestamp) => dispatch(addSet(exerciseIndex, setIndex, timestamp)),
-    addSession: (timestamp) => dispatch(addSession(timestamp)),
+    addSession: (timestamp) => dispatch({type: 'ADD_SESSION', timestamp}),
     lbsInputChange: bindActionCreators(lbsInputChange, dispatch),
     repsInputChange: bindActionCreators(repsInputChange, dispatch),
-    saveSession: (sessionTime, exercises) => {
-      return dispatch({type: SAVE_SESSION, sessionTime, exercises}) 
+    saveSession: (timestamp, exercises) => {
+      return dispatch({type: SAVE_SESSION, timestamp, exercises}) 
     },
     fetchProgressData: () => dispatch({type: 'FETCH_DATA'})
   }
