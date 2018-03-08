@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "tabexpo",
+    "name": "goFIT",
     "description": "A very interesting project.",
-    "slug": "tabexpo",
+    "slug": "goFit",
     "privacy": "public",
     "sdkVersion": "25.0.0",
     "platforms": ["ios", "android"],

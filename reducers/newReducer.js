@@ -119,7 +119,7 @@ const newReducer = (state = defaultState, action) => {
         case 'INITIAL_LOAD': {
             const {snapshot} = action 
             let newState = _.cloneDeep(state)
-            newState.userData = snapshot
+            newState.users = snapshot
             console.log(snapshot)
             return newState
         }
