@@ -5,64 +5,42 @@ import {_} from 'lodash'
 const NO_SESSION = 'NO_SESSION'
 
 const defaultState = {
-   currentSession: NO_SESSION,
-   units: {
-     "Barbell Press": ["lbs", "reps"],
-     "Dumbbell Press": ["lbs", "reps"],
-     "Bicep Curl": ["lbs", "reps"],
-     "Barbell Curl": ["lbs", "reps"],
-     "Shoulder Press": ["lbs", "reps"],
-     "Running" : ["mi", "min"],
-     "Swimming" : ["mi", "min"],
-     "Chin Ups" : ["reps"],
-   },
-    users: {
-        'cvaladez': {
-            chosenExercise: 'Barbell Press',
-            sessions: {
-                'Tue Feb 27 2018': { 
-                    '0': {
-                        exerciseName: 'Barbell Press',
-                        sets: {
-                            '0': {
-                                lbs: '50',
-                                reps: '10'
-                            },
-                        }
-                    }
-                },
-                'Wed Feb 28 2018': {
-                    '0': {
-                        exerciseName: 'Barbell Press',
-                        sets: {
-                          '0': {
-                              lbs: '60',
-                              reps: '15'
-                          },
-                          '1': {
-                              lbs: '60',
-                              reps: '10'
-                          },
-                        }
-                    },
-                    '1': {
-                        exerciseName: 'Dumbbell Press',
-                        sets: {
-                            '0': {
-                                lbs: '50',
-                                reps: '20'
-                            },
-                            '1': {
-                                lbs: '45',
-                                reps: '15'
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
+    "currentSession": "NO_SESSION",
+    "units": {
+       "Barbell Press": [
+          "lbs",
+          "reps"
+       ],
+       "Dumbbell Press": [
+          "lbs",
+          "reps"
+       ],
+       "Bicep Curl": [
+          "lbs",
+          "reps"
+       ],
+       "Barbell Curl": [
+          "lbs",
+          "reps"
+       ],
+       "Shoulder Press": [
+          "lbs",
+          "reps"
+       ],
+       "Running": [
+          "mi",
+          "min"
+       ],
+       "Swimming": [
+          "mi",
+          "min"
+       ],
+       "Chin Ups": [
+          "reps"
+       ]
+    },
+    "userData": 'NOT_LOADED'
+ }
 
 const newReducer = (state = defaultState, action) => {
     switch (action.type) {
@@ -104,20 +82,21 @@ const newReducer = (state = defaultState, action) => {
                 }
             }
             console.log(timestamp)
+            // CRASHING, BECAUSE TIMESTAMP IS NOT IN STORE. 
             const exerciseIndex = Object.keys(state.users.cvaladez.sessions[timestamp]).length
             console.log(`exerviseIndex:${exerciseIndex}`)
             newState.users.cvaladez.sessions[timestamp][exerciseIndex] = newExercise
             return newState
         }
 
-        // case ADD_SESSION: {
-        //     const {timestamp} = action
-        //     let newState = _.cloneDeep(state)
-        //     newState.users.cvaladez.sessions[timestamp] = {}
-        //     newState.currentSession = timestamp
+        case 'ADD_SESSION': {
+            // const {timestamp} = action
+            // let newState = _.cloneDeep(state)
+            // newState.users.cvaladez.sessions[timestamp] = {}
+            // newState.currentSession = timestamp
 
-        //     return newState
-        // }
+            return state
+        }
 
         case SWITCH_EXERCISE: {
             const {name} = action
@@ -130,6 +109,18 @@ const newReducer = (state = defaultState, action) => {
             const {result} = action 
             let newState = _.cloneDeep(state)
             newState.users.cvaladez.sessions = result.sessions
+            return newState
+        }
+        case 'TIMESTAMP_CHANGED': {
+            console.log("tIME changed")
+            return state
+        }
+        
+        case 'INITIAL_LOAD': {
+            const {snapshot} = action 
+            let newState = _.cloneDeep(state)
+            newState.userData = snapshot
+            console.log(snapshot)
             return newState
         }
         default:

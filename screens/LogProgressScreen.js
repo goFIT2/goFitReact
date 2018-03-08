@@ -3,7 +3,7 @@ import ExerciseComponent from '../components/ExerciseComponent.js'
 import { Dimensions, ScrollView, TouchableHighlight, SectionList, View, StyleSheet, Text, FlatList } from 'react-native'
 import SearchExercise from '../components/SearchExercise'
 import { connect } from 'react-redux'
-import { addSet, lbsInputChange, repsInputChange, addSession } from '../actions/index'
+import { initialLoad, addSet, lbsInputChange, repsInputChange, addSession } from '../actions/index'
 import { _ } from 'lodash'
 import { bindActionCreators } from 'redux'
 import { SAVE_SESSION } from '../actions/ActionConstants'
@@ -22,7 +22,7 @@ class LogProgressScreen extends React.Component {
 
   //Grab data from Firebase and rehydrate Redux tree
   componentDidMount() {
-    //this.props.fetchProgressData() 
+    this.props.initialLoad()
     let data = this.props.newReducer.users.cvaladez.sessions
 
     if (!data[new Date(Date.now()).toDateString()]) {
@@ -88,13 +88,14 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     addSet: (exerciseIndex, setIndex, timestamp) => dispatch(addSet(exerciseIndex, setIndex, timestamp)),
-    addSession: (timestamp) => dispatch({type: 'ADD_SESSION', timestamp}),
+    addSession: (timestamp) => dispatch(addSession(timestamp)),
     lbsInputChange: bindActionCreators(lbsInputChange, dispatch),
     repsInputChange: bindActionCreators(repsInputChange, dispatch),
     saveSession: (timestamp, exercises) => {
       return dispatch({type: SAVE_SESSION, timestamp, exercises}) 
     },
-    fetchProgressData: () => dispatch({type: 'FETCH_DATA'})
+    fetchProgressData: () => dispatch({type: 'FETCH_DATA'}),
+    initialLoad: () => dispatch(initialLoad())
   }
 }
 

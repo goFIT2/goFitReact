@@ -2,6 +2,60 @@ import { ADD_SET, LBS_INPUT_CHANGE, ROW_INPUT_CHANGE, ADD_EXERCISE, ADD_SESSION,
   CREATE_COMMUNITY, POST_STATUS, SWITCH_COMMUNITY, LIKE_UNLIKE, REPS_INPUT_CHANGE,
   SAVE_SESSION } from './ActionConstants'
 
+import ReduxThunk from 'redux-thunk' 
+
+import * as firebase from 'firebase'
+
+// Initialize Firebase
+const firebaseConfig = {
+    apiKey: "AIzaSyBau_IQa_QOEVSeGyghOBqOn7S35m47CeA",
+    authDomain: "gofit-33d52.firebaseapp.com",
+    databaseURL: "https://gofit-33d52.firebaseio.com",
+    projectId: "gofit-33d52",
+    storageBucket: "gofit-33d52.appspot.com",
+    messagingSenderId: "408243174404"
+};
+firebase.initializeApp(firebaseConfig);
+
+  export const addSession = (timestamp) => {
+    console.log(`adding session:${timestamp}`)
+    console.log('1')
+    return (dispatch) => { 
+      console.log('2')
+      return firebase.database().ref('/random').set(
+        timestamp
+      ).then(
+        dispatch({type: 'ADD_SESSION'}),
+        dispatch(syncFirebase())
+      )
+    }
+  }
+
+  const timestampRef = firebase.database().ref('/random');
+  
+  const syncFirebase = () => {
+    return (dispatch) => {
+      timestampRef.on('value', function(snapshot) {
+        console.log(`Timestamp value changed to:${snapshot.val()}`)
+        
+          console.log(dispatch)
+          dispatch({type: 'TIMESTAMP_CHANGED'})
+        })
+    };
+  }
+
+  const usersRef = firebase.database().ref('/users')
+
+  export const initialLoad = () => {
+    return dispatch => {
+      return usersRef.once('value')
+        .then((snapshot) => {
+          dispatch({type: 'INITIAL_LOAD', snapshot: snapshot.val()})
+        })
+    }
+  }
+
+
   export const lbsInputChange = (exerciseIndex, setIndex, nextLbs, timestamp) => {
     return {
       type: LBS_INPUT_CHANGE,
@@ -31,12 +85,12 @@ import { ADD_SET, LBS_INPUT_CHANGE, ROW_INPUT_CHANGE, ADD_EXERCISE, ADD_SESSION,
     }
   }
 
-  export const addSession = (timestamp) => {
-    return {
-      type: ADD_SESSION,
-      timestamp
-    }
-  }
+  // export const addSession = (timestamp) => {
+  //   return {
+  //     type: ADD_SESSION,
+  //     timestamp
+  //   }
+  // }
 
   export const addActivity = (name) => {
     return {
