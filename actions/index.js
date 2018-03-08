@@ -18,17 +18,23 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
   export const addSession = (timestamp) => {
-    console.log(`adding session:${timestamp}`)
+    return {
+      type: 'ADD_SESSION', timestamp
+    }
+  }
+
+  export const saveSession = (timestamp, exercises) => {
+    console.log(`saving session:${timestamp}`)
+    console.log(exercises)
     console.log('1')
     return (dispatch) => { 
       console.log('2')
-      return firebase.database().ref('/random').set(
-        timestamp
+      return firebase.database().ref('/users/cvaladez/sessions/' + timestamp).update(
+        exercises
       ).then(
-        dispatch({type: 'ADD_SESSION'}),
         dispatch(syncFirebase())
       )
-    }
+    } 
   }
 
   const timestampRef = firebase.database().ref('/random');
@@ -85,12 +91,6 @@ firebase.initializeApp(firebaseConfig);
     }
   }
 
-  // export const addSession = (timestamp) => {
-  //   return {
-  //     type: ADD_SESSION,
-  //     timestamp
-  //   }
-  // }
 
   export const addActivity = (name) => {
     return {

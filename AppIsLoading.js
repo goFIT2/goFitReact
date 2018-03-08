@@ -58,13 +58,10 @@ class AppIsLoading extends React.Component {
   };
 
   _handleLoadingError = error => {
-    // In this case, you might want to report the error to your error
-    // reporting service, for example Sentry
     console.warn(error);
   };
 
   _handleFinishLoading = () => {
-    console.log("loading is done")
     this.props.doneLoading()
   };
 }

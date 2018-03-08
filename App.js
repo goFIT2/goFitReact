@@ -19,7 +19,6 @@ class App extends React.Component {
 
   render() {
     if (!this.state.isLoadingComplete && !this.props.skipLoadingScreen) {
-      console.log('rednering laoding')
       return (
         <View> 
           <Provider store={store}>
@@ -28,7 +27,6 @@ class App extends React.Component {
         </View> 
       );
     } else {
-      console.log('rendering actual')
       return (
             <View style={styles.container}>
             {Platform.OS === 'ios' && <StatusBar barStyle="default" />}

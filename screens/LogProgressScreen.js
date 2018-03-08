@@ -3,7 +3,7 @@ import ExerciseComponent from '../components/ExerciseComponent.js'
 import { Dimensions, ScrollView, TouchableHighlight, SectionList, View, StyleSheet, Text, FlatList } from 'react-native'
 import SearchExercise from '../components/SearchExercise'
 import { connect } from 'react-redux'
-import { initialLoad, addSet, lbsInputChange, repsInputChange, addSession } from '../actions/index'
+import { saveSession, addSet, lbsInputChange, repsInputChange, addSession } from '../actions/index'
 import { _ } from 'lodash'
 import { bindActionCreators } from 'redux'
 import { SAVE_SESSION } from '../actions/ActionConstants'
@@ -15,14 +15,13 @@ class LogProgressScreen extends React.Component {
 
   saveButton = () => {
     const timestamp = this.props.newReducer.currentSession 
-    const exercises = this.props.newReducer.users.cvaladez.sessions[sessionTime]
+    const exercises = this.props.newReducer.users.cvaladez.sessions[timestamp]
 
     this.props.saveSession(timestamp, exercises)
   }
 
   //Grab data from Firebase and rehydrate Redux tree
   componentDidMount() {
-    this.props.initialLoad()
     let data = this.props.newReducer.users.cvaladez.sessions
 
     if (!data[new Date(Date.now()).toDateString()]) {
@@ -34,7 +33,6 @@ class LogProgressScreen extends React.Component {
   }
 
   render() {
-    //let data = this.props.newReducer.users.cvaladez.sessions.TIMESTAMP1
     let data = this.props.newReducer.users.cvaladez.sessions
 
     var sessions = []
@@ -91,11 +89,9 @@ const mapDispatchToProps = (dispatch) => {
     addSession: (timestamp) => dispatch(addSession(timestamp)),
     lbsInputChange: bindActionCreators(lbsInputChange, dispatch),
     repsInputChange: bindActionCreators(repsInputChange, dispatch),
-    saveSession: (timestamp, exercises) => {
-      return dispatch({type: SAVE_SESSION, timestamp, exercises}) 
-    },
+    saveSession: (timestamp, exercises) => dispatch(saveSession(timestamp, exercises)),
     fetchProgressData: () => dispatch({type: 'FETCH_DATA'}),
-    initialLoad: () => dispatch(initialLoad())
+    
   }
 }
 

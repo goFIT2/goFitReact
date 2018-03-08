@@ -90,12 +90,12 @@ const newReducer = (state = defaultState, action) => {
         }
 
         case 'ADD_SESSION': {
-            // const {timestamp} = action
-            // let newState = _.cloneDeep(state)
-            // newState.users.cvaladez.sessions[timestamp] = {}
-            // newState.currentSession = timestamp
-
-            return state
+            const {timestamp} = action
+            let newState = _.cloneDeep(state)
+            newState.users.cvaladez.sessions[timestamp] = {}
+            newState.currentSession = timestamp
+            
+            return newState
         }
 
         case SWITCH_EXERCISE: {
@@ -120,8 +120,12 @@ const newReducer = (state = defaultState, action) => {
             const {snapshot} = action 
             let newState = _.cloneDeep(state)
             newState.users = snapshot
+            newState.currentSession = new Date(Date.now()).toDateString()
             console.log(snapshot)
             return newState
+        }
+        case 'SAVE_SESSION': {
+            return state
         }
         default:
             return state
