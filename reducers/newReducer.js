@@ -116,7 +116,7 @@ const newReducer = (state = defaultState, action) => {
             return state
         }
         
-        case 'INITIAL_LOAD': {
+        case 'LOAD_PROGRESS': {
             const {snapshot} = action 
             let newState = _.cloneDeep(state)
             newState.users = snapshot

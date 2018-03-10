@@ -51,13 +51,23 @@ firebase.initializeApp(firebaseConfig);
   }
 
   const usersRef = firebase.database().ref('/users')
-
+  const communityRef = firebase.database().ref('/communities')
+  const newsfeedRef = firebase.database().ref('/newsfeed')
+  
   export const initialLoad = () => {
     return dispatch => {
-      return usersRef.once('value')
+      usersRef.once('value')
         .then((snapshot) => {
-          dispatch({type: 'INITIAL_LOAD', snapshot: snapshot.val()})
+          dispatch({type: 'LOAD_PROGRESS', snapshot: snapshot.val()})
         })
+      communityRef.once('value')
+        .then((snapshot) => {
+          dispatch({type: 'LOAD_COMMUNITIES', snapshot: snapshot.val()})
+        })
+      newsfeedRef.once('value')
+      .then((snapshot) => {
+        dispatch({type: 'LOAD_NEWSFEED', snapshot: snapshot.val()})
+      })
     }
   }
 

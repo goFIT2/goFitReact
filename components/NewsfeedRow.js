@@ -8,6 +8,7 @@ class NewsfeedRow extends React.Component {
 
   constructor(props) {
     super(props)
+    console.log(props)
     this.state = {
       id: props.id,
       friend: props.friend,
@@ -73,7 +74,9 @@ class NewsfeedRow extends React.Component {
             {text}
             {attachment}
             <TouchableHighlight onPress={this.like}>
-              <Text style={this.state.likes.indexOf("You") >= 0 ? styles.likeLabelRed : styles.likeLabelGray}>♥ {this.state.likes.length}</Text>
+              <Text style={(this.state.likes == null || this.state.likes.indexOf("You") >= 0)? styles.likeLabelRed : styles.likeLabelGray}>
+              ♥ {this.state.likes == null ? 0 : this.state.likes.length}
+              </Text>
             </TouchableHighlight>
           </View>
         </View>
