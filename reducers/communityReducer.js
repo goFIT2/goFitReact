@@ -49,11 +49,6 @@ const communityReducer = (state = defaultState, action) => {
       } else {
         newState.newsfeed[postIndex].likes.push('You')
       }
-      console.log(postIndex)
-      console.log(newState.newsfeed[postIndex].likes)
-      console.log(state.newsfeed[postIndex].likes)
-      console.log(newState.newsfeed[postIndex])
-      console.log(newState.newsfeed)
       return newState
     default:
       return state

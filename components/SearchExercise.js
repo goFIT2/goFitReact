@@ -42,8 +42,19 @@ class SearchExercise extends React.Component {
       'Bicep Curl',
       'Barbell Curl',
       'Shoulder Press',
-      'Chin Ups'
+      'Chin Ups',
+      "Swimming",
+      "Biking",
+      "Walking",
+      "Push Ups",
+      "Pull Ups",
+      "Jump Rope",
+      "Squats",
+      "Lunges",
+      "Deadlifts",
+      "Crunches",
     ]
+    data.sort()
     let filteredData = this.filterExercises(searchText, data);
     // console.log("Filtered data is " + filteredData);
     data = filteredData;

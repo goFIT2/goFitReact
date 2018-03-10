@@ -5,16 +5,18 @@ import { FormLabel, FormInput, FormValidationMessage, Button } from 'react-nativ
 export default class LoginScreen extends React.Component {
 
   static navigationOptions = {
-    title: 'Log In',
+    title: 'Login',
+    headerTitle: (
+      <Image source={require('../assets/images/logo.png')}  style={{resizeMode: 'contain', height:30}}/>
+    ),
   }
 
   constructor(props) {
       super(props)
       this.checkValues = this.checkValues.bind(this)
-      this.login = this.login.bind(this)
       this.state = {
-          email: '',
-          password: ''
+          email: 'bryce@gofit.com',
+          password: 'pasword'
       }
   }
 
@@ -22,9 +24,9 @@ export default class LoginScreen extends React.Component {
     return (this.state.email && this.state.password)
   }
 
-  login() {
+  login = () => {
     if (this.checkValues()) {
-      Alert.alert('This should log in user ' + this.state.email + ' with password ' + this.state.password + '.')
+      this.props.navigation.navigate('Home')
     }
   }
 
@@ -40,9 +42,9 @@ export default class LoginScreen extends React.Component {
         </View>
         <View style={{flex:1}}>
             <FormLabel>Email Address</FormLabel>
-            <FormInput onChangeText={(email) => this.setState({email})} autoCapitalize='none' autoCorrect={false}/>
+            <FormInput onChangeText={(email) => this.setState({email})} autoCapitalize='none' autoCorrect={false} value={this.state.email}/>
             <FormLabel>Password</FormLabel>
-            <FormInput onChangeText={(password) => this.setState({password})} secureTextEntry={true} autoCapitalize='none' autoCorrect={false}/>
+            <FormInput onChangeText={(password) => this.setState({password})} secureTextEntry={true} autoCapitalize='none' autoCorrect={false} value={this.state.password}/>
             <Button title='Log In' style={styles.button} onPress={this.login} backgroundColor={this.checkValues() ? '#FB6D00' : 'gray'}/>
             <TouchableHighlight onPress={this.create} style={{margin:15}}>
               <Text style={styles.createButton}>Create Account</Text>

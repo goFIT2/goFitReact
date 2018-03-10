@@ -17,19 +17,7 @@ import IndividualExerciseScreen from '../screens/IndividualExerciseScreen'
 
 import LoginScreen from '../screens/LoginScreen'
 import CreateAccountScreen from '../screens/CreateAccountScreen'
-
-
-const HomeStackNavigator = StackNavigator(
-  {
-    Home: {
-      screen: HomeScreen,
-    },
-  },
-  {
-    initialRouteName: 'Home',
-    headerMode: 'float'
-  }
-)
+import ShareExerciseProgressScreen from '../screens/ShareExerciseProgressScreen'
 
 const CommunityStackNavigator = StackNavigator(
   {
@@ -43,13 +31,23 @@ const CommunityStackNavigator = StackNavigator(
       screen: IndividualCommunityScreen,
     },
     ShareProgress: {
-      screen: ShareProgressScreen
+      screen: ShareProgressScreen,
     }
   },
   {
     headerMode: 'float'
   }
+)
 
+const HomeStackNavigator = StackNavigator(
+  {
+    Home: {
+      screen: HomeScreen,
+    }
+  },
+  {
+    headerMode: 'float'
+  }
 )
 
 const ProgressStackNavigator = StackNavigator(
@@ -58,21 +56,10 @@ const ProgressStackNavigator = StackNavigator(
       screen: LogProgressScreen,
     },
     IndividualExercise: {
-      screen: IndividualExerciseScreen
-    }
-  },
-  {
-    headerMode: 'float'
-  }
-)
-
-const LoginStackNavigator = StackNavigator(
-  {
-    Login: {
-      screen: LoginScreen,
+      screen: IndividualExerciseScreen,
     },
-    Create: {
-      screen: CreateAccountScreen,
+    ShareExerciseProgressScreen: {
+      screen: ShareExerciseProgressScreen,
     }
   },
   {
@@ -83,20 +70,18 @@ const LoginStackNavigator = StackNavigator(
 const MainTabNavigator =  TabNavigator(
   {
     Progress: {
-      screen: ProgressStackNavigator,
+      screen: ProgressStackNavigator
     },
     Home: {
       screen: HomeStackNavigator
     },
-    Community: {
+    Communities: {
       screen: CommunityStackNavigator
-    },
-    Login: {
-      screen: LoginStackNavigator
     }
   },
   {
     navigationOptions: ({ navigation }) => ({
+      headerLeft: null,
       tabBarIcon: ({ focused }) => {
         const { routeName } = navigation.state;
         let iconName;
@@ -110,7 +95,7 @@ const MainTabNavigator =  TabNavigator(
           case 'Progress':
             iconName = `ios-trending-up${focused ? '' : '-outline'}`
             break;
-          case 'Community':
+          case 'Communities':
             iconName = `ios-people${focused ? '' : '-outline'}`
             break
         }
@@ -132,5 +117,26 @@ const MainTabNavigator =  TabNavigator(
   }
 );
 
+const LoginStackNavigator = StackNavigator(
+  {
+    Login: {
+      screen: LoginScreen,
+    },
+    Create: {
+      screen: CreateAccountScreen,
+    },
+    Home: {
+      screen: MainTabNavigator,
+    }
+  },
+  {
+    initialRouteName: 'Login',
+    headerMode: 'none',
+    navigationOptions: {
+        gesturesEnabled: false,
+        headerVisible: false,
+    }
+  }
+)
 
-export default MainTabNavigator
+export default LoginStackNavigator

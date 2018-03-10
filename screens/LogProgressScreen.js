@@ -10,7 +10,7 @@ import { SAVE_SESSION } from '../actions/ActionConstants'
 
 class LogProgressScreen extends React.Component {
   static navigationOptions = {
-    title: 'myProgress',
+    title: 'Progress',
   };
 
   saveButton = () => {
@@ -66,8 +66,8 @@ class LogProgressScreen extends React.Component {
 
         </ScrollView>
 
-        <TouchableHighlight onPress={this.saveButton} style={styles.button}>
-          <Text style={{ textAlign: 'center', textAlignVertical: 'center', color: 'white', fontFamily: 'sf-bold' }}>SAVE WORKOUT</Text>
+        <TouchableHighlight onPress={this.shareButton} style={styles.button}>
+          <Text style={{ textAlign: 'center', textAlignVertical: 'center', color: 'white', fontFamily: 'sf-bold' }}>SHARE WORKOUT</Text>
         </TouchableHighlight>
         <SearchExercise />
 

@@ -1,12 +1,12 @@
 import React from 'react'
-import { 
-    TouchableHighlight, 
+import {
+    TouchableHighlight,
     StyleSheet,
     View,
     Image,
     Text
     } from 'react-native'
-    
+
 class SelectActivityButton extends React.Component {
     constructor(props){
         super(props)
@@ -14,7 +14,7 @@ class SelectActivityButton extends React.Component {
 
     getURL = (activityType) => {
         let url = null
-        console.log(activityType)
+        //console.log(activityType)
         switch (activityType){
             case 'Swimming':
                 url = require('../assets/images/swimming.png')
@@ -55,14 +55,14 @@ class SelectActivityButton extends React.Component {
             <TouchableHighlight
             style={styles.activityStyle}
             onPress={() => this.activityPress(this.props.activityType)}
-            >   
-            <View style={styles.activityStyle}> 
+            >
+            <View style={styles.activityStyle}>
                 <Image source={imageSource}
                     style={styles.imageStyle}
                     resizeMode='contain'
                 />
                 <Text>{this.props.activityType}</Text>
-            </View> 
+            </View>
         </TouchableHighlight>
         )
     }
@@ -70,12 +70,12 @@ class SelectActivityButton extends React.Component {
 
 const styles = StyleSheet.create({
     imageStyle: {
-        height: 50, 
+        height: 50,
         width: 50,
         resizeMode: 'contain'
     },
     activityStyle: {
-        flex: 1, alignItems: 'center' 
+        flex: 1, alignItems: 'center'
     },
 })
 
