@@ -8,23 +8,31 @@ const defaultState = {
 const communityReducer = (state = defaultState, action) => {
   let newState = Object.assign({}, state)
   switch (action.type) {
-    case CREATE_COMMUNITY:
-      const {name, members} = action
-      newCommunity = {key:state.communities.length, name:name, icon: require('../assets/images/social.png'), members:members}
+    //wIP: but creating duplicates in reducer. Okay on Firebase.
+    case CREATE_COMMUNITY: {
+      const {snapshot, key} = action 
+      const {name, members} = snapshot
+      newCommunity = {key, name, icon: require('../assets/images/social.png'), members}
       newState.communities = state.communities.slice()
       newState.communities.push(newCommunity)
       return newState
-    case SWITCH_COMMUNITY:
+    }
+    case SWITCH_COMMUNITY: {
       const {index} = action
       newState.chosenCommunity = index
       return newState
-    case POST_STATUS:
-      const {friend, text, community, attachment} = action
-      const newRow = {key:state.newsfeed.length, friend:friend, text:text, community:community, time:Date.now(), likes:[], attachment:attachment}
+    }
+    //Done / WIP: Need to get the ordering wokring 
+    case POST_STATUS: {
+      const {snapshot} = action
+      const {friend, text, community, attachment} = snapshot
+      const newRow = {key:state.newsfeed.length, friend, text, community, time:Date.now(), likes:[], attachment}
       newState.newsfeed = state.newsfeed.slice()
       newState.newsfeed.push(newRow)
       return newState
-    case LIKE_UNLIKE:
+    }
+
+    case LIKE_UNLIKE: {
       const {postIndex} = action
       newState.newsfeed = state.newsfeed.slice()
       if (newState.newsfeed[postIndex].likes.indexOf("You") >= 0) {
@@ -33,7 +41,7 @@ const communityReducer = (state = defaultState, action) => {
         newState.newsfeed[postIndex].likes.push('You')
       }
       return newState
-
+    }
     case 'LOAD_COMMUNITIES': {
         const {snapshot} = action 
         let newState = _.cloneDeep(state)

@@ -87,27 +87,21 @@ firebase.initializeApp(firebaseConfig);
   }
 
 
-  export const addSet = (exerciseIndex, setIndex, timestamp) => {
-    return {
-      type: ADD_SET,
-      exerciseIndex, setIndex, timestamp
-    }
-  }
+  // export const addSet = (exerciseIndex, setIndex, timestamp) => {
+  //   return {
+  //     type: ADD_SET,
+  //     exerciseIndex, setIndex, timestamp
+  //   }
+  // }
 
-  export const addExercise = (exerciseName, timestamp) => {
-    return {
-      type: ADD_EXERCISE,
-      exerciseName, timestamp
-    }
-  }
+  // export const addExercise = (exerciseName, timestamp) => {
+  //   return {
+  //     type: ADD_EXERCISE,
+  //     exerciseName, timestamp
+  //   }
+  // }
 
 
-  export const addActivity = (name) => {
-    return {
-      type: ADD_ACTIVITY,
-      name
-    }
-  }
 
   export const switchExercise = (name) => {
     return {
@@ -116,21 +110,39 @@ firebase.initializeApp(firebaseConfig);
     }
   }
 
-  export  const createCommunity = (name, members) => {
-    return {
-      type: CREATE_COMMUNITY,
-      name,
-      members
+  export const createCommunity = (name, members) => {
+    return dispatch => {
+      const newCommunity = {}
+      const key = communityRef.push().key
+      newCommunity[key] = {name, members}
+      communityRef.update(newCommunity)
+        .then(dispatch(syncCommunities()))
+    }
+  }
+
+  const syncCommunities = () => {
+    return dispatch => {
+      communityRef.on('child_added', (snapshot) => {
+        dispatch({type: CREATE_COMMUNITY, key: snapshot.key, snapshot: snapshot.val()})
+      })
     }
   }
 
   export const postStatus = (friend, text, community, attachment) => {
-    return {
-      type: POST_STATUS,
-      friend,
-      text,
-      community,
-      attachment
+    return dispatch => {
+      const newPostKey = newsfeedRef.push().key
+      const post = { [newPostKey]: {friend, text, community, time:Date.now(), likes:[], attachment}
+      }
+      newsfeedRef.update(post)
+        .then(dispatch(syncNewsfeed()))
+    }
+  }
+
+  const syncNewsfeed = () => {
+    return dispatch => {
+      newsfeedRef.on('child_added', function(snapshot) {
+          dispatch({type: POST_STATUS, snapshot: snapshot.val()})
+      })
     }
   }
 

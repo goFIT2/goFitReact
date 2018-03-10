@@ -103,7 +103,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addExercise: (exerciseName, timestamp) => dispatch(addExercise(exerciseName, timestamp))
+    addExercise: (exerciseName, timestamp) => dispatch({type: 'ADD_EXERCISE', exerciseName, timestamp})
   }
 }
 

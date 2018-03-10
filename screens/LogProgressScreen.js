@@ -89,7 +89,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addSet: (exerciseIndex, setIndex, timestamp) => dispatch(addSet(exerciseIndex, setIndex, timestamp)),
+    addSet: (exerciseIndex, setIndex, timestamp) => dispatch({type: 'ADD_SET', exerciseIndex, setIndex, timestamp}),
     addSession: (timestamp) => dispatch(addSession(timestamp)),
     lbsInputChange: bindActionCreators(lbsInputChange, dispatch),
     repsInputChange: bindActionCreators(repsInputChange, dispatch),
