@@ -25,10 +25,11 @@ const data = []
 
 class SearchExercise extends React.Component {
 
-  toggleAddExercise(item) {
+  toggleAddExercise = (item) => {
     this.setState({searchText:'', data:[]})
     timestamp = new Date(Date.now()).toDateString() // only add exercises to today
     this.props.addExercise(item, timestamp)
+    setTimeout(() => {this.props.scrollView.scrollToEnd() }, 0)
   }
 
   setSearchText(text) {
@@ -36,25 +37,24 @@ class SearchExercise extends React.Component {
     const searchText = text
     this.setState({searchText})
     data = [
-      'Barbell Press',
-      'Dumbbell Press',
-      'Running',
-      'Bicep Curl',
-      'Barbell Curl',
-      'Shoulder Press',
-      'Chin Ups',
-      "Swimming",
-      "Biking",
-      "Walking",
-      "Push Ups",
-      "Pull Ups",
-      "Jump Rope",
-      "Squats",
-      "Lunges",
-      "Deadlifts",
-      "Crunches",
+        "Barbell Curl",
+        "Barbell Press",
+        "Bicep Curl",
+        "Biking",
+        "Chin Ups",
+        "Crunches",
+        "Deadlifts",
+        "Dumbbell Press",
+        "Jump Rope",
+        "Lunges",
+        "Pull Ups",
+        "Push Ups",
+        "Running",
+        "Shoulder Press",
+        "Squats",
+        "Swimming",
+        "Walking",
     ]
-    data.sort()
     let filteredData = this.filterExercises(searchText, data);
     // console.log("Filtered data is " + filteredData);
     data = filteredData;
@@ -80,9 +80,9 @@ class SearchExercise extends React.Component {
 
   render() {
     return (
-      <View style={{width: width, position:'absolute'}}>
+      <View style={{width: width, position:'absolute', backgroundColor:'white'}}>
         <View>
-          <TextInput style={styles.searchBar} value={this.state.searchText} onChangeText={(text) => this.setSearchText(text)} placeholder='Add An Exercise' autoCorrect={false}/>
+          <TextInput style={styles.searchBar} value={this.state.searchText} onChangeText={(text) => this.setSearchText(text)} placeholder='Add Exercise' autoCorrect={false} returnKeyType='done'/>
         </View>
         <FlatList data={this.state.data} keyExtractor={(item, index) => index} renderItem={({item, separators}) => {
           return (

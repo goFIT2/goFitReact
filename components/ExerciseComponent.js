@@ -1,5 +1,5 @@
 import React from 'react'
-import {  TouchableHighlight, View, Text,
+import {  TouchableHighlight, View, Text, KeyboardAvoidingView,
     TouchableOpacity, StyleSheet, TextInput, FlatList } from 'react-native'
 import { Entypo } from '@expo/vector-icons'
 
@@ -79,6 +79,7 @@ const ProgressRow = (props) => {
                       value={reps.toString()}
                       placeholder='0'
                       keyboardType='numeric'
+                      returnKeyType='done'
                   />
     }
 
@@ -96,6 +97,7 @@ const ProgressRow = (props) => {
                 value={lbs.toString()}
                 placeholder='0'
                 keyboardType='numeric'
+                returnKeyType='done'
                 />
 
             {secondColumn}
