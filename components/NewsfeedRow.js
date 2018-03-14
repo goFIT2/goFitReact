@@ -45,7 +45,7 @@ class NewsfeedRow extends React.Component {
     } else if (86400 <= seconds && seconds < 604800) {
       return Math.round(seconds/86400) + 'd'
     } else {
-      return Math.round(seconds/86400) + 'w'
+      return Math.round(seconds/604800) + 'w'
     }
   }
 

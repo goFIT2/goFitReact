@@ -22,14 +22,14 @@ class HomeScreen extends React.Component {
     this.state = {
       activities: [
         {key:0, icon:'weights', name:'Barbell Press'},
-        {key:1, icon:'weights', name:'Dumbbell Press'},
+        {key:1, icon:'walking', name:'Walking'},
       ]
     };
 
   }
 
   componentDidMount() {
-    setTimeout(() => {this.scrollView.scrollTo({x: -60}) }, 50)
+    setTimeout(() => {this.scrollView.scrollTo({x: -60}) }, 0)
   }
 
   render() {

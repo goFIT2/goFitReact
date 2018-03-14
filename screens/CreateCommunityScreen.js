@@ -73,7 +73,7 @@ class AddCommunityScreen extends React.Component {
       <KeyboardAvoidingView style={styles.container} behavior="position" keyboardVerticalOffset={0}>
         <Text style={styles.text}>Create</Text>
         <Text style={styles.text}>the</Text>
-        <TextInput style={styles.textinput} onChangeText={(name) => this.setState({name})} placeholder='goFIT' autoCapitalize='none' autoCorrect={false}/>
+        <TextInput style={styles.textinput} onChangeText={(name) => this.setState({name})} placeholder='goFIT' autoCapitalize='none' autoCorrect={false} returnKeyType='done'/>
         <Text style={styles.text}>community with</Text>
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
           {friends}

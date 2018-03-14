@@ -15,10 +15,6 @@ class IndividualExerciseScreen extends React.Component {
     title: 'Exercise Progress',
   }
 
-  share = () => {
-    this.props.navigation.navigate('Share Exercise Progress')
-  }
-
   displayLbsRow = (lbs, exerciseName) => {
     //const exercisesWithoutLbs = ['Chin Ups']
     if (this.props.units[exerciseName].length > 1) {
@@ -35,7 +31,7 @@ class IndividualExerciseScreen extends React.Component {
       <View style={styles.container}>
         <View style={styles.header}>
           <View style={styles.circle} >
-            <Image source={this.props.icons[this.props.exercise]} style={styles.icon} />
+            <Image source={require('../assets/images/weights.png')/*this.props.icons[this.props.exercise]*/} style={styles.icon} />
           </View>
           <View style={styles.exerciseLabel}>
             <Text style={styles.exerciseName}>{this.props.exercise}</Text>
@@ -68,9 +64,6 @@ class IndividualExerciseScreen extends React.Component {
 
           }/>
         </View>
-        <TouchableHighlight onPress={this.share} style={styles.button}>
-            <Text style={{textAlign: 'center', textAlignVertical: 'center', color: 'white', fontFamily: 'sf-bold'}}>SHARE</Text>
-        </TouchableHighlight>
       </View>
     )
   }
