@@ -50,9 +50,9 @@ firebase.initializeApp(firebaseConfig);
     };
   }
 
-  const usersRef = firebase.database().ref('/users')
-  const communityRef = firebase.database().ref('/communities')
-  const newsfeedRef = firebase.database().ref('/newsfeed')
+  const usersRef = firebase.database().ref('/users').orderByKey()
+  const communityRef = firebase.database().ref('/communities').orderByKey()
+  const newsfeedRef = firebase.database().ref('/newsfeed').orderByKey()
   
   export const initialLoad = () => {
     return dispatch => {

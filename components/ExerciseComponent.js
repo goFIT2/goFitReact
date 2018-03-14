@@ -6,6 +6,8 @@ import { Entypo } from '@expo/vector-icons'
 import { _ } from 'lodash'
 
 import { connect } from 'react-redux'
+
+//TODO: THIS IS AN ANTIPATTERN FIX THIS 
 import { switchExercise } from '../actions/index.js'
 
 const exercisesWithoutLbs = ['Chin Ups']
