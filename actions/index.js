@@ -58,16 +58,16 @@ firebase.initializeApp(firebaseConfig);
     return dispatch => {
       usersRef.once('value')
         .then((snapshot) => {
-          dispatch({type: 'LOAD_PROGRESS', snapshot: snapshot.val()})
+          dispatch({type: 'INITIAL_LOAD', snapshot: snapshot.val()})
         })
-      communityRef.once('value')
-        .then((snapshot) => {
-          dispatch({type: 'LOAD_COMMUNITIES', snapshot: snapshot.val()})
-        })
-      newsfeedRef.once('value')
-      .then((snapshot) => {
-        dispatch({type: 'LOAD_NEWSFEED', snapshot: snapshot.val()})
-      })
+      // communityRef.once('value')
+      //   .then((snapshot) => {
+      //     dispatch({type: 'LOAD_COMMUNITIES', snapshot: snapshot.val()})
+      //   })
+      // newsfeedRef.once('value')
+      // .then((snapshot) => {
+      //   dispatch({type: 'LOAD_NEWSFEED', snapshot: snapshot.val()})
+      // })
     }
   }
 
