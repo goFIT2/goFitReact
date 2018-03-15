@@ -74,7 +74,7 @@ class LogProgressScreen extends React.Component {
           <Text style={{ textAlign: 'center', textAlignVertical: 'center', color: 'white', fontFamily: 'sf-bold' }}>SAVE WORKOUT</Text>
         </TouchableHighlight>
 
-        <TouchableHighlight onPress={this.shareButton} style={styles.button}>
+        <TouchableHighlight onPress={() => this.props.navigation.navigate('ShareExerciseProgressScreen')} style={styles.button}>
           <Text style={{ textAlign: 'center', textAlignVertical: 'center', color: 'white', fontFamily: 'sf-bold' }}>SHARE WORKOUT</Text>
         </TouchableHighlight>
         <SearchExercise scrollView={this.scrollView}/>
